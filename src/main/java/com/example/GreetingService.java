@@ -6,7 +6,7 @@ import java.time.LocalDate;
 @ApplicationScoped
 public class GreetingService {
 
-    public String buildGreetingMessage(String name) {
-        return "Say Hello to " + name + " at" + LocalDate.now();
+    public GreetingMessage buildGreetingMessage(String name) {
+        return GreetingMessage.of("Say Hello to " + name + " at" + LocalDate.now());
     }
 }
