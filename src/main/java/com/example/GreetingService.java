@@ -1,12 +1,12 @@
 package com.example;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @ApplicationScoped
 public class GreetingService {
 
     public GreetingMessage buildGreetingMessage(String name) {
-        return GreetingMessage.of("Say Hello to " + name + " at" + LocalDate.now());
+        return GreetingMessage.of("Say Hello to " + name + " at " + LocalDateTime.now());
     }
 }
