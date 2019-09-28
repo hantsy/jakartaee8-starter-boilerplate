@@ -21,6 +21,8 @@
         <glassfish.version>5.1.0</glassfish.version>
         <arquillian-bom.version>1.4.1.Final</arquillian-bom.version>
         <payara.version>5.193</payara.version>
+        <arquillian-payara-server.version>1.2</arquillian-payara-server.version>
+        <arquillian-glassfish.version>1.0.2</arquillian-glassfish.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -42,7 +44,41 @@
                 <version>4.12</version>
                 <scope>test</scope>
             </dependency>
+
             <dependency>
+                <groupId>fish.payara.extras</groupId>
+                <artifactId>payara-embedded-all</artifactId>
+                <version>${payara.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
+            <dependency>
+                <groupId>fish.payara.arquillian</groupId>
+                <artifactId>payara-client-ee8</artifactId>
+                <version>${arquillian-payara-server.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/arquillian-payara-server-remote -->
+            <dependency>
+                <groupId>fish.payara.arquillian</groupId>
+                <artifactId>arquillian-payara-server-remote</artifactId>
+                <version>${arquillian-payara-server.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>fish.payara.arquillian</groupId>
+                <artifactId>arquillian-payara-server-managed</artifactId>
+                <version>${arquillian-payara-server.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>fish.payara.arquillian</groupId>
+                <artifactId>arquillian-payara-server-embedded</artifactId>
+                <version>${arquillian-payara-server.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!--<dependency>
                 <groupId>org.glassfish.main.extras</groupId>
                 <artifactId>glassfish-embedded-all</artifactId>
                 <version>${glassfish.version}</version>
@@ -51,21 +87,21 @@
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                <version>1.0.2</version>
+                <version>${arquillian-glassfish.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-glassfish-managed-3.1</artifactId>
-                <version>1.0.2</version>
+                <version>${arquillian-glassfish.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-glassfish-remote-3.1</artifactId>
-                <version>1.0.2</version>
+                <version>${arquillian-glassfish.version}</version>
                 <scope>test</scope>
-            </dependency>
+            </dependency>-->
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -299,13 +335,11 @@
                 <dependency>
                     <groupId>fish.payara.extras</groupId>
                     <artifactId>payara-embedded-all</artifactId>
-                    <version>${payara.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-embedded</artifactId>
-                    <version>1.2</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -318,14 +352,12 @@
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>payara-client-ee8</artifactId>
-                    <version>1.2</version>
                 </dependency>
 
                 <!-- Payara Server Container adaptor  -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-managed</artifactId>
-                    <version>1.2</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -367,7 +399,6 @@
                             <!-- This needs tuning -->
                             <systemPropertyVariables>
                                 <arquillian.launch>glassfish</arquillian.launch>
-                                <arquillian.xml.launch>glassfish-managed</arquillian.xml.launch>-->
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -377,18 +408,13 @@
         <profile>
             <id>arq-payara-remote</id>
             <dependencies>
-                <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>payara-client-ee8</artifactId>
-                    <version>1.2</version>
                 </dependency>
-
-                <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/arquillian-payara-server-remote -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-remote</artifactId>
-                    <version>1.2</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
