@@ -20,6 +20,7 @@
         <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
         <glassfish.version>5.1.0</glassfish.version>
         <arquillian-bom.version>1.4.1.Final</arquillian-bom.version>
+        <payara.version>5.193</payara.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -36,6 +37,12 @@
                 <type>pom</type>
             </dependency>
             <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.glassfish.main.extras</groupId>
                 <artifactId>glassfish-embedded-all</artifactId>
                 <version>${glassfish.version}</version>
@@ -44,6 +51,18 @@
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+                <version>1.0.2</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.container</groupId>
+                <artifactId>arquillian-glassfish-managed-3.1</artifactId>
+                <version>1.0.2</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.container</groupId>
+                <artifactId>arquillian-glassfish-remote-3.1</artifactId>
                 <version>1.0.2</version>
                 <scope>test</scope>
             </dependency>
@@ -62,7 +81,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -101,13 +119,19 @@
                         <executions>
                             <execution>
                                 <id>unpack</id>
-                                <phase>process-test-resources</phase>
+                                <phase>process-test-classes</phase>
                                 <goals>
                                     <goal>unpack</goal>
                                 </goals>
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
+                                            <!--
+                                             <groupId>fish.payara.distributions</groupId>
+                                            <artifactId>payara</artifactId>
+                                            <version>${payara.version}</version>
+                                            <type>zip</type>
+                                            -->
                                             <groupId>org.glassfish.main.distributions</groupId>
                                             <artifactId>glassfish</artifactId>
                                             <version>${glassfish.version}</version>
@@ -168,10 +192,10 @@
                             <configuration>
                                 <type>runtime</type>
                                 <properties>
-                                 <!--   <cargo.remote.username>admin</cargo.remote.username>
-                                    <cargo.remote.password>adminadmin</cargo.remote.password>
-                                    <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
-                                    <cargo.hostname>localhost</cargo.hostname>-->
+                                    <!--   <cargo.remote.username>admin</cargo.remote.username>
+                                       <cargo.remote.password>adminadmin</cargo.remote.password>
+                                       <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
+                                       <cargo.hostname>localhost</cargo.hostname>-->
                                 </properties>
                             </configuration>
                         </configuration>
@@ -187,18 +211,184 @@
                 </plugins>
             </build>
         </profile>
+        <!--        <profile>
+                    <id>arq-glassfish-embedded</id>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.glassfish.main.extras</groupId>
+                            <artifactId>glassfish-embedded-all</artifactId>
+                            <scope>test</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.jboss.arquillian.xml.container</groupId>
+                            <artifactId>arquillian.xml-glassfish-embedded-3.1</artifactId>
+                            <scope>test</scope>
+                        </dependency>
+                    </dependencies>
+                </profile>
+                -->
+        <!--
         <profile>
-            <id>arq-glassfish-embedded</id>
+            <id>arq-glassfish-managed</id>
+            <properties>
+                <jersey.version>2.29.1</jersey.version>
+            </properties>
             <dependencies>
-
+&lt;!&ndash;                Yasson (JSON-B RI)&ndash;&gt;
                 <dependency>
-                    <groupId>org.glassfish.main.extras</groupId>
-                    <artifactId>glassfish-embedded-all</artifactId>
+                    <groupId>org.eclipse</groupId>
+                    <artifactId>yasson</artifactId>
+                    <version>1.0.4</version>
+                    <scope>test</scope>
+                </dependency>
+
+&lt;!&ndash;                Jersey&ndash;&gt;
+                <dependency>
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-sse</artifactId>
+                    <version>${jersey.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-json-binding</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.inject</groupId>
+                    <artifactId>jersey-hk2</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.glassfish</groupId>
+                    <artifactId>javax.json</artifactId>
+                    <version>1.1.4</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                    <artifactId>jersey-client</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+
+
+&lt;!&ndash;                WebSocket client dependencies&ndash;&gt;
+                <dependency>
+                    <groupId>org.glassfish.tyrus</groupId>
+                    <artifactId>tyrus-client</artifactId>
+                    <version>1.13.1</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.tyrus</groupId>
+                    <artifactId>tyrus-container-grizzly-client</artifactId>
+                    <version>1.13.1</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>-->
+
+        <profile>
+            <id>arq-payara-embedded</id>
+            <dependencies>
+                <dependency>
+                    <groupId>fish.payara.extras</groupId>
+                    <artifactId>payara-embedded-all</artifactId>
+                    <version>${payara.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>arquillian-payara-server-embedded</artifactId>
+                    <version>1.2</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>arq-payara-managed</id>
+            <dependencies>
+
+                <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                    <version>1.2</version>
+                </dependency>
+
+                <!-- Payara Server Container adaptor  -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>arquillian-payara-server-managed</artifactId>
+                    <version>1.2</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>${maven-dependency-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>fish.payara.distributions</groupId>
+                                            <artifactId>payara</artifactId>
+                                            <version>${payara.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <environmentVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/glassfish5</GLASSFISH_HOME>
+                            </environmentVariables>
+                            <!-- This needs tuning -->
+                            <systemPropertyVariables>
+                                <arquillian.launch>glassfish</arquillian.launch>
+                                <arquillian.xml.launch>glassfish-managed</arquillian.xml.launch>-->
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>arq-payara-remote</id>
+            <dependencies>
+                <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                    <version>1.2</version>
+                </dependency>
+
+                <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/arquillian-payara-server-remote -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>arquillian-payara-server-remote</artifactId>
+                    <version>1.2</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
