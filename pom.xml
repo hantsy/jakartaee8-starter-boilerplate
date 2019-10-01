@@ -14,11 +14,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
+
         <jakartaee-api.version>8.0.0</jakartaee-api.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <cargo-maven2-plugin.version>1.7.7</cargo-maven2-plugin.version>
         <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
         <glassfish.version>5.1.0</glassfish.version>
         <arquillian-bom.version>1.4.1.Final</arquillian-bom.version>
         <payara.version>5.193</payara.version>
@@ -28,6 +30,7 @@
         <wildfly-arquillian.version>2.2.0.Final</wildfly-arquillian.version>
         <undertow-websockets-jsr.version>2.0.26.Final</undertow-websockets-jsr.version>
         <resteasy.version>4.3.0.Final</resteasy.version>
+        <skipTests>true</skipTests>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -49,65 +52,6 @@
                 <version>4.12</version>
                 <scope>test</scope>
             </dependency>
-
-            <dependency>
-                <groupId>fish.payara.extras</groupId>
-                <artifactId>payara-embedded-all</artifactId>
-                <version>${payara.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
-            <dependency>
-                <groupId>fish.payara.arquillian</groupId>
-                <artifactId>payara-client-ee8</artifactId>
-                <version>${arquillian-payara-server.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/arquillian-payara-server-remote -->
-            <dependency>
-                <groupId>fish.payara.arquillian</groupId>
-                <artifactId>arquillian-payara-server-remote</artifactId>
-                <version>${arquillian-payara-server.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>fish.payara.arquillian</groupId>
-                <artifactId>arquillian-payara-server-managed</artifactId>
-                <version>${arquillian-payara-server.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>fish.payara.arquillian</groupId>
-                <artifactId>arquillian-payara-server-embedded</artifactId>
-                <version>${arquillian-payara-server.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <!--<dependency>
-                <groupId>org.glassfish.main.extras</groupId>
-                <artifactId>glassfish-embedded-all</artifactId>
-                <version>${glassfish.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.container</groupId>
-                <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                <version>${arquillian-glassfish.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.container</groupId>
-                <artifactId>arquillian-glassfish-managed-3.1</artifactId>
-                <version>${arquillian-glassfish.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.container</groupId>
-                <artifactId>arquillian-glassfish-remote-3.1</artifactId>
-                <version>${arquillian-glassfish.version}</version>
-                <scope>test</scope>
-            </dependency>-->
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -138,6 +82,43 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <skipTests>${skipTests}</skipTests>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <id>default-test</id>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/it/**</exclude>
+                            </excludes>
+                            <reportsDirectory>
+                                ${project.build.directory}/test-reports/unit
+                            </reportsDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+                <configuration>
+                    <skipITs>${skipTests}</skipITs>
+                    <includes>
+                        <include>**/it/**</include>
+                    </includes>
+                    <reportsDirectory>
+                        ${project.build.directory}/test-reports/it
+                    </reportsDirectory>
+                </configuration>
+            </plugin>
+
             <!-- The WildFly plugin deploys your war to a local WildFly container -->
             <!-- To use, run: mvn package wildfly:deploy -->
             <plugin>
@@ -341,37 +322,50 @@
 
         <profile>
             <id>arq-payara-embedded</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>payara-client-ee8</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
+                    <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>fish.payara.extras</groupId>
                     <artifactId>payara-embedded-all</artifactId>
+                    <version>${payara.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-embedded</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
         </profile>
         <profile>
             <id>arq-payara-managed</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
             <dependencies>
 
                 <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>payara-client-ee8</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
+                    <scope>test</scope>
                 </dependency>
 
                 <!-- Payara Server Container adaptor  -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-managed</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -422,14 +416,20 @@
         </profile>
         <profile>
             <id>arq-payara-remote</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>payara-client-ee8</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
+                    <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-remote</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -443,6 +443,7 @@
             <!-- Run with: mvn clean test -Parq-wildfly-managed -->
             <id>arq-wildfly-managed</id>
             <properties>
+                <skipTests>false</skipTests>
                 <serverProfile>standalone-full.xml</serverProfile>
                 <serverRoot>${project.build.directory}/wildfly-${wildfly.version}</serverRoot>
             </properties>
@@ -536,6 +537,9 @@
             WildFly instance -->
             <!-- Run with: mvn clean test -Parq-wildfly-remote -->
             <id>arq-wildfly-remote</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>io.undertow</groupId>
@@ -570,6 +574,9 @@
             WildFly instance -->
             <!-- Run with: mvn clean test -Parq-wildfly-embedded -->
             <id>arq-wildfly-embedded</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
             <dependencies>
                 <dependency>
                     <groupId>io.undertow</groupId>
