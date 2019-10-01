@@ -7,7 +7,7 @@ public class GreetingMessage implements Serializable {
 
     public static GreetingMessage of(String s) {
         final GreetingMessage message = new GreetingMessage();
-        message.setMessage(s);
+        message.setMessage("Say Hello to " +s);
         return message;
     }
 

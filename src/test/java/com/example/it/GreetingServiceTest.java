@@ -1,5 +1,7 @@
-package com.example;
+package com.example.it;
 
+import com.example.GreetingMessage;
+import com.example.GreetingService;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -13,7 +15,7 @@ import javax.inject.Inject;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
-public class GreetingServiceArqTest {
+public class GreetingServiceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
