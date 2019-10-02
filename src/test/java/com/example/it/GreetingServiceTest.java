@@ -29,7 +29,8 @@ public class GreetingServiceTest {
 
     @Test
     public void should_create_greeting() {
-        GreetingMessage message = service.buildGreetingMessage("Hantsy");
-        assertTrue("message should start with \"Say Hello to Hantsy at \"", message.getMessage().startsWith("Say Hello to Hantsy at "));
+        GreetingMessage message = service.buildGreetingMessage("JatartaEE");
+        assertTrue("message should start with \"Say Hello to JatartaEE at \"",
+                message.getMessage().startsWith("Say Hello to JatartaEE at "));
     }
 }

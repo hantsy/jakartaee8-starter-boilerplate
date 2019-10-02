@@ -8,9 +8,9 @@ public class GreetingMessageTest {
 
     @Test
     public void testGreetingMessage() {
-        GreetingMessage message = GreetingMessage.of("Hantsy");
-        assertTrue("message should start with Say Hello to Hantsy",
-                "Say Hello to Hantsy".equals(message.getMessage()
+        GreetingMessage message = GreetingMessage.of("JatartaEE");
+        assertTrue("message should start with Say Hello to JatartaEE",
+                "Say Hello to JatartaEE".equals(message.getMessage()
                 ));
     }
 }
