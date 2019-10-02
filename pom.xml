@@ -354,12 +354,6 @@
             </properties>
             <dependencies>
                 <dependency>
-                    <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>payara-client-ee8</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
                     <groupId>fish.payara.extras</groupId>
                     <artifactId>payara-embedded-all</artifactId>
                     <version>${payara.version}</version>
@@ -465,12 +459,6 @@
             <dependencies>
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>payara-client-ee8</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-remote</artifactId>
                     <version>${arquillian-payara-server.version}</version>
                     <scope>test</scope>
@@ -506,23 +494,23 @@
                 <serverRoot>${project.build.directory}/wildfly-${wildfly.version}</serverRoot>
             </properties>
             <dependencies>
-                <dependency>
+<!--                <dependency>
                     <groupId>io.undertow</groupId>
                     <artifactId>undertow-websockets-jsr</artifactId>
                     <version>${undertow-websockets-jsr.version}</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency>-->
 
                 <!-- TESTS -->
                 <!-- JAXRS test need the dependency:resteasy-client -->
                 <!-- Import the RestEasy Client and json-p provider, we use test scope
                 as we need that for test purposes -->
-                <dependency>
+<!--                <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-client</artifactId>
                     <version>${resteasy.version}</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency>-->
                 <!--<dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-jaxb-provider</artifactId>
@@ -535,12 +523,12 @@
                     <version>${resteasy.version}</version>
                     <scope>test</scope>
                 </dependency>-->
-                <dependency>
+<!--                <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-json-p-provider</artifactId>
                     <version>${resteasy.version}</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency>-->
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
@@ -558,7 +546,7 @@
                         <executions>
                             <execution>
                                 <id>unpack</id>
-                                <phase>process-test-classes</phase>
+                                <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>unpack</goal>
                                 </goals>
@@ -600,26 +588,6 @@
             </properties>
             <dependencies>
                 <dependency>
-                    <groupId>io.undertow</groupId>
-                    <artifactId>undertow-websockets-jsr</artifactId>
-                    <version>${undertow-websockets-jsr.version}</version>
-                    <scope>test</scope>
-                </dependency>
-
-                <dependency>
-                    <groupId>org.jboss.resteasy</groupId>
-                    <artifactId>resteasy-client</artifactId>
-                    <version>${resteasy.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.resteasy</groupId>
-                    <artifactId>resteasy-json-p-provider</artifactId>
-                    <version>${resteasy.version}</version>
-                    <scope>test</scope>
-                </dependency>
-
-                <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-remote</artifactId>
                     <version>${wildfly-arquillian.version}</version>
@@ -637,25 +605,6 @@
             </properties>
             <dependencies>
                 <dependency>
-                    <groupId>io.undertow</groupId>
-                    <artifactId>undertow-websockets-jsr</artifactId>
-                    <version>${undertow-websockets-jsr.version}</version>
-                    <scope>test</scope>
-                </dependency>
-
-                <dependency>
-                    <groupId>org.jboss.resteasy</groupId>
-                    <artifactId>resteasy-client</artifactId>
-                    <version>${resteasy.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.resteasy</groupId>
-                    <artifactId>resteasy-json-p-provider</artifactId>
-                    <version>${resteasy.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-embedded</artifactId>
                     <version>${wildfly-arquillian.version}</version>
@@ -671,7 +620,7 @@
                         <executions>
                             <execution>
                                 <id>unpack</id>
-                                <phase>process-test-classes</phase>
+                                <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>unpack</goal>
                                 </goals>
