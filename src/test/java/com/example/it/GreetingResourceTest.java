@@ -63,7 +63,7 @@ public class GreetingResourceTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .get()) {
             assertTrue("status is ok" , greetingGetResponse.getStatus()== 200);
-            assertTrue("message should start with \"Say Hello to Hantsy at \"",
+            assertTrue("message should start with \"Say Hello to JatartaEE at \"",
                     greetingGetResponse.readEntity(GreetingMessage.class).getMessage().startsWith("Say Hello to JatartaEE"));
 
         }
