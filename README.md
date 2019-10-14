@@ -1,7 +1,7 @@
 # Kickstart a Jakarta EE 8 Application
  [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter) is a boilerplate project which allow you to start up a new  Java EE 8/Jakarta EE 8 application in seconds.
  
- [![Actions Status](https://github.com/hantsy/jakartaee8-starter/workflows/maven.yaml/badge.svg)](https://github.com/hantsy/jakartaee8-starter/actions)
+ [![Actions Status](https://github.com/hantsy/jakartaee8-starter/workflows/Java%20CI/badge.svg)](https://github.com/hantsy/jakartaee8-starter/actions)
 
 Jakarta EE 8 is the first version released by Eclipse Foundation. 
 
