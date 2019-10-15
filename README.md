@@ -1,6 +1,6 @@
 # Kickstart a Jakarta EE 8 Application
  [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter) is a boilerplate project which allow you to start up a new  Java EE 8/Jakarta EE 8 application in seconds.
- 
+
  [![Actions Status](https://github.com/hantsy/jakartaee8-starter/workflows/Java%20CI/badge.svg)](https://github.com/hantsy/jakartaee8-starter/actions)
 
 Jakarta EE 8 is the first version released by Eclipse Foundation. 
@@ -13,7 +13,7 @@ Before start the project , I assume the following software have been installed i
 
 * One of the following Jakarta EE 8 compatible products to serve your application:
 
-  * [Glassfish v5.1](Prerequisites)
+  * [Glassfish v5.1](https://projects.eclipse.org/projects/ee4j.glassfish/downloads)
   * [Payara Server 193 Full](https://www.payara.fish/software/downloads/)
   * [Wildfly 17.0.1](https://wildfly.org/downloads)
   * [OpenLiberty 19.0.0.9]( https://openliberty.io/downloads/)
