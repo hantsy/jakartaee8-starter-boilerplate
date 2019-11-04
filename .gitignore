@@ -25,3 +25,9 @@ hs_err_pid*
 .idea
 target
 
+/.apt_generated/
+/.apt_generated_tests/
+.project
+.classpath
+.factorypath
+.settings
