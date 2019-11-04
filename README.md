@@ -17,6 +17,7 @@ Before starting a new Jakarta EE 8 project, I assume the following software have
   * [Oracle JDK 8](https://java.oracle.com) 
   * community-driven [AdoptOpenJDK 8](https://adoptopenjdk.net/releases.html) 
   * Other JDK maintained by Redhat, etc.
+* The latest of [Apache Maven 3](https://maven.apache.org) 
 * One of the following Jakarta EE 8 compatible products to serve your application:
   * [Glassfish v5.1](https://projects.eclipse.org/projects/ee4j.glassfish/downloads)
   * [Payara Server 193 Full](https://www.payara.fish/software/downloads/)
@@ -57,15 +58,15 @@ First of all, import the source codes into your  favorite IDE.
 
 ### Eclipse IDE
 
-If Eclipse is your preferred IDE,  to get better experience of Java EE development, the [[Eclipse IDE for Enterprise Java Developers](https://www.eclipse.org/downloads/packages/release/2019-09/r/eclipse-ide-enterprise-java-developers)] is highly recommended. Or you can select a  commercial  version, such as [Red Hat CodeReady Studio](https://www.redhat.com/en/technologies/jboss-middleware/codeready-studio) which is free for developers.
+If Eclipse is your preferred IDE,  to get better experience of Java EE development, the [Eclipse IDE for Enterprise Java Developers](https://www.eclipse.org/downloads/packages/release/2019-09/r/eclipse-ide-enterprise-java-developers) is highly recommended. Or you can select a  commercial  version, such as [Red Hat CodeReady Studio](https://www.redhat.com/en/technologies/jboss-middleware/codeready-studio) which is free for developers.
 
-1. Click *File-> Import...* to open the *Import* dialog.
+1. Click *File-> Import...* from the main menu to open the *Import* dialog.
 2. Select *Maven/Existing Maven Projects* in tree nodes, and click *Next* button to continue.
 3. In the  *Import Maven projects*, select root folder of the source codes.
 
    ![Import Maven projects](./import-eclipse.png)
    
-4. Click *Finish* button to import the project into the current Eclipse workspace. Please be patient and wait for seconds.
+4. Click *Finish* button to import the project into the current Eclipse workspace.
 
 
 ### Intellij IDEA
@@ -74,7 +75,9 @@ Intellij IDEA has two versions, the free open-sourced community edition and the 
 
 1. Click *File->New->Project from Existing Sources...*. from main menu.
 2. In the *Select File or Directory  to Import...* dialog, select the folder node of the source codes, click *Ok* button.
-3. In the *Import project...* dialog, select *Import from external model* option, and select *Maven* in list, click *Finish* button.
+3. In the *Import project...* dialog, choose the *Import from external model* option, and then select *Maven* in list, click *Finish* button.
+
+If it is the first time to create a Jakarta EE 8 project, it will take some time to resolve the Maven dependencies,  please be patient and wait for seconds.
 
 ## Explore the Sample Codes
 
@@ -119,9 +122,9 @@ The **.github** folder holds the Github specific configurations, eg, issue templ
 
 The *src/main/java* includes some sample codes:
 
-*  `GreetingMessage` is a simple POJO presenting a greeting message.  
+*  `GreetingMessage` is a simple POJO to present a greeting message.  
 * `GreetingService` is a simple CDI managed bean used to building a greeting message.  
-*  `GreetingResource` is a simple JAX-RS resource to expose RESTful APIs. 
+*  `GreetingResource` is a simple JAX-RS resource to produce RESTful APIs. 
 *  `JaxrsActivator` is the JAX-RS application class which is used to activate JAX-RS in Jakarta EE  applications.
 
 The *src/main/java/resources/META-INF/beans.xml* is a CDI configuration file.
@@ -129,6 +132,68 @@ The *src/main/java/resources/META-INF/beans.xml* is a CDI configuration file.
 The *src/test/java* includes some ample codes for testing purpose.
 
 The *src/test/java/resources/arquillian.xml*  is a [ JBoss Arquillian](http://arquillian.org/)  sample configuration file.
+
+## Run the Sample Application
+
+Apache NetBeans, Eclipse and Intellij IDEA have great Jakarta EE support, you can run the Jakarta EE applications in IDEs directly.
+
+### Run in IDEs
+
+#### Apache NetBeans 
+
+NetBeans has built-in support for Glassfish and Payara server.  Firstly, you should add a Glassfish server instance in NetBeans.
+
+1. Click *Windows->Services* or use *Ctrl+5* shortcuts to open *Services* view .
+2. Right click  the *Servers* node, select *Add Server...* in the context menu.
+3. In the *Add Server Instance* dialog, there are three steps:
+   * *Choose Server* :select *Glassfish* in the server list, click *Next* button.
+   * *Server Location*: select the Glassfish server location, click *Next* button.
+   * *Domain name/Location*: use the default *domain1*  as domain name, click *Finish* button.
+
+After it is done, there is a new node *Glassfish server* added under the *Server*s nodes.
+
+![Glassfish server node in Netbeans](./glassfish-node-nb.png)
+
+Right click the Glassfish server node, there is a few actions available for you to control the server instance, such as Start, Stop, Debug etc. 
+
+Let's start the Glassfish server by click *Start* in the context menu.  Wait for seconds, you will see the *Output* screen similar to the following.
+
+![](./glassfish-start-output-nb.png)
+
+Switch to  *Project* view, right click the project node, and select *Run* in the context menu.
+
+In the  *Select deployment server*, select *Glassfish server* we have created in the dropdown menu.
+
+![ Select deployment server](./run-nb.png)
+
+It will try to build the project and deploy the application into the  Netbeans managed Glassfish server.   After it is deployed successfully, there is success message in the *Output* windows.
+
+```bash
+------------------------------------------------------------------------
+Deploying on GlassFish Server
+    profile mode: false
+    debug mode: false
+    force redeploy: true
+In-place deployment at D:\hantsylabs\jakartaee8-starter\target\jakartaee8-starter
+
+```
+
+Let's switch to *Server* view, there several nodes are displayed under Glassfish servers. Expand the *Application* node, you will see there is a node *jakartaee8-starter* there.
+
+![Glassfish server node after the application is deployed](./glassfish-node-deploy-nb.png)
+
+Currently the application just serves a RESTful APIs at */api/greeting* endpoints. Open a terminal and use `curl`  or Postman to test the APIs.
+
+```bash
+curl http://localhost:8080/jakartaee8-starter/api/greeting/hantsy
+{"message":"Say Hello to hantsy at 2019-11-04T16:16:13.509"}
+```
+
+Payara server is derived from Glassfish project, the steps of using Payara server in NetBeans is very similar with Glassfish server. Play it yourself.
+
+Unfortunately at the moment of writing this post, the original Wildfly plugin is not aligned with Jakarta EE and not available in NetBeans Plugins,   and there is no Liberty support via NetBeans plugin. 
+
+### Run by Maven CLI
 
 
 
