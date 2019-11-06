@@ -38,11 +38,11 @@
         <arquillian-payara-server.version>1.2</arquillian-payara-server.version>
 
         <!-- Wildfly server-->
-        <wildfly.version>17.0.1.Final</wildfly.version>
+        <wildfly.version>18.0.0.Final</wildfly.version>
         <wildfly-arquillian.version>2.2.0.Final</wildfly-arquillian.version>
         <!--  websockets-jsr and resteasy for client, aligned with Wildfly version. -->
-        <undertow-websockets-jsr.version>2.0.21.Final</undertow-websockets-jsr.version>
-        <resteasy.version>3.7.0.Final</resteasy.version>
+        <undertow-websockets-jsr.version>2.0.26.Final</undertow-websockets-jsr.version>
+        <resteasy.version>3.9.0.Final</resteasy.version>
 
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
