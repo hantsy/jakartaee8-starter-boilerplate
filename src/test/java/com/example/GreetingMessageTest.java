@@ -8,8 +8,8 @@ public class GreetingMessageTest {
 
     @Test
     public void testGreetingMessage() {
-        GreetingMessage message = GreetingMessage.of("JatartaEE");
-        assertTrue("message should start with Say Hello to JatartaEE",
+        GreetingMessage message = GreetingMessage.of("Say Hello to JatartaEE");
+        assertTrue("message should contains `Say Hello to JatartaEE`",
                 "Say Hello to JatartaEE".equals(message.getMessage()
                 ));
     }
