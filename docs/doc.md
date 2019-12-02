@@ -306,7 +306,7 @@ It is easy to control the applcation server in the Servers view, such as start, 
 
 Right click the *Glassfish* node, and select *Start* to start Glassfish server.  After it is  started successfully, under the Glassfish node, it will include the resources in the Glassfish server. 
 
-
+<img src="./eclipse-new-server-running.png" alt="Eclipse new Glassfish node" style="zoom:80%;" />
 
 ### Using Maven CLI
 
