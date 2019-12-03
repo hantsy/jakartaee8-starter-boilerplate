@@ -1,15 +1,19 @@
-# Kickstart a Jakarta EE 8 Application
-
-
+#  Jakarta EE 8 Starter Boilerplate 
 
 ## What is it?
 
  [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter) is a boilerplate project to help you to bootstrap a new  Java EE 8/Jakarta EE 8 application in seconds.
 
-It also includes [a comprehensive introduction](./docs/doc.md) to guide the newbies to build a simple Jakarta EE application, including:
+It also includes [a comprehensive setup guide](./docs/doc.md) for the Jakarta EE newbies, including:
 
-1. Setup the development environment in the popular IDEs, such as Apache NetBeans IDE,  Eclipse IDE,  IntelliJ IDEA.
-2. Deploy and Run application on the popular application servers, such as Glassfish, Wildfly, Open Liberty.
+1. Setup local development environment with the popular IDEs, such as:
+   * Apache NetBeans IDE
+   * Eclipse IDE
+   * IntelliJ IDEA.
+2. Deploy and Run application on the popular application servers, such as:
+   * Glassfish
+   * Wildfly
+   * Open Liberty
 3. Testing Jakarta components using Junit and JBoss Arquillian.
 4. Publish application into production environment.
 

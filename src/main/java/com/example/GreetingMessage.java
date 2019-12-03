@@ -2,6 +2,7 @@ package com.example;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class GreetingMessage implements Serializable {
     private String message;
 

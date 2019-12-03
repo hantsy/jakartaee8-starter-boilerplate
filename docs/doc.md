@@ -199,7 +199,7 @@ The *src/test/java* includes some ample codes for testing purpose.
 
 The *src/test/java/resources/arquillian.xml*  is a [ JBoss Arquillian](http://arquillian.org/)  sample configuration file.
 
-## Run the Sample Application
+## Run on Application Servers
 
 Apache NetBeans, Eclipse and Intellij IDEA have great Jakarta EE support, you can run the Jakarta EE applications in IDEs directly.
 
@@ -220,13 +220,13 @@ Firstly, you should add a Glassfish server instance in NetBeans.
 
 After it is done, there is a new node *Glassfish server* added under the *Server*s nodes.
 
-![Glassfish server node in Netbeans](./glassfish-node-nb.png)
+<img src="./glassfish-node-nb.png" alt="Glassfish server node in Netbeans" style="zoom:80%;" />
 
 Right click the Glassfish server node, there is a few actions available for you to control the server instance, such as Start, Stop, Debug etc. 
 
 Let's start the Glassfish server by click *Start* in the context menu.  Wait for seconds, you will see the *Output* screen similar to the following.
 
-![](./glassfish-start-output-nb.png)
+<img src="./glassfish-start-output-nb.png" style="zoom:80%;" />
 
 Switch to  *Project* view, right click the project node, and select *Run* in the context menu.
 
@@ -248,7 +248,7 @@ In-place deployment at D:\hantsylabs\jakartaee8-starter\target\jakartaee8-starte
 
 Let's switch to *Server* view, there several nodes are displayed under Glassfish servers. Expand the *Application* node, you will see there is a node *jakartaee8-starter* there.
 
-![Glassfish server node after the application is deployed](./glassfish-node-deploy-nb.png)
+<img src="./glassfish-node-deploy-nb.png" alt="Glassfish server node after the application is deployed" style="zoom:80%;" />
 
 Currently the application just serves a RESTful APIs at */api/greeting* endpoints. Open a terminal and use `curl`  or Postman to test the APIs.
 
@@ -273,7 +273,7 @@ Through Eclipse Marketplace, it is easy to get Glassfish, Wildfly,  OpenLiberty 
 
 #### Glassfish Server
 
-Follow the following steps to  install Glassfish plugin into Eclipse IDE.
+Follow the following steps to  install [Eclipse Glassfish Tools](https://projects.eclipse.org/projects/webtools.glassfish-tools/) plugin into Eclipse IDE.
 
 1. Open Eclipse Marketplace from *Help*-> *Eclipse Marketplace* menu. 
 2. Type *Glassfish* in the search box to filter Glassfish plugins.
@@ -286,7 +286,9 @@ If the *Servers* view is not opened, try to open it from *Windows*->*Show Views*
 
 Right click on the blank space in the *Servers* view, select *New*->*Server* in the context menu.
 
-<img src="./eclipse-new-server.png" alt="Eclipse new Glassfish server" style="zoom:80%;" /> 
+<img src="./eclipse-new-server.png" alt="Eclipse new Glassfish server" style="zoom:80%;" />
+
+ 
 
 In the *New Server* wizard,  select *Glassfish*  in the *Define a New Server* step, then click *Next* button.
 
@@ -307,6 +309,89 @@ It is easy to control the applcation server in the Servers view, such as start, 
 Right click the *Glassfish* node, and select *Start* to start Glassfish server.  After it is  started successfully, under the Glassfish node, it will include the resources in the Glassfish server. 
 
 <img src="./eclipse-new-server-running.png" alt="Eclipse new Glassfish node" style="zoom:80%;" />
+
+Ok, let's try to run the application on Glassish server.
+
+In the *Project* or *Packages* view, right click the project node, and click *Run As...*-> *Run on Server*.
+
+<img src="./eclipse-run-on-server.png" alt="Eclipse run on Server-Glassfish" style="zoom:80%;" />
+
+In the *Run on Server* dialog, select *Glassfish*, and click *Finish* button. Wait for seconds, it will build, package and deploy the application into Glassfish server. When it is done, you will see there is a *Deployed Applications* under the Glassfish node in the *Servers* view. Expand this node, there is a *jakartaee8-starter* node, it is our application.
+
+<img src="./eclipse-new-server-running2.png" alt="Eclipes run on Servers-Glassfish deployed app" style="zoom:80%;" />
+
+Open your terminal, try to access the sample endpoint `api/greeting/{name}` via `curl` command.
+
+```bash 
+curl http://localhost:8080/jakartaee8-starter/api/greeting/hantsy
+{"message":"Say Hello to hantsy at 2019-12-03T14:05:28.437"}
+```
+
+To undeploy  the application, in *Servers* view, expand *Glassfish 5*->*Glassfish Management*->*Deployed Applications*,  right click *jakartaee8-starter*, click *Undeploy* in the context menu.
+
+Or right click  *Glassfish 5*-> *jakartaee8-starter*,  click *Remove*  in the context menu.
+
+#### Wildfly
+
+If you are using  the official Eclipse IDE, you should install [Redhat CodeReady Studio](https://developers.redhat.com/products/codeready-studio/overview)  to get Wildfly  server support. 
+
+Follow the following steps to  install Redhat CodeReady Studio plugin into Eclipse IDE.
+
+1. Open Eclipse Marketplace from *Help*-> *Eclipse Marketplace* menu. 
+2. Click the *Redhat* icon in the bottom *Marketplaces* area of *Eclipse Marketplace* dialog to switch to *Redhat* marketplace.
+3.  Select *Redhat CodeReady Studio* ,  click the *Install* button to install it.
+4. After it is installed, restart Eclipse IDE to apply the plugin.
+
+Next let's create a Wildfly Server instance.
+
+Right click on the blank area in the *Servers* view, select *New*->*Server* in the context menu.
+
+<img src="./eclipse-new-wildfly1.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
+
+
+
+Expand *JBoss Community* node in the tree list, select Wildfly 18, click *Next*  button.
+
+<img src="./eclipse-new-wildfly2.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
+
+In the  *Create a new Server Adapter* step, use the default selections, click *Next* button.
+
+<img src="./eclipse-new-wildfly3.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
+
+In the *JBoss Runtime*, select the Wildfly server location in your system, click *Finish* button. 
+
+After it is done, there is a Wildfly instance in the  *Servers* view.
+
+<img src="./eclipse-new-wildfly4.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
+
+Ok, let's try to run the application on Wildfly server.
+
+In the *Project* or *Packages* view, right click the project node, and click *Run As...*-> *Run on Server*.
+
+![Eclipse run on Server-Wildfly](./eclipse-wildfly-run-on-server.png)
+
+If the Wildlfy is not started, it will start the server firstly, then build, package and deploy the application into the Wildfly Server.
+
+After it is started , open your terminal, try to access the sample endpoint `api/greeting/{name}` via `curl` command.
+
+```bash 
+curl http://localhost:8080/jakartaee8-starter/api/greeting/hantsy
+{"message":"Say Hello to hantsy at 2019-12-03T16:34:59.095"}
+```
+
+To undeploy the application, just right click the *jakartaee8-starter* node under the *Wildfly* instance node in the *Servers* view, and click *Remove* in the context menu. It will start undeploying the application, you can see the progress in the *Console* view.
+
+```bash
+16:36:13,619 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 8) WFLYUT0022: Unregistered web context: '/jakartaee8-starter' from server 'default-server'
+16:36:13,670 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-5) WFLYSRV0028: Stopped deployment jakartaee8-starter.war (runtime-name: jakartaee8-starter.war) in 80ms
+16:36:13,758 INFO  [org.jboss.as.server] (DeploymentScanner-threads - 1) WFLYSRV0009: Undeployed "jakartaee8-starter.war" (runtime-name: "jakartaee8-starter.war")
+```
+
+
+
+#### Open Liberty
+
+
 
 ### Using Maven CLI
 
