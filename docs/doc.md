@@ -1,7 +1,9 @@
 # Kickstart a Jakarta EE 8 Application
 [Jakarta EE 8](https://jakarta.ee/) was released  at the first [Jakarta EE One](https://jakartaone.org/) online conference which was driven by Eclipse Foundation. 
 
-Jakarta EE 8 is the first version released by Eclipse Foundation.  Compared to the previous Java EE 8, the new Jakarta EE 8 neither introduced new specifications nor updated the existing ones , the main work was moving all specifications to  Eclipse foundation, and cleaning up the issue of the licenses.  Now Jakarta EE is completely a community-driven  project, more info about Jakarta EE 8, please navigate the official [Jakarta EE website](https://jakarta.ee/).  
+Jakarta EE 8 is the first version released by Eclipse Foundation.  Compared to the previous Java EE 8, the new Jakarta EE 8 neither introduced new specifications nor updated the existing ones , the main work was moving all specifications and related projects to  Eclipse foundation, and cleaning up the issue of their licenses.  
+
+Now Jakarta EE is a completely a community-driven  project, more info about Jakarta EE 8, please navigate the official [Jakarta EE website](https://jakarta.ee/).  
 
 
 
@@ -463,7 +465,220 @@ To undeploy the application, just right click the *jakartaee8-starter* node unde
 
 ### Using Maven CLI
 
+Deploying and running an Jakarta EE  application on application servers in IDEs is simple and stupid, but sometime, especially  in CI/CD pipelines, using command line based scripts is more effective. 
 
+Through maven plugins it is easy to deploy  and run the application on the target servers.
+
+
+
+#### Glassfish 
+
+The legacy official *maven-glassfish-plugin* is discontinued, but there is a better alternative existed. [Cargo](https://codehaus-cargo.github.io) project provide a common way to deploy the applications into Jakarta EE application servers by  maven plugin, Ant tasks, and pure Java APIs. Most of the popular application servers are got supported. Generally, it provides 3 approaches to deploy applications.
+
+* Remote- Deploying to a running application server via  client APIs 
+* Local - Controlling the lifecycle of application servers such as start and stop, etc. 
+* Embedded - Package the application and the application server into a single package and run it.
+
+Most of the application servers support remote and local deployment.
+
+##### Deploying to a running server
+
+The following is using a maven profile to configure the remote deployment.
+
+```xml
+<profile>
+	<id>glassfish-remote</id>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<configuration>
+					<container>
+						<containerId>glassfish5x</containerId>
+						<type>remote</type>
+					</container>
+					<configuration>
+						<type>runtime</type>
+						<properties>
+							<!--   <cargo.remote.username>admin</cargo.remote.username>
+							   <cargo.remote.password>adminadmin</cargo.remote.password>
+							   <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
+							   <cargo.hostname>localhost</cargo.hostname>-->
+						</properties>
+					</configuration>
+				</configuration>
+				<!-- provides JSR88 client API to deploy on Glassfish/Payara Server -->
+				<dependencies>
+					<dependency>
+						<groupId>org.glassfish.main.deployment</groupId>
+						<artifactId>deployment-client</artifactId>
+						<version>${glassfish.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</profile>
+```
+
+It depends on the  Glassfish deployment client, and if you have set the admin password in the target Glassfish server, try to set the related properties.  
+
+Before deploying, make sure the Glassfish is running, then execute the following command to start deployment.
+
+```bash
+mvn package cargo:deploy -Pglassfish-remote
+```
+
+After it is deployed successfully,  try to access the sample  API endpoint.
+
+##### Deploying to a local Glassfish server
+
+Similarly, I use another maven profile to configure the local Glassfish server. You can use an existing Glassfish or download a fresh copy for deployment purpose as the following.
+
+```xml
+<profile>
+	<id>glassfish-local</id>
+	<properties>
+		<glassfish.home>${project.build.directory}/glassfish5</glassfish.home>
+		<glassfish.domainDir>${glassfish.home}/glassfish/domains</glassfish.domainDir>
+		<glassfish.domainName>domain1</glassfish.domainName>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${maven-dependency-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<!--
+									 <groupId>fish.payara.distributions</groupId>
+									<artifactId>payara</artifactId>
+									<version>${payara.version}</version>
+									<type>zip</type>
+									-->
+									<groupId>org.glassfish.main.distributions</groupId>
+									<artifactId>glassfish</artifactId>
+									<version>${glassfish.version}</version>
+									<type>zip</type>
+									<overWrite>false</overWrite>
+									<outputDirectory>${project.build.directory}</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>${cargo-maven2-plugin.version}</version>
+				<configuration>
+					<container>
+						<containerId>glassfish5x</containerId>
+						<type>installed</type>
+						<home>${glassfish.home}</home>
+					</container>
+					<configuration>
+						<type>existing</type>
+						<home>${glassfish.domainDir}</home>
+						<properties>
+							<cargo.glassfish.domain.name>${glassfish.domainName}</cargo.glassfish.domain.name>
+							<cargo.remote.timeout>600000</cargo.remote.timeout>
+							<cargo.remote.password></cargo.remote.password>
+						</properties>
+					</configuration>
+				</configuration>
+				<!-- provides JSR88 client API to deploy on Glassfish/Payara Server -->
+				<dependencies>
+					<dependency>
+						<groupId>org.glassfish.main.deployment</groupId>
+						<artifactId>deployment-client</artifactId>
+						<version>${glassfish.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+
+	</build>
+</profile>
+```
+
+
+
+Run the following command to start the application server and deploy the application to the server.
+
+```bash
+mvn package cargo:deploy -Pglassfish-local
+```
+
+It will down a copy of Glassfish archive and extract the files, then start the server, and deploy the application finally.
+
+More info about Cargo maven plugin for Glassfish, see [here](https://codehaus-cargo.github.io/cargo/GlassFish+5.x.html).
+
+
+
+#### Payara Server
+
+The Payara Server is similar with  Glassfish,  Cargo also support Payara Server as well, copy the above Glassfish configuration, replace the glassfish facilities with payara one. 
+
+More info about Cargo maven plugin support for Payara,  see [here](https://codehaus-cargo.github.io/cargo/Payara.html). 
+
+
+
+#### Wildfly Server
+
+Redhat Wildfly has official maven plugin support for application deployment and application server management.
+
+Declare a wildfly maven plugin in the pom.xml file.
+
+```xml
+<!-- The WildFly plugin deploys your war to a local WildFly container -->
+<!-- To use, run: mvn package wildfly:deploy -->
+<plugin>
+	<groupId>org.wildfly.plugins</groupId>
+	<artifactId>wildfly-maven-plugin</artifactId>
+	<version>2.0.1.Final</version>
+</plugin> 
+```
+
+Make sure  there is a running Wildfly server, and run the following command to start deploymaent.
+
+```bash
+mvn package wildfly:deploy
+```
+
+You can also  add some configuration to Wildfly by maven plugin, such as registering a JDDC driver module, configuring a DataSource, etc, more information please read the [Wildfy maven plugin documentation](https://docs.jboss.org/wildfly/plugins/maven/latest/index.html). 
+
+#### OpenLiberty Server
+
+OpenLiberty provides an official maven plugin for application deployment.  
+
+```xml
+<!-- Enable liberty-maven-plugin -->
+<plugin>
+	<groupId>io.openliberty.tools</groupId>
+	<artifactId>liberty-maven-plugin</artifactId>
+	<version>3.1</version>
+</plugin> 
+```
+
+`liberty:dev`  provides a dev mode for developers. 
+
+`liberty:run` is easy to run the application on an embedded  OpenLiberty server. 
+
+Through `liberty:deploy` , it also can deploy an application to an external running LibertyServer if the *apps* or *dropins* folder is configured.
+
+More info about  Liberty maven plugin, see [here](https://github.com/OpenLiberty/ci.maven).
 
 ## Testing Jakarta EE Applications
 
@@ -473,6 +688,7 @@ To undeploy the application, just right click the *jakartaee8-starter* node unde
 
 ## Resources 
 
+* [OpenLiberty Maven Plugin](https://github.com/OpenLiberty/ci.maven)
 * [WildFly Maven Plugin (wildfly-maven-plugin)](https://docs.jboss.org/wildfly/plugins/maven/latest/index.html)
 * [Deploying to Payara Server Using the Maven Cargo Plugin](https://blog.payara.fish/deploying-to-payara-server-using-the-maven-cargo-plugin)  by Payara Blog
 * [Cargo Maven2 Plugin for Glassfish v5](https://codehaus-cargo.github.io/cargo/GlassFish+5.x.html)
