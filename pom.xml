@@ -22,8 +22,9 @@
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <cargo-maven2-plugin.version>1.7.7</cargo-maven2-plugin.version>
         <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
+        <maven-surefire-report-plugin.version>3.0.0-M4</maven-surefire-report-plugin.version>
 
         <!-- Arquillian BOM -->
         <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
@@ -53,6 +54,7 @@
                 <groupId>jakarta.platform</groupId>
                 <artifactId>jakarta.jakartaee-api</artifactId>
                 <version>${jakartaee-api.version}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
@@ -65,6 +67,51 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest</artifactId>
+                <version>2.2</version>
+                <scope>test</scope>
+            </dependency>
+        
+            <dependency>
+                <groupId>org.skyscreamer</groupId>
+                <artifactId>jsonassert</artifactId>
+                <version>1.5.0</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.awaitility/awaitility -->
+            <dependency>
+                <groupId>org.awaitility</groupId>
+                <artifactId>awaitility</artifactId>
+                <version>4.0.1</version>
+                <scope>test</scope>
+            </dependency>
+      
+            <!-- JSON path -->
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+                <version>2.4.0</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path-assert -->
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path-assert</artifactId>
+                <version>2.4.0</version>
+                <scope>test</scope>
+            </dependency>
+        
+            <!-- Mockito --> 
+            <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>3.2.0</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -82,7 +129,30 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+        </dependency>      
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+        </dependency>      
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path-assert</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
         </dependency>
     </dependencies>
     <build>
@@ -262,9 +332,9 @@
                                 <type>runtime</type>
                                 <properties>
                                     <!--   <cargo.remote.username>admin</cargo.remote.username>
-                                       <cargo.remote.password>adminadmin</cargo.remote.password>
-                                       <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
-                                       <cargo.hostname>localhost</cargo.hostname>-->
+                                    <cargo.remote.password>adminadmin</cargo.remote.password>
+                                    <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
+                                    <cargo.hostname>localhost</cargo.hostname>-->
                                 </properties>
                             </configuration>
                         </configuration>
@@ -513,7 +583,7 @@
                 <serverRoot>${project.build.directory}/wildfly-${wildfly.version}</serverRoot>
             </properties>
             <dependencies>
-<!--                <dependency>
+                <!--                <dependency>
                     <groupId>io.undertow</groupId>
                     <artifactId>undertow-websockets-jsr</artifactId>
                     <version>${undertow-websockets-jsr.version}</version>
@@ -684,4 +754,13 @@
             </build>
         </profile>
     </profiles>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${maven-surefire-report-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
