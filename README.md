@@ -4,7 +4,7 @@
 
  [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter) is a boilerplate project to help you to bootstrap a new  Java EE 8/Jakarta EE 8 application in seconds.
 
-It also includes [a comprehensive setup guide](./docs/) for the Jakarta EE newbies, including:
+It also includes [a comprehensive setup guide](./docs/README.md) for the Jakarta EE newbies, including:
 
 1. Setup local development environment with the popular IDEs, such as:
    * Apache NetBeans IDE
