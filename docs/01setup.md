@@ -123,7 +123,7 @@ Apache NetBeans IDE, Eclipse IDE and IntelliJ IDEA have great IDE support, and V
 
 2. Select the folder of the source codes, it should be displayed as a NetBeans  Maven project icon.
 
-   <img src="D:/hantsylabs/jakartaee8-starter/docs/import-nb.png" alt="Open project in NetBeans" style="zoom:80%;" />
+   <img src="./import-nb.png" alt="Open project in NetBeans" style="zoom:80%;" />
 
 3. After it is imported, it  will try to resolve dependencies and show the project source in a tree structure.
 
@@ -137,7 +137,7 @@ Apache NetBeans IDE, Eclipse IDE and IntelliJ IDEA have great IDE support, and V
 
 3. In the  *Import Maven projects*, select root folder of the source codes.
 
-   ![Import Maven projects](D:/hantsylabs/jakartaee8-starter/docs/import-eclipse.png)
+   ![Import Maven projects](./import-eclipse.png)
 
 4. Click *Finish* button to import the project into the current Eclipse workspace.
 
