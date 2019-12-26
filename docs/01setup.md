@@ -125,6 +125,10 @@ Apache NetBeans IDE, Eclipse IDE and IntelliJ IDEA have great IDE support, and V
 
    <img src="D:/hantsylabs/jakartaee8-starter/docs/import-nb.png" alt="Open project in NetBeans" style="zoom:80%;" />
 
+3. After it is imported, it  will try to resolve dependencies and show the project source in a tree structure.
+
+   ![project imported](./import-nb2.png)
+
 #### Eclipse IDE
 
 1. Click *File-> Import...* from the main menu to open the *Import* dialog.
