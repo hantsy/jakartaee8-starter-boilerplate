@@ -19,19 +19,19 @@ Firstly, you should add a Glassfish server instance in NetBeans.
 
 After it is done, there is a new node *Glassfish server* added under the *Server*s nodes.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/glassfish-node-nb.png" alt="Glassfish server node in Netbeans" style="zoom:80%;" />
+<img src="./glassfish-node-nb.png" alt="Glassfish server node in Netbeans" style="zoom:80%;" />
 
 Right click the Glassfish server node, there is a few actions available for you to control the server instance, such as Start, Stop, Debug etc. 
 
 Let's start the Glassfish server by click *Start* in the context menu.  Wait for seconds, you will see the *Output* screen similar to the following.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/glassfish-start-output-nb.png" style="zoom:80%;" />
+<img src="./glassfish-start-output-nb.png" style="zoom:80%;" />
 
 Switch to  *Project* view, right click the project node, and select *Run* in the context menu.
 
 In the  *Select deployment server*, select *Glassfish server* we have created in the dropdown menu.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/run-nb.png" alt=" Select deployment server" style="zoom:80%;" />
+<img src="./run-nb.png" alt=" Select deployment server" style="zoom:80%;" />
 
 It will try to build the project and deploy the application into the  NetBeans managed Glassfish server.   After it is deployed successfully, there is success message in the *Output* windows.
 
@@ -47,7 +47,7 @@ In-place deployment at D:\hantsylabs\jakartaee8-starter\target\jakartaee8-starte
 
 Let's switch to *Server* view, there several nodes are displayed under Glassfish servers. Expand the *Application* node, you will see there is a node *jakartaee8-starter* there.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/glassfish-node-deploy-nb.png" alt="Glassfish server node after the application is deployed" style="zoom:80%;" />
+<img src="./glassfish-node-deploy-nb.png" alt="Glassfish server node after the application is deployed" style="zoom:80%;" />
 
 Currently the application just serves a RESTful APIs at */api/greeting* endpoints. Open a terminal and use `curl`  or Postman to test the APIs.
 
@@ -85,39 +85,39 @@ If the *Servers* view is not opened, try to open it from *Windows*->*Show Views*
 
 Right click on the blank space in the *Servers* view, select *New*->*Server* in the context menu.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-server.png" alt="Eclipse new Glassfish server" style="zoom:80%;" />
+<img src="./eclipse-new-server.png" alt="Eclipse new Glassfish server" style="zoom:80%;" />
 
  
 
 In the *New Server* wizard,  select *Glassfish*  in the *Define a New Server* step, then click *Next* button.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-server2.png" alt="Eclipse new Glassfish Server" style="zoom:80%;" />
+<img src="./eclipse-new-server2.png" alt="Eclipse new Glassfish Server" style="zoom:80%;" />
 
 In the *Glassfish runtime properties* dialog, select the Glassfish location, and choose a JDK 8 to run Glassfish, click *Next* button.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-server3.png" alt="Eclipse new Glassfish server 3" style="zoom:80%;" />
+<img src="./eclipse-new-server3.png" alt="Eclipse new Glassfish server 3" style="zoom:80%;" />
 
 In the *Glassfish Application Server properties* step, use the default values, click *Finish* button. 
 
 There is a new node will be appeared in the *Servers* view.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-server4.png" alt="Eclipse new Glassfish node" style="zoom:80%;" />
+<img src="./eclipse-new-server4.png" alt="Eclipse new Glassfish node" style="zoom:80%;" />
 
 It is easy to control the applcation server in the Servers view, such as start, stop, restart, deploy and undeploy etc. 
 
 Right click the *Glassfish* node, and select *Start* to start Glassfish server.  After it is  started successfully, under the Glassfish node, it will include the resources in the Glassfish server. 
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-server-running.png" alt="Eclipse new Glassfish node" style="zoom:80%;" />
+<img src="./eclipse-new-server-running.png" alt="Eclipse new Glassfish node" style="zoom:80%;" />
 
 Ok, let's try to run the application on Glassish server.
 
 In the *Project* or *Packages* view, right click the project node, and click *Run As...*-> *Run on Server*.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-run-on-server.png" alt="Eclipse run on Server-Glassfish" style="zoom:80%;" />
+<img src="./eclipse-run-on-server.png" alt="Eclipse run on Server-Glassfish" style="zoom:80%;" />
 
 In the *Run on Server* dialog, select *Glassfish*, and click *Finish* button. Wait for seconds, it will build, package and deploy the application into Glassfish server. When it is done, you will see there is a *Deployed Applications* under the Glassfish node in the *Servers* view. Expand this node, there is a *jakartaee8-starter* node, it is our application.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-server-running2.png" alt="Eclipes run on Servers-Glassfish deployed app" style="zoom:80%;" />
+<img src="./eclipse-new-server-running2.png" alt="Eclipes run on Servers-Glassfish deployed app" style="zoom:80%;" />
 
 Open your terminal, try to access the sample endpoint `api/greeting/{name}` via `curl` command.
 
@@ -145,29 +145,29 @@ Next let's create a Wildfly Server instance.
 
 Right click on the blank area in the *Servers* view, select *New*->*Server* in the context menu.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-wildfly1.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
+<img src="./eclipse-new-wildfly1.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
 
 
 
 Expand *JBoss Community* node in the tree list, select Wildfly 18, click *Next*  button.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-wildfly2.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
+<img src="./eclipse-new-wildfly2.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
 
 In the  *Create a new Server Adapter* step, use the default selections, click *Next* button.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-wildfly3.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
+<img src="./eclipse-new-wildfly3.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
 
 In the *JBoss Runtime*, select the Wildfly server location in your system, click *Finish* button. 
 
 After it is done, there is a Wildfly instance in the  *Servers* view.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-wildfly4.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
+<img src="./eclipse-new-wildfly4.png" alt="Eclipse  new Server Wildfly " style="zoom:80%;" />
 
 Ok, let's try to run the application on Wildfly server.
 
 In the *Project* or *Packages* view, right click the project node, and click *Run As...*-> *Run on Server*.
 
-![Eclipse run on Server-Wildfly](D:/hantsylabs/jakartaee8-starter/docs/eclipse-wildfly-run-on-server.png)
+![Eclipse run on Server-Wildfly](./eclipse-wildfly-run-on-server.png)
 
 If the Wildlfy is not started, it will start the server firstly, then build, package and deploy the application into the Wildfly Server.
 
@@ -203,28 +203,28 @@ Next let's create an  OpenLiberty Server instance.
 
 Right click on the blank area in the *Servers* view, select *New*->*Server* in the context menu.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-liberty1.png" alt="Eclipse  new Server Liberty " style="zoom:80%;" />
+<img src="./eclipse-new-liberty1.png" alt="Eclipse  new Server Liberty " style="zoom:80%;" />
 
 
 Expand *IBM* node in the tree list, select *Liberty*, and click *Next*  button.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-liberty2.png" alt="Eclipse  new Server Liberty " style="zoom:80%;" />
+<img src="./eclipse-new-liberty2.png" alt="Eclipse  new Server Liberty " style="zoom:80%;" />
 
 In the  *Liberty Runtime Environmentr* step,  set the Liberty location,  click *Next* button.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-liberty2.png" alt="Eclipse  new Server Liberty " style="zoom:80%;" />
+<img src="./eclipse-new-liberty2.png" alt="Eclipse  new Server Liberty " style="zoom:80%;" />
 
 In the *New Liberty Server*,  there is a ** template** field, make sure  *javaee-8.0* is selected, others use the default values, click *Finish* button. 
 
 After it is done, there is a Liberty Server instance in the  *Servers* view.
 
-<img src="D:/hantsylabs/jakartaee8-starter/docs/eclipse-new-liberty4.png" alt="Eclipse  new Server Liberty " style="zoom:80%;" />
+<img src="./eclipse-new-liberty4.png" alt="Eclipse  new Server Liberty " style="zoom:80%;" />
 
 Ok, let's try to run the application on Open Liberty server.
 
 In the *Project* or *Packages* view, right click the project node, and click *Run As...*-> *Run on Server*.
 
-![Eclipse run on Server-Liberty](D:/hantsylabs/jakartaee8-starter/docs/eclipse-liberty-run-on-server.png)
+![Eclipse run on Server-Liberty](./eclipse-liberty-run-on-server.png)
 
 If the Liberty server is not started, it will start the server firstly, then build, package and deploy the application into the Liberty Server.
 
