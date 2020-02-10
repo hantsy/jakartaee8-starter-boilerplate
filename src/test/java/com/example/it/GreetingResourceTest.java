@@ -23,11 +23,13 @@ import javax.ws.rs.core.Response;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 public class GreetingResourceTest {
+    private final static Logger LOGGER = Logger.getLogger(GreetingResourceTest.class.getName());
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
@@ -45,8 +47,15 @@ public class GreetingResourceTest {
     private Client client;
 
     @Before
-    public void setup() {
+    public void setup()  {
         this.client = ClientBuilder.newClient();
+        try {
+            Class clazz = Class.forName("com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider");
+            this.client.register(clazz);
+        } catch (ClassNotFoundException e) {
+            LOGGER.warning("Only use for OpenLiberty/CXF which does not register a json provider automatically.");
+        }
+
     }
 
     @After

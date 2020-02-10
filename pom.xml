@@ -52,6 +52,7 @@
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.1</liberty-maven-plugin.version>
         <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
+        <cxf.version>3.3.5</cxf.version>
 
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
@@ -806,8 +807,45 @@
                     <artifactId>arquillian-liberty-managed</artifactId>
                     <version>${arquillian-liberty.version}</version>
                 </dependency>
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-rs-client</artifactId>
+                    <version>${cxf.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                    <artifactId>jackson-jaxrs-json-provider</artifactId>
+                    <version>2.10.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-transports-http-hc</artifactId>
+                    <version>${cxf.version}</version>
+                    <scope>test</scope>
+                </dependency>
             </dependencies>
             <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/arq-liberty-managed</directory>
+                        <includes>
+                            <include>*</include>
+                        </includes>
+                        <excludes>
+                            <exclude>server.xml</exclude>
+                        </excludes>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/arq-liberty-managed</directory>
+                        <includes>
+                            <include>server.xml</include>
+                        </includes>
+                        <targetPath>
+                            ${project.build.directory}/wlp/usr/servers/defaultServer
+                        </targetPath>
+                    </testResource>
+                </testResources>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
