@@ -934,4 +934,16 @@
             </plugin>
         </plugins>
     </reporting>
+    <issueManagement>
+    	<system>Github Issues</system>
+    	<url>https://github.com/hantsy/jakartaee8-starter/issues</url>
+    </issueManagement>
+    <ciManagement>
+    	<system>Github Actions</system>
+    	<url>https://github.com/hantsy/jakartaee8-starter/actions</url>
+    </ciManagement>
+    <scm>
+    	<url>https://github.com/hantsy/jakartaee8-starter</url>
+    	<developerConnection>Hantsy Bai&lt;hantsy@gmail.com&gt;</developerConnection>
+    </scm>
 </project>
