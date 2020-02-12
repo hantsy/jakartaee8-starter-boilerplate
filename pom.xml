@@ -868,6 +868,15 @@
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${project.build.directory}</outputDirectory>
                                         </artifactItem>
+                                        <artifactItem>
+											<groupId>io.openliberty.arquillian</groupId>
+											<artifactId>arquillian-liberty-support</artifactId>
+											<version>${arquillian-liberty.version}</version>
+											<type>zip</type>
+											<classifier>feature</classifier>
+											<overWrite>false</overWrite>
+											<outputDirectory>${project.build.directory}/wlp/usr</outputDirectory>
+						      			</artifactItem>
                                     </artifactItems>
                                 </configuration>
                             </execution>

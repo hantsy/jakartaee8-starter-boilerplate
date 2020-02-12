@@ -50,7 +50,7 @@ public class GreetingResourceTest {
     public void setup()  {
         this.client = ClientBuilder.newClient();
         try {
-            Class clazz = Class.forName("com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider");
+            Class<?> clazz = Class.forName("com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider");
             this.client.register(clazz);
         } catch (ClassNotFoundException e) {
             LOGGER.warning("Only use for OpenLiberty/CXF which does not register a json provider automatically.");
