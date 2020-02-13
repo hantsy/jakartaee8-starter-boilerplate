@@ -39,7 +39,7 @@
         <arquillian-payara-server.version>2.0</arquillian-payara-server.version>
 
         <!-- Wildfly server-->
-        <wildfly.version>19.0.0.Beta1</wildfly.version>
+        <wildfly.version>19.0.0.Beta2</wildfly.version>
         <wildfly-maven-plugin.version>2.1.0.Beta1</wildfly-maven-plugin.version>
         <wildfly-arquillian.version>2.2.0.Final</wildfly-arquillian.version>
         <!--  websockets-jsr and resteasy for client, aligned with Wildfly version. -->
@@ -319,10 +319,10 @@
                             <configuration>
                                 <type>runtime</type>
                                 <properties>
-                                    <!--   <cargo.remote.username>admin</cargo.remote.username>
+                                    <cargo.remote.username>admin</cargo.remote.username>
                                     <cargo.remote.password>adminadmin</cargo.remote.password>
                                     <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
-                                    <cargo.hostname>localhost</cargo.hostname>-->
+                                    <cargo.hostname>localhost</cargo.hostname>
                                 </properties>
                             </configuration>
                         </configuration>
@@ -348,6 +348,21 @@
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
                         <version>${wildfly-maven-plugin.version}</version>
+                        <configuration>
+                            <!-- if a wildfly.home property is not set, firstly it will download a copy of wildfly distribution automatically -->
+                            <!-- also fetch from jbossHome -->
+                            <!-- <jossHome>${env.WILDFLY_HOME}</jbossHome>-->
+
+                            <!-- control remote wildfly server -->
+                            <!-- <hostname></hostname>
+                            <port></port>
+                            <username></username>
+                            <password></password> -->
+
+                            <!-- or set a wildfly.id property to add a server in settings.xml -->
+                            <!--<id>wildfly-svr</id>-->
+
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -869,14 +884,14 @@
                                             <outputDirectory>${project.build.directory}</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
-											<groupId>io.openliberty.arquillian</groupId>
-											<artifactId>arquillian-liberty-support</artifactId>
-											<version>${arquillian-liberty.version}</version>
-											<type>zip</type>
-											<classifier>feature</classifier>
-											<overWrite>false</overWrite>
-											<outputDirectory>${project.build.directory}/wlp/usr</outputDirectory>
-						      			</artifactItem>
+                                            <groupId>io.openliberty.arquillian</groupId>
+                                            <artifactId>arquillian-liberty-support</artifactId>
+                                            <version>${arquillian-liberty.version}</version>
+                                            <type>zip</type>
+                                            <classifier>feature</classifier>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}/wlp/usr</outputDirectory>
+                                        </artifactItem>
                                     </artifactItems>
                                 </configuration>
                             </execution>
@@ -935,15 +950,15 @@
         </plugins>
     </reporting>
     <issueManagement>
-    	<system>Github Issues</system>
-    	<url>https://github.com/hantsy/jakartaee8-starter/issues</url>
+        <system>Github Issues</system>
+        <url>https://github.com/hantsy/jakartaee8-starter/issues</url>
     </issueManagement>
     <ciManagement>
-    	<system>Github Actions</system>
-    	<url>https://github.com/hantsy/jakartaee8-starter/actions</url>
+        <system>Github Actions</system>
+        <url>https://github.com/hantsy/jakartaee8-starter/actions</url>
     </ciManagement>
     <scm>
-    	<url>https://github.com/hantsy/jakartaee8-starter</url>
-    	<developerConnection>Hantsy Bai&lt;hantsy@gmail.com&gt;</developerConnection>
+        <url>https://github.com/hantsy/jakartaee8-starter</url>
+        <developerConnection>Hantsy Bai&lt;hantsy@gmail.com&gt;</developerConnection>
     </scm>
 </project>
