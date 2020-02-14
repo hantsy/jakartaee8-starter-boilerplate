@@ -1,8 +1,8 @@
 
 
-# Setup local development environment
+# Preparing Local Development Environment
 
-
+[toc]
 
 ## Prerequisites
 
@@ -18,11 +18,13 @@ There are a few options available.
 
 Additionally, [Azul](https://www.azul.com/downloads/zulu-community/),  [Amazon](https://aws.amazon.com/corretto/),  [Alibaba](https://github.com/alibaba/dragonwell8),  and [Microsoft](https://docs.microsoft.com/en-us/xamarin/android/get-started/installation/openjdk)  have maintained their own OpenJDK redistribution for their products. 
 
-Personally I prefer AdoptOpenJDK,  because it is maintained by Java community.
+Personally I prefer the community-driven AdoptOpenJDK.
 
-Optionally,  set a **JAVA\_HOME** environment variable and add *&lt;JDK installation dir>/bin* in the **PATH** environment variable.
+Download a  copy of [AdoptOpenJDK](https://adoptopenjdk.net/) redistribution, and install it into your local system.
 
-Open your terminal, execute the following command to verify your Java environment installed successfully.
+Optionally,  create a new **JAVA\_HOME** environment variable and set its value as the location of the *&lt;JDK installation dir>*. And append path *&lt;JDK installation dir>/bin* to the  value of **PATH** environment variable, thus the java command will be available in PATH.
+
+Open your terminal, run the following command to verify your Java environment is installed successfully.
 
 ```sh
 #java -version
@@ -50,50 +52,66 @@ Default locale: en_US, platform encoding: Cp1252
 OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
 ```
 
-### Jakarta EE 8 Application Servers
 
-In the Jakarta EE [Compatible Products](https://jakarta.ee/compatibility/) , there is a full list of application servers that are compatible with the  newest Jakarta EE 8 specification, including: 
 
-* [Glassfish v5.1](https://projects.eclipse.org/projects/ee4j.glassfish/downloads) is an open-source Java EE/Jakarta EE application server. In the past years, it was the official Java EE reference implementation for a long time, now it is donated to Eclipse Foundation as part of Eclipse EE4J project.
-* [Payara Server 193](https://www.payara.fish/software/downloads/) is a fork  of Glassfish, and provides more quickly patch fixes for  commercial support customers. 
-* [Wildfly 18.0.0](https://wildfly.org/downloads) is the rebranded open-source JBoss application server  from Redhat.
-* [OpenLiberty 19.0.0.9]( https://openliberty.io/downloads/) is  an open-source application server sponsored by IBM.  OpenLiberty follows a monthly-cycle release and the development is very active in the past years. 
+### Git client
 
-###  Development Tools
+Most of Linux distributions provide git in their official repositories, using the built-in package manager  to install them directly.
 
-There are several rich IDEs  or simple code editors available for coding Java.
+For windows users, install [Git for Windows](https://gitforwindows.org/), which provides all runtime requirements of a git command client, and a simple Git GUI and Git Bash tools.
 
-#### [Eclipse IDE](https://eclipse.org)
+Confirm weather the Git is installed successfully.  
 
-If Eclipse is your preferred IDE,  to get better experience of Java EE development,  [Eclipse IDE for Enterprise Java Developers](https://www.eclipse.org/downloads/packages/release/2019-09/r/eclipse-ide-enterprise-java-developers) is highly recommended. 
+```bash
+#git --version
+git version 2.25.0.windows.1
+```
 
-Alternatively, you can select a  commercial  version, such as [Red Hat CodeReady Studio](https://www.redhat.com/en/technologies/jboss-middleware/codeready-studio) which is free for developers.
+Additionally, there are some popular professional GUI for Git users.
 
-#### [Apache NetBeans IDE](http://netbeans.apache.org)
+* [TortoiseGit](https://tortoisegit.org/)
+* [Github Desktop](https://desktop.github.com/)
+* [Sourcetree](https://www.sourcetreeapp.com/)
+* [Git Extensions](https://gitextensions.github.io/)
+
+A complete list of Git GUI tools can be found [here](https://git-scm.com/downloads/guis/).
+
+
+
+##  Setup Development Tools
+
+There are several java IDEs  and simple code editors available for coding Java.
+
+*  [Eclipse IDE](https://eclipse.org)
+*  [Apache NetBeans IDE](http://netbeans.apache.org)
+*  [Intellij IDEA ](https://www.jetbrains.com/idea/) 
+*  [VisualStudio Code](https://code.visualstudio.com)
+
+### Apache NetBeans IDE
 
 Apache NetBeans IDE is the easiest tools for building Java and Java EE/Jakarta EE applications. For those new to Java/Java EE, it is highly recommended.
 
-#### [Intellij IDEA ](https://www.jetbrains.com/idea/)
+### Eclipse IDE
 
-Intellij IDEA has two versions, the free open-sourced community edition and the full-featured  commercial ultimate edition.  The community edition just contains basic features to develop Java application,  and also includes essential supports of other languages, such as Groovy, Kotlin, etc.,   the later has richer support of building enterprise applications.  
+Eclipse is one of the most popular IDEs in the world. To get better experience of Java EE development,  [Eclipse IDE for Enterprise Java Developers](https://www.eclipse.org/downloads/packages/release/2019-09/r/eclipse-ide-enterprise-java-developers) is highly recommended. 
+
+Alternatively, you can select a  commercial  version, such as [Red Hat CodeReady Studio](https://www.redhat.com/en/technologies/jboss-middleware/codeready-studio) which is free for developers.
+
+### Intellij IDEA
+
+Intellij IDEA has two versions, the free open-sourced Community Edition and the full-featured  commercial Ultimate Edition.  The community edition just contains basic features to develop Java application,  and also includes essential supports of other languages, such as Groovy, Kotlin, etc.,   the later has richer support of building enterprise applications.  
 
 If you are a big fan of IDEA,  to work more productive, you should consider to buy a commercial  license.
 
-#### [VisualStudio Code](https://code.visualstudio.com)
+### VisualStudio Code
 
-if you are stick on simple code editor for coding, VS Code is really a good choice. 
+If you are stick on simple code editors for coding, VS Code is really a good choice. 
 
 Benefit from the effort of Microsoft and Redhat, VS Code also has great Java support via [Java extension pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) , you can simply install it  from [VS Code marketpalce](https://marketplace.visualstudio.com/VSCode). 
 
 
 
-## Bootstrap a new Jakarta EE project
-
-
-
-Firstly you can use this project as template and prepare the initial project skeleton.
-
-### Prepare Project Skeleton
+## Preparing the project skeleton
 
 Open your browser, and navigate to [Jakarta EE 8 Starter](https://github.com/hantsy/jakartaee8-starter) page, click  the [**Use this template**](https://github.com/hantsy/jakartaee8-starter/generate) button, it will guide your to create a new repository under  your Github account, and use this project as template to initialize the repository.
 
@@ -103,7 +121,7 @@ After it is done, you can check out the source codes from your Github account.
 git clone https://github.com/<your account>/<your jakartaee project>
 ```
 
-Or check out the source codes of this project into your local system directly,  and push it back to your Github account later.
+Or check out the source codes of [Jakarta EE 8 Starter](https://github.com/hantsy/jakartaee8-starter)  project into your local system directly,  then push it back to your Github account or somewhere later.
 
 ```bash
 git clone https://github.com/hantsy/jakartaee8-starter
@@ -111,25 +129,25 @@ git clone https://github.com/hantsy/jakartaee8-starter
 
 The project skeleton is ready, then import the source codes into your favorite IDE.
 
-### Import the project codes into IDEs
+## Importing source codes into IDEs
 
-Apache NetBeans IDE, Eclipse IDE and IntelliJ IDEA have great IDE support, and VS Code also has basic Maven support if you have instaled the Java extension pack.. 
+Almost all IDEs, including Apache NetBeans IDE, Eclipse IDE and IntelliJ IDEA have great Maven support, and VS Code also has basic Maven support if you have installed the  [Java extension pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) . 
 
-#### Apache NetBeans IDE
+### Apache NetBeans IDE
 
- NetBeans  can recognize Maven  project directly.
+ NetBeans will recognize Maven project directly.
 
-1. Open  *File->Open* Project, or click the *Open Project* icon button in the toolbar,  or use *Ctrl+Shift+O* shortcuts to start up the *Open Project* dialog.
+1. Open  *File->Open* Project from IDE main menu, or click the *Open Project* icon button in the toolbar,  or use *Ctrl+Shift+O* shortcuts to start up the *Open Project* dialog.
 
-2. Select the folder of the source codes, it should be displayed as a NetBeans  Maven project icon.
+2. Select the folder of the source codes, it should be displayed as a NetBeans Maven project.
 
    <img src="./import-nb.png" alt="Open project in NetBeans" style="zoom:80%;" />
 
-3. After it is imported, it  will try to resolve dependencies and show the project source in a tree structure.
+3. After the project is imported, it  will try to resolve dependencies and show the project source in a tree structure.
 
    ![project imported](./import-nb2.png)
 
-#### Eclipse IDE
+### Eclipse IDE
 
 1. Click *File-> Import...* from the main menu to open the *Import* dialog.
 
@@ -142,10 +160,10 @@ Apache NetBeans IDE, Eclipse IDE and IntelliJ IDEA have great IDE support, and V
 4. Click *Finish* button to import the project into the current Eclipse workspace.
 
 
-#### Intellij IDEA
+### Intellij IDEA
 
 1. Click *File->New->Project from Existing Sources...*. from main menu.
 2. In the *Select File or Directory  to Import...* dialog, select the folder node of the source codes, click *Ok* button.
 3. In the *Import project...* dialog, choose the *Import from external model* option, and then select *Maven* in list, click *Finish* button.
 
-If it is the first time to create a Jakarta EE 8 project, it will take some time to resolve the Maven dependencies,  please be patient and wait for seconds.
+If it is the first time to create a Jakarta EE 8 project, it will take some time to resolve the Maven dependencies,  please be patient and wait for a while.
