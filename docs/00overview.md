@@ -4,7 +4,7 @@
 
 
 
-## The history of Java EE
+## The history of Java EE/Jakarta EE
 
 Firstly let's review Java EE and Jakarta EE.
 

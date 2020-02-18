@@ -1,6 +1,6 @@
 
 
-# Preparing Local Development Environment
+# Setup Local Development Environment
 
 [toc]
 
@@ -41,7 +41,7 @@ OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.232-b09, mixed mode)
 
 Download a copy of  the latest of [Apache Maven 3](https://maven.apache.org) , and extract the files into your local system. Optionally, set up a **M2\_HOME** environment variable, and also do not forget to append *&lt;Maven Installation dir>/bin* your **PATH** environment variable.  
 
-Type the following command to verify Apache Maven is working.
+Type the following command to verify if Apache Maven is working.
 
 ```shell
 #mvn -v
@@ -58,16 +58,16 @@ OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
 
 Most of Linux distributions provide git in their official repositories, using the built-in package manager  to install them directly.
 
-For windows users, install [Git for Windows](https://gitforwindows.org/), which provides all runtime requirements of a git command client, and a simple Git GUI and Git Bash tools.
+For Windows users, you should install [Git for Windows](https://gitforwindows.org/), which provides all runtime requirements of a Git command client, and a simple Git GUI and Git Bash tool.
 
-Confirm weather the Git is installed successfully.  
+After it is installed, use the following command to verify the installation.  
 
 ```bash
 #git --version
 git version 2.25.0.windows.1
 ```
 
-Additionally, there are some popular professional GUI for Git users.
+Additionally, there are some popular GUI tools available for Git end users.
 
 * [TortoiseGit](https://tortoisegit.org/)
 * [Github Desktop](https://desktop.github.com/)
@@ -99,15 +99,17 @@ Alternatively, you can select a  commercial  version, such as [Red Hat CodeReady
 
 ### Intellij IDEA
 
-Intellij IDEA has two versions, the free open-sourced Community Edition and the full-featured  commercial Ultimate Edition.  The community edition just contains basic features to develop Java application,  and also includes essential supports of other languages, such as Groovy, Kotlin, etc.,   the later has richer support of building enterprise applications.  
+JetBrains provides two editions of Intellij IDEA, the Community Edition is free and open-sourced, the commercial Ultimate Edition requires a license.  The Community Edition just includes essential support for developing Java applications,  and it also includes basic supports of other languages, such as Groovy, Kotlin, Scala(through a plugin), etc.  The Ultimate Edition has richer features of building complex enterprise applications.  
 
-If you are a big fan of IDEA,  to work more productive, you should consider to buy a commercial  license.
+If you are a big fan of IDEA,  to work more productive, you should consider to buy a commercial  license of Ultimate Edition.
 
-### VisualStudio Code
+### Visual Studio Code
 
 If you are stick on simple code editors for coding, VS Code is really a good choice. 
 
-Benefit from the effort of Microsoft and Redhat, VS Code also has great Java support via [Java extension pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) , you can simply install it  from [VS Code marketpalce](https://marketplace.visualstudio.com/VSCode). 
+Benefit from the effort of Microsoft and Redhat, VS Code also has great Java support via [Java extension pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) , you can simply install it  from [VS Code marketpalce](https://marketplace.visualstudio.com/VSCode) in VS Code. 
+
+VS Code team also provides an [installer of Visual Studio Code for Java developers](https://aka.ms/vscode-java-installer-win) to simplify the installation which packed all essential Java extensions into it.
 
 
 
@@ -129,7 +131,7 @@ git clone https://github.com/hantsy/jakartaee8-starter
 
 The project skeleton is ready, then import the source codes into your favorite IDE.
 
-## Importing source codes into IDEs
+## Importing Source Codes into IDEs
 
 Almost all IDEs, including Apache NetBeans IDE, Eclipse IDE and IntelliJ IDEA have great Maven support, and VS Code also has basic Maven support if you have installed the  [Java extension pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) . 
 
