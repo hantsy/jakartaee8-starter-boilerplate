@@ -1,36 +1,8 @@
-
-
-Add a user admin.
-
-```bash
-#>add-user.bat
-
-What type of user do you wish to add?
- a) Management User (mgmt-users.properties)
- b) Application User (application-users.properties)
-(a):
-
-Enter the details of the new user to add.
-Using realm 'ManagementRealm' as discovered from the existing property files.
-Username : admin
-User 'admin' already exists and is disabled, would you like to...
- a) Update the existing user password and roles
- b) Enable the existing user
- c) Type a new username
-(a): b
-Updated user 'admin' to file 'D:\appsvr\wildfly\standalone\configuration\mgmt-users.properties'
-Updated user 'admin' to file 'D:\appsvr\wildfly\domain\configuration\mgmt-users.properties'
-Updated user 'admin' with groups null to file 'D:\appsvr\wildfly\standalone\configuration\mgmt-groups.properties'
-Updated user 'admin' with groups null to file 'D:\appsvr\wildfly\domain\configuration\mgmt-groups.properties'
-Press any key to continue . . .
-```
-
-
-## Wildfly Server
+# Deploying and Running apps on Wildfly Server using Wildfly Maven plugin
 
 Redhat Wildfly has official maven plugin support for application deployment and application server management.
 
-Declare a wildfly maven plugin in the pom.xml file.
+Declare a Wildfly maven plugin in the pom.xml file.
 
 ```xml
 <!-- The WildFly plugin deploys your war to a local WildFly container -->
@@ -42,10 +14,89 @@ Declare a wildfly maven plugin in the pom.xml file.
 </plugin> 
 ```
 
-Make sure  there is a running Wildfly server, and run the following command to start deploymaent.
+The `wildfly:start` goal  will start an server instance, if there is no server instance configured, it will download the newest Wildfly redistribution or define a `wilfly.version` property to specify a version , and extract the files, and start it in an embedded mode. 
+
+If you want to reuse your local Wildfly server you have downloaded before, configure a  `jbossHome` property in the `configuration` of Wildfly maven plugin or an external `wildfly.home`  property.
+
+```xml
+<plugin>
+    <groupId>org.wildfly.plugins</groupId>
+    <artifactId>wildfly-maven-plugin</artifactId>
+    <version>${wildfly-maven-plugin.version}</version>
+    <configuration>
+        
+        <!-- also fetch wildfly.home from jbossHome -->
+        <!-- <jossHome>${env.WILDFLY_HOME}</jbossHome>-->
+        ...
+    </configuration>
+</plugin>
+...
+<!-- if a wildfly.home property is not set, firstly it will download a copy of wildfly distribution automatically -->
+<properties>
+	<wildfly.home>...</wildfly.home>
+</properties>
+
+```
+
+If the Wildfly server instance is running, and run the following command to start deployment.
 
 ```bash
 mvn package wildfly:deploy
 ```
+
+More simply, execute `mvn deploy:run` to start a Wildfly server instance and start the deployment immediately.
+
+Wildfly maven plugin also support of deploying to remote  Wildfly server instance. Configure the host properties.
+
+```xml
+<plugin>
+    <groupId>org.wildfly.plugins</groupId>
+    <artifactId>wildfly-maven-plugin</artifactId>
+    <version>${wildfly-maven-plugin.version}</version>
+    <configuration>
+
+        <!-- control remote wildfly server -->
+        <hostname>localhost</hostname>
+        <port>9990</port>
+        <username>admin</username>
+        <password>admin</password>
+    </configuration>
+</plugin>
+```
+
+Username and password are sensitive info, you can follow the Maven rule, and configure them in the Maven global settings.xml file(*~/.m2/settings.xml*).
+
+```xml
+<settings>
+    ...
+	<servers>
+       ... 
+       <server>
+            <id>wildfly-svr</id>
+           	<hostname>localhost</hostname>
+            <port>9990</port>
+            <username>admin</username>
+            <password>admin</password>
+        </server>
+    </servers>
+</settings>    
+```
+Then configure the server id in the maven plugin configuration.
+
+```xml
+<plugin>
+    <groupId>org.wildfly.plugins</groupId>
+    <artifactId>wildfly-maven-plugin</artifactId>
+    <version>${wildfly-maven-plugin.version}</version>
+    <configuration>
+		...
+		<id>wildfly-svr</id>
+    </configuration>
+</plugin>
+```
+
+Make sure it it running, run `mvn wildfly:deploy` to start deployment.
+
+Use `wildfly:undeploy` goal to undeploy an application from a running Wildfly server.
 
 You can also  add some configuration to Wildfly by maven plugin, such as registering a JDDC driver module, configuring a DataSource, etc, more information please read the [Wildfy maven plugin documentation](https://docs.jboss.org/wildfly/plugins/maven/latest/index.html). 

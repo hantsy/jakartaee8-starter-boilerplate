@@ -13,6 +13,7 @@
   * Deploying and Running app on Wildfly Server
     * [Deploying and Running app on Wildfly Server in Eclipse IDE](./03run-wildfly-eclipse.md)
     * [Deploying and Running app on Wildfly Server using Wildfly Maven Plugin](./03run-wildfly-mvn.md)
+	* [Deploying and Running apps on Wildfly Server - The Hard Way](./03run-wildfly-m.md)
   * Deploying and Running app on OpenLiberty Server
     * [Deploying and Running app on OpenLiberty Server in Eclipse IDE](./03run-openliberty-eclipse.md)
     * [Deploying and Running app on OpenLiberty Server using Liberty Maven Plugin](./03run-openliberty-mvn.md)
