@@ -7,12 +7,14 @@
         <property name="deploymentExportPath">target/</property>
     </engine>
 
-    <container qualifier="liberty-managed">
+    <container qualifier="liberty-remote">
         <configuration>
-            <property name="wlpHome">target/wlp/</property>
+            <property name="hostName">localhost</property>
             <property name="serverName">defaultServer</property>
+            <property name="username">admin</property>
+            <property name="password">admin</property>
             <property name="httpPort">9080</property>
-            <property name="serverStartTimeout">300</property>
+            <property name="httpsPort">9443</property>
         </configuration>
     </container>
 
