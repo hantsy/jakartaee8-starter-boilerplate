@@ -3,20 +3,22 @@
 * [An introduction to Jakarta EE](./00overview.md)
 * [Setup local development environment](./01setup.md)
 * [Understanding application architecture](./02understand-app.md)
-* [Deploying and running app on Application Servers](./03run.md)
+* [Deploying applications to Application Servers](./03run.md)
   * [Getting Jakarta EE 8 compatible application servers](./03run-get-appservers.md)
-  * Deploying and Running app on Glassfish Server
-    * [Deploying and Running app on Glassfish Server in Eclipse IDE](./03run-glassfish-eclipse.md)
-    * [Deploying and Running app on Glassfish Server in NetBeans IDE](./03run-glassfish-nb.md)
-    * [Deploying and Running app on Glassfish Server using Cargo Maven Plugin](./03run-glassfish-mvn.md)
-  * [Deploying and Running app on Payara  Server](./03run-payara.md)
-  * Deploying and Running app on Wildfly Server
-    * [Deploying and Running app on Wildfly Server in Eclipse IDE](./03run-wildfly-eclipse.md)
-    * [Deploying and Running app on Wildfly Server using Wildfly Maven Plugin](./03run-wildfly-mvn.md)
-	* [Deploying and Running apps on Wildfly Server - The Hard Way](./03run-wildfly-m.md)
-  * Deploying and Running app on OpenLiberty Server
-    * [Deploying and Running app on OpenLiberty Server in Eclipse IDE](./03run-openliberty-eclipse.md)
-    * [Deploying and Running app on OpenLiberty Server using Liberty Maven Plugin](./03run-openliberty-mvn.md)
+  * Deploying applications to Glassfish Server
+    * [Using Eclipse IDE](./03run-glassfish-eclipse.md)
+    * [Using NetBeans IDE](./03run-glassfish-nb.md)
+    * [Using Cargo Maven Plugin](./03run-glassfish-mvn.md)
+    * [The Hard Way](./03run-glassfish-m.md)
+  * [Deploying applications to Payara Server](./03run-payara.md)
+  * Deploying applications to Wildfly Server
+    * [Using Eclipse IDE](./03run-wildfly-eclipse.md)
+    * [Using Wildfly Maven Plugin](./03run-wildfly-mvn.md)
+    * [The Hard Way](./03run-wildfly-m.md)
+  * Deploying applications to OpenLiberty Server
+    * [Using Eclipse IDE](./03run-openliberty-eclipse.md)
+    * [Using Liberty Maven Plugin](./03run-openliberty-mvn.md)
+    * [The Hard Way](./03run-openliberty-m.md)
 * [Testing Jarakta EE applications](./04test.md)
 * [Put to production](./05prod.md)
 

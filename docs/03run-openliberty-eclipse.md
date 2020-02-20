@@ -1,4 +1,4 @@
-# Deploying and Running apps on OpenLiberty Server using Eclipse IDE 
+# Deploying applications to OpenLiberty Server using Eclipse IDE 
 
 
 

@@ -1,4 +1,4 @@
-# Deploying and Running apps on OpenLiberty Server using Liberty Maven plugin
+# Deploying applications to OpenLiberty Server using Liberty Maven plugin
 
 OpenLiberty provides an official maven plugin for application deployment.  
 

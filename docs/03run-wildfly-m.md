@@ -1,4 +1,4 @@
-# Deploying and Running apps on Wildfly Server - The Hard Way
+# Deploying applications to Wildfly Server - The Hard Way
 
 Download a copy of [Wildfly](https://wildfly.org/downloads), and extract files into your local system.
 

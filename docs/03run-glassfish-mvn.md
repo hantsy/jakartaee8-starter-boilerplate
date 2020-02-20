@@ -1,4 +1,4 @@
-# Deploying and Running app on Glassfish Server using Cargo Maven Plugin
+# Deploying applications to Glassfish Server using Cargo Maven Plugin
 
 The legacy official *maven-glassfish-plugin* is discontinued, but there is a better alternative existed. [Cargo](https://codehaus-cargo.github.io) project provide a common way to deploy the applications into Jakarta EE application servers by  maven plugin, Ant tasks, and pure Java APIs. Most of the popular application servers are got supported. Generally, it provides 3 approaches to deploy applications.
 

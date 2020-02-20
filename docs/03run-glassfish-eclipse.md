@@ -1,4 +1,4 @@
-# Deploying applications using Eclipse IDE 
+# Deploying applications to Glassfish Server using Eclipse IDE 
 
 Follow the following steps to deploy and run the application on Glassfish in Eclipse IDE.
 

@@ -1,4 +1,4 @@
-# Deploying and Running apps on Wildfly Server using Wildfly Maven plugin
+# Deploying applications to Wildfly Server using Wildfly Maven plugin
 
 Redhat Wildfly has official maven plugin support for application deployment and application server management.
 

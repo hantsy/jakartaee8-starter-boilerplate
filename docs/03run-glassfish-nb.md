@@ -1,4 +1,4 @@
-# Deploying applications using Apache NetBeans IDE
+# Deploying applications to Glassfish Server using Apache NetBeans IDE
 
 NetBeans has built-in support for Glassfish.  
 

@@ -1,4 +1,4 @@
-# Deploying and Running apps on Wildfly using Eclipse IDE
+# Deploying applications to Wildfly Server using Eclipse IDE
 
 [toc]
 
