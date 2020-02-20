@@ -4,17 +4,17 @@ Payara server is derived from Glassfish project, the steps of deploying applicat
 
 ## Deploying applications to Payara Server using NetBeans IDE
 
-The Payara behavior in NetBeans IDE is very similar with Glassfish server
+See [Deploying applications to Glassfish Server using NetBeans IDE](./03run-glassfish-nb.md).
 
 
 ## Deploying applications to Payara Server using Eclipse IDE
 
-The Payara behavior in Eclipse IDE is very similar with Glassfish server. 
+See [Deploying applications to Glassfish Server using Eclipse IDE](./03run-glassfish-eclipse.md).
 
 ## Deploying applications to Payara Server using Cargo Maven Plugin
 
-The Payara Server is similar with  Glassfish, Cargo maven plugin also support Payara Server as well, copy the above Glassfish configuration, replace the glassfish facilities with payara one. 
+The Payara Server is similar with  Glassfish, Cargo maven plugin also support Payara Server as well, copy the Glassfish configuration, replace the Glassfish facilities with Payara one. 
 
 More info about Cargo maven plugin support for Payara,  see [here](https://codehaus-cargo.github.io/cargo/Payara.html). 
 
-
+See [Deploying applications to Glassfish Server using Cargo Maven Plugin](./03run-glassfish-mvn.md).
