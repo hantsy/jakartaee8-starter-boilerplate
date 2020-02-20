@@ -430,21 +430,6 @@
                 <skipTests>false</skipTests>
             </properties>
             <dependencies>
-                <!-- Yasson (JSON-B RI)-->
-                <!--<dependency>
-                    <groupId>org.eclipse</groupId>
-                    <artifactId>yasson</artifactId>
-                    <version>1.0.4</version>
-                    <scope>test</scope>
-                </dependency>
-                &lt;!&ndash; json p &ndash;&gt;
-                <dependency>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.json</artifactId>
-                    <version>1.1.4</version>
-                    <scope>test</scope>
-                </dependency>-->
-
 
                 <!-- Jersey-->
                 <dependency>
@@ -803,6 +788,7 @@
                         <configuration>
                             <systemPropertyVariables>
                                 <arquillian.launch>wildfly-remote</arquillian.launch>
+                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>

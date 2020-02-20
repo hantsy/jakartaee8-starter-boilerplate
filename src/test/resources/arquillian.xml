@@ -12,37 +12,14 @@
             <property name="allowConnectingToRunningServer">true</property>
             <property name="domain">domain1</property>
             <property name="adminUser">admin</property>
-            <property name="adminPassword">adminadmin</property>
+            <property name="adminPassword"></property>
         </configuration>
     </container>
-
-    <container qualifier="liberty-managed">
-        <configuration>
-            <property name="wlpHome">target/wlp/</property>
-            <property name="serverName">defaultServer</property>
-            <property name="httpPort">9080</property>
-            <property name="serverStartTimeout">300</property>
-        </configuration>
-    </container>
-
-    <container qualifier="liberty-remote">
-        <configuration>
-            <property name="hostName">localhost</property>
-            <property name="serverName">defaultServer</property>
-            <property name="username">admin</property>
-            <property name="password">admin</property>
-            <property name="httpPort">9080</property>
-            <property name="httpsPort">9443</property>
-        </configuration>
-    </container>
-
     <!-- Configuration to be used when the WidlFly remote profile is active -->
     <container qualifier="wildfly-remote">
         <configuration>
             <property name="managementAddress">127.0.0.1</property>
             <property name="managementPort">9990</property>
-            <property name="username">admin</property>
-            <property name="password">admin@123</property>
         </configuration>
     </container>
 
