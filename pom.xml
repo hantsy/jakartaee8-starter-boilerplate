@@ -13,13 +13,15 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <!-- The default value  is `false` since maven-war-plugin 3.0.0 -->
+        <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
 
         <!-- Jakarta EE API -->
         <jakartaee-api.version>8.0.0</jakartaee-api.version>
 
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
         <cargo-maven2-plugin.version>1.7.7</cargo-maven2-plugin.version>
         <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
@@ -176,6 +178,11 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
