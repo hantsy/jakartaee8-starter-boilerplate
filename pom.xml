@@ -13,8 +13,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- The default value  is `false` since maven-war-plugin 3.0.0 -->
-        <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
+        <!-- The default value is `false` since maven-war-plugin 3.0.0 -->
+        <!--<failOnMissingWebXml>false</failOnMissingWebXml> -->
 
         <!-- Jakarta EE API -->
         <jakartaee-api.version>8.0.0</jakartaee-api.version>
@@ -29,7 +29,7 @@
         <maven-surefire-report-plugin.version>3.0.0-M4</maven-surefire-report-plugin.version>
 
         <!-- Arquillian BOM -->
-        <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
+        <arquillian-bom.version>1.6.0.Final</arquillian-bom.version>
 
         <!-- Glassfish server -->
         <glassfish.version>5.1.0</glassfish.version>
@@ -40,11 +40,11 @@
         <payara.version>5.194</payara.version>
         <arquillian-payara-server.version>2.0</arquillian-payara-server.version>
 
-        <!-- Wildfly server-->
+        <!-- Wildfly server -->
         <wildfly.version>19.0.0.Beta2</wildfly.version>
         <wildfly-maven-plugin.version>2.1.0.Beta1</wildfly-maven-plugin.version>
         <wildfly-arquillian.version>2.2.0.Final</wildfly-arquillian.version>
-        <!--  websockets-jsr and resteasy for client, aligned with Wildfly version. -->
+        <!-- websockets-jsr and resteasy for client, aligned with Wildfly version. -->
         <undertow-websockets-jsr.version>2.0.26.Final</undertow-websockets-jsr.version>
         <resteasy.version>3.9.0.Final</resteasy.version>
 
@@ -222,6 +222,7 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
+                            <trimStackTrace>false</trimStackTrace>
                             <includes>
                                 <include>**/it/**</include>
                             </includes>
@@ -260,12 +261,8 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <!--
-                                             <groupId>fish.payara.distributions</groupId>
-                                            <artifactId>payara</artifactId>
-                                            <version>${payara.version}</version>
-                                            <type>zip</type>
-                                            -->
+                                            <!-- <groupId>fish.payara.distributions</groupId> <artifactId>payara</artifactId>
+                                                <version>${payara.version}</version> <type>zip</type> -->
                                             <groupId>org.glassfish.main.distributions</groupId>
                                             <artifactId>glassfish</artifactId>
                                             <version>${glassfish.version}</version>
@@ -356,7 +353,8 @@
                         <artifactId>wildfly-maven-plugin</artifactId>
                         <version>${wildfly-maven-plugin.version}</version>
                         <configuration>
-                            <!-- if a wildfly.home property is not set, firstly it will download a copy of wildfly distribution automatically -->
+                            <!-- if a wildfly.home property is not set, firstly it will download
+                                a copy of wildfly distribution automatically -->
                             <!-- also fetch from jbossHome -->
                             <!-- <jossHome>${env.WILDFLY_HOME}</jbossHome>-->
 
@@ -367,7 +365,7 @@
                             <password></password> -->
 
                             <!-- or set a wildfly.id property to add a server in settings.xml -->
-                            <!--<id>wildfly-svr</id>-->
+                            <!--<id>wildfly-svr</id> -->
 
                         </configuration>
                     </plugin>
@@ -385,7 +383,7 @@
                         <executions>
                             <execution>
                                 <id>copy</id>
-                                <phase>package</phase>
+                                <phase>process-resources</phase>
                                 <goals>
                                     <goal>copy</goal>
                                 </goals>
@@ -415,8 +413,44 @@
             </build>
         </profile>
         <profile>
+            <!-- JAXRS testing failed with aruqillian glassfish embedded -->
             <id>arq-glassfish-embedded</id>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
             <dependencies>
+                <!-- Jersey Client -->
+                <dependency>
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-sse</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-json-binding</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish</groupId>
+                    <artifactId>javax.json</artifactId>
+                    <version>1.0.4</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.inject</groupId>
+                    <artifactId>jersey-hk2</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                    <artifactId>jersey-client</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+
                 <dependency>
                     <groupId>org.glassfish.main.extras</groupId>
                     <artifactId>glassfish-embedded-all</artifactId>
@@ -438,7 +472,7 @@
             </properties>
             <dependencies>
 
-                <!-- Jersey-->
+                <!-- Jersey -->
                 <dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
                     <artifactId>jersey-media-sse</artifactId>
@@ -495,7 +529,7 @@
                         <executions>
                             <execution>
                                 <id>unpack</id>
-                                <phase>process-resources</phase>
+                                <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>unpack</goal>
                                 </goals>
@@ -537,7 +571,77 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>arq-glassfish-remote</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
+            <dependencies>
 
+                <!-- Jersey -->
+                <dependency>
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-sse</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-json-binding</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.inject</groupId>
+                    <artifactId>jersey-hk2</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                    <artifactId>jersey-client</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <!-- WebSocket client dependencies -->
+				<!--<dependency>
+					<groupId>org.glassfish.tyrus</groupId>
+					<artifactId>tyrus-client</artifactId>
+					<version>1.13.1</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.glassfish.tyrus</groupId>
+					<artifactId>tyrus-container-grizzly-client</artifactId>
+					<version>1.13.1</version>
+					<scope>test</scope>
+				</dependency>-->
+
+				<dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-glassfish-remote-3.1</artifactId>
+                    <version>${arquillian-glassfish.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <configuration>
+                            <!-- This needs tuning -->
+                            <systemPropertyVariables>
+                                <arquillian.launch>glassfish-remote</arquillian.launch>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <profile>
             <id>arq-payara-embedded</id>
             <properties>
@@ -557,22 +661,6 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${maven-failsafe-plugin.version}</version>
-                        <configuration>
-                            <!-- This needs tuning -->
-                            <systemPropertyVariables>
-                                <arquillian.launch>glassfish</arquillian.launch>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-
         </profile>
         <profile>
             <id>arq-payara-managed</id>
@@ -589,7 +677,7 @@
                     <scope>test</scope>
                 </dependency>-->
 
-                <!-- Payara Server Container adaptor  -->
+                <!-- Payara Server Container adaptor -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-managed</artifactId>
@@ -606,7 +694,7 @@
                         <executions>
                             <execution>
                                 <id>unpack</id>
-                                <phase>process-test-classes</phase>
+                                <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>unpack</goal>
                                 </goals>
@@ -633,10 +721,6 @@
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/payara5</GLASSFISH_HOME>
                             </environmentVariables>
-                            <!-- This needs tuning -->
-                            <systemPropertyVariables>
-                                <arquillian.launch>glassfish</arquillian.launch>
-                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -664,7 +748,7 @@
                         <configuration>
                             <!-- This needs tuning -->
                             <systemPropertyVariables>
-                                <arquillian.launch>glassfish</arquillian.launch>
+                                <arquillian.launch>glassfish-remote</arquillian.launch>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -674,9 +758,9 @@
         <profile>
 
             <!-- An optional Arquillian testing profile that executes tests in your
-            WildFly instance -->
+                WildFly instance -->
             <!-- This profile will start a new WildFly instance, and execute the test,
-            shutting it down when done -->
+                shutting it down when done -->
             <!-- Run with: mvn clean test -Parq-wildfly-managed -->
             <id>arq-wildfly-managed</id>
             <properties>
@@ -685,7 +769,7 @@
                 <serverRoot>${project.build.directory}/wildfly-${wildfly.version}</serverRoot>
             </properties>
             <dependencies>
-                <!--                <dependency>
+                <!--<dependency>
                     <groupId>io.undertow</groupId>
                     <artifactId>undertow-websockets-jsr</artifactId>
                     <version>${undertow-websockets-jsr.version}</version>
@@ -695,7 +779,7 @@
                 <!-- TESTS -->
                 <!-- JAXRS test need the dependency:resteasy-client -->
                 <!-- Import the RestEasy Client and json-p provider, we use test scope
-                as we need that for test purposes -->
+                    as we need that for test purposes -->
                 <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-client</artifactId>
@@ -761,7 +845,7 @@
         </profile>
         <profile>
             <!-- An optional Arquillian testing profile that executes tests in a remote
-            WildFly instance -->
+                WildFly instance -->
             <!-- Run with: mvn clean test -Parq-wildfly-remote -->
             <id>arq-wildfly-remote</id>
             <properties>
@@ -804,7 +888,7 @@
         </profile>
         <profile>
             <!-- An optional Arquillian testing profile that executes tests in a remote
-            WildFly instance -->
+                WildFly instance -->
             <!-- Run with: mvn clean test -Parq-wildfly-embedded -->
             <id>arq-wildfly-embedded</id>
             <properties>
@@ -1018,15 +1102,15 @@
                             <exclude>server.xml</exclude>
                         </excludes>
                     </testResource>
-                    <!--                    <testResource>-->
-                    <!--                        <directory>src/test/arq-liberty-remote</directory>-->
-                    <!--                        <includes>-->
-                    <!--                            <include>server.xml</include>-->
-                    <!--                        </includes>-->
-                    <!--                        <targetPath>-->
-                    <!--                            ${project.build.directory}/wlp/usr/servers/defaultServer-->
-                    <!--                        </targetPath>-->
-                    <!--                    </testResource>-->
+                    <!-- <testResource> -->
+                    <!-- <directory>src/test/arq-liberty-remote</directory> -->
+                    <!-- <includes> -->
+                    <!-- <include>server.xml</include> -->
+                    <!-- </includes> -->
+                    <!-- <targetPath> -->
+                    <!-- ${project.build.directory}/wlp/usr/servers/defaultServer -->
+                    <!-- </targetPath> -->
+                    <!-- </testResource> -->
                 </testResources>
                 <plugins>
                     <plugin>

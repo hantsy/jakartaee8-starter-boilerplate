@@ -30,12 +30,15 @@ jobs:
         
     - name: Build with Maven
       run: mvn clean package --file pom.xml
-      
+            
     - name: Run integration test with -Parq-wildfly-managed
       run: mvn clean verify -Parq-wildfly-managed
       
     - name: Run integration test with -Parq-wildfly-embedded
       run: mvn clean verify -Parq-wildfly-embedded
+      
+    - name: Run integration test with -Parq-glassfish-managed
+      run: mvn clean verify -Parq-glassfish-managed     
       
     - name: Run integration test with -Parq-payara-managed
       run: mvn clean verify -Parq-payara-managed
