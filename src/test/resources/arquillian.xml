@@ -9,18 +9,36 @@
 		<property name="deploymentExportPath">target/</property>
 	</engine>
 
-	<container qualifier="glassfish">
+<!--	<container qualifier="glassfish">
 		<configuration>
 			<property name="allowConnectingToRunningServer">true</property>
-			<property name="domain">domain1</property>
-			<property name="adminUser">admin</property>
-			<property name="adminPassword"></property>
+			<property name="glassFishHome">target/${glassfish.home}</property>
+			<property name="adminHost">localhost</property>
+			<property name="adminPort">4848</property>
+			<property name="enableDerby">${enableDerby:true}</property>
+			<property name="outputToConsole">true</property>
 		</configuration>
-	</container>
+	</container>-->
 
 	<container qualifier="glassfish-remote">
 		<configuration>
-			<property name="domain">domain1</property>
+			<!--Supported property names:
+			[adminHttps,
+			remoteServerHttpPort,
+			libraries,
+			type,
+			remoteServerAddress,
+			target,
+			retries,
+			remoteServerAdminPort,
+			remoteServerAdminHttps,
+			adminUser,
+			authorisation,
+			waitTimeMs,
+			adminPort,
+			properties,
+			adminPassword,
+			adminHost]-->
 			<property name="adminUser">admin</property>
 			<property name="adminPassword">adminadmin</property>
 		</configuration>
@@ -35,9 +53,9 @@
 	</container>
 
 	<!-- Configuration to be used when the WildFly managed profile is active -->
-	<container qualifier="wildfly-managed">
+	<!--<container qualifier="wildfly-managed">
 		<configuration>
-			<!--<property name="jbossHome">${jbossHome:target/wildfly-18.0.1.Final}</property> -->
+			<property name="jbossHome">${jbossHome:target/wildfly-18.0.1.Final}</property>
 		</configuration>
-	</container>
+	</container>-->
 </arquillian>

@@ -13,7 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- The default value is `false` since maven-war-plugin 3.0.0 -->
+        <!-- The default value changed to `false` since maven-war-plugin 3.0.0 -->
         <!--<failOnMissingWebXml>false</failOnMissingWebXml> -->
 
         <!-- Jakarta EE API -->
@@ -38,7 +38,7 @@
 
         <!-- Payara server -->
         <payara.version>5.194</payara.version>
-        <arquillian-payara-server.version>2.0</arquillian-payara-server.version>
+        <arquillian-payara-server.version>2.1</arquillian-payara-server.version>
 
         <!-- Wildfly server -->
         <wildfly.version>19.0.0.Beta2</wildfly.version>
@@ -150,22 +150,22 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
         </dependency>
-        <!--          <dependency>
-                   <groupId>org.awaitility</groupId>
-                   <artifactId>awaitility</artifactId>
-               </dependency>
-               <dependency>
-                   <groupId>org.skyscreamer</groupId>
-                   <artifactId>jsonassert</artifactId>
-               </dependency>
-            <dependency>
-                   <groupId>com.jayway.jsonpath</groupId>
-                   <artifactId>json-path</artifactId>
-               </dependency>
-               <dependency>
-                   <groupId>com.jayway.jsonpath</groupId>
-                   <artifactId>json-path-assert</artifactId>
-               </dependency>     -->
+        <!--<dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path-assert</artifactId>
+        </dependency>-->
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -413,14 +413,15 @@
             </build>
         </profile>
         <profile>
-            <!-- JAXRS testing failed with aruqillian glassfish embedded -->
+            <!-- JAXRS tests `GreetingResourceTest` failed with aruqillian glassfish embedded container -->
+            <!-- See: https://github.com/arquillian/arquillian-container-glassfish/issues/62 -->
             <id>arq-glassfish-embedded</id>
             <properties>
-                <skipTests>true</skipTests>
+                <skipTests>false</skipTests>
             </properties>
             <dependencies>
                 <!-- Jersey Client -->
-                <dependency>
+                <!--<dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
                     <artifactId>jersey-media-sse</artifactId>
                     <version>${jersey.version}</version>
@@ -449,7 +450,7 @@
                     <artifactId>jersey-client</artifactId>
                     <version>${jersey.version}</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency>-->
 
                 <dependency>
                     <groupId>org.glassfish.main.extras</groupId>
@@ -464,6 +465,20 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/it/GreetingResourceTest*</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>arq-glassfish-managed</id>
@@ -536,12 +551,6 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <!--
-                                             <groupId>fish.payara.distributions</groupId>
-                                            <artifactId>payara</artifactId>
-                                            <version>${payara.version}</version>
-                                            <type>zip</type>
-                                            -->
                                             <groupId>org.glassfish.main.distributions</groupId>
                                             <artifactId>glassfish</artifactId>
                                             <version>${glassfish.version}</version>
@@ -563,9 +572,6 @@
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/glassfish5</GLASSFISH_HOME>
                             </environmentVariables>
-                            <systemPropertyVariables>
-                                <arquillian.launch>glassfish</arquillian.launch>
-                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -606,20 +612,20 @@
                 </dependency>
 
                 <!-- WebSocket client dependencies -->
-				<!--<dependency>
-					<groupId>org.glassfish.tyrus</groupId>
-					<artifactId>tyrus-client</artifactId>
-					<version>1.13.1</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.glassfish.tyrus</groupId>
-					<artifactId>tyrus-container-grizzly-client</artifactId>
-					<version>1.13.1</version>
-					<scope>test</scope>
-				</dependency>-->
+                <!--<dependency>
+                    <groupId>org.glassfish.tyrus</groupId>
+                    <artifactId>tyrus-client</artifactId>
+                    <version>1.13.1</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.tyrus</groupId>
+                    <artifactId>tyrus-container-grizzly-client</artifactId>
+                    <version>1.13.1</version>
+                    <scope>test</scope>
+                </dependency>-->
 
-				<dependency>
+                <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-glassfish-remote-3.1</artifactId>
                     <version>${arquillian-glassfish.version}</version>

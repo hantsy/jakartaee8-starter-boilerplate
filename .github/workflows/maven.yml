@@ -38,8 +38,11 @@ jobs:
       run: mvn clean verify -Parq-wildfly-embedded
       
     - name: Run integration test with -Parq-glassfish-managed
-      run: mvn clean verify -Parq-glassfish-managed     
+      run: mvn clean verify -Parq-glassfish-managed    
       
+    - name: Run integration test with -Parq-glassfish-embedded
+      run: mvn clean verify -Parq-glassfish-embedded   
+       
     - name: Run integration test with -Parq-payara-managed
       run: mvn clean verify -Parq-payara-managed
       
