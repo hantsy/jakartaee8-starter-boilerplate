@@ -9,27 +9,39 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>jakartaee8-starter</name>
-    <description>A Jakarta EE starter project</description>
+    <description>A Jakarta EE starter project boilerplate</description>
 
     <properties>
+        <!-- Global Maven settings -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- The default value changed to `false` since maven-war-plugin 3.0.0 -->
         <!--<failOnMissingWebXml>false</failOnMissingWebXml> -->
 
-        <!-- Jakarta EE API -->
-        <jakartaee-api.version>8.0.0</jakartaee-api.version>
-
-        <!-- Maven Plugins -->
+        <!-- Official Maven Plugins -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
-        <cargo-maven2-plugin.version>1.7.7</cargo-maven2-plugin.version>
         <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>3.0.0-M4</maven-surefire-report-plugin.version>
 
+        <!-- Cargo maven plugin -->
+        <cargo-maven2-plugin.version>1.7.7</cargo-maven2-plugin.version>
+
+        <!-- Jakarta EE API -->
+        <jakartaee-api.version>8.0.0</jakartaee-api.version>
+
         <!-- Arquillian BOM -->
         <arquillian-bom.version>1.6.0.Final</arquillian-bom.version>
+
+        <!-- Test Utilities -->
+        <junit.version>4.12</junit.version>
+        <mockito.version>3.3.0</mockito.version>
+        <json-path.version>2.4.0</json-path.version>
+        <awaitility.version>4.0.1</awaitility.version>
+        <hamcrest.version>2.2</hamcrest.version>
+        <jsonassert.version>1.5.0</jsonassert.version>
+        <assertj.version>3.15.0</assertj.version>
 
         <!-- Glassfish server -->
         <glassfish.version>5.1.0</glassfish.version>
@@ -78,43 +90,53 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.12</version>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
             <dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest</artifactId>
-                <version>2.2</version>
+                <version>${hamcrest.version}</version>
                 <scope>test</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.skyscreamer</groupId>
                 <artifactId>jsonassert</artifactId>
-                <version>1.5.0</version>
+                <version>${jsonassert.version}</version>
                 <scope>test</scope>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+
             <!-- https://mvnrepository.com/artifact/org.awaitility/awaitility -->
             <dependency>
                 <groupId>org.awaitility</groupId>
                 <artifactId>awaitility</artifactId>
-                <version>4.0.1</version>
+                <version>${awaitility.version}</version>
                 <scope>test</scope>
             </dependency>
 
             <!-- JSON path -->
+            <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
             <dependency>
                 <groupId>com.jayway.jsonpath</groupId>
                 <artifactId>json-path</artifactId>
-                <version>2.4.0</version>
+                <version>${json-path.version}</version>
                 <scope>test</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path-assert -->
             <dependency>
                 <groupId>com.jayway.jsonpath</groupId>
                 <artifactId>json-path-assert</artifactId>
-                <version>2.4.0</version>
+                <version>${json-path.version}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -123,7 +145,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>3.2.0</version>
+                <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -353,7 +375,7 @@
                         <artifactId>wildfly-maven-plugin</artifactId>
                         <version>${wildfly-maven-plugin.version}</version>
                         <configuration>
-                            <!-- if a wildfly.home property is not set, firstly it will download
+                            <!-- if a wildfly.home property is not present, firstly it will download
                                 a copy of wildfly distribution automatically -->
                             <!-- also fetch from jbossHome -->
                             <!-- <jossHome>${env.WILDFLY_HOME}</jbossHome>-->
@@ -755,6 +777,74 @@
                             <!-- This needs tuning -->
                             <systemPropertyVariables>
                                 <arquillian.launch>glassfish-remote</arquillian.launch>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>arq-payara-micro</id>
+            <properties>
+                <skipTests>false</skipTests>
+            </properties>
+            <dependencies>
+
+                <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <!-- Payara Server Container adaptor -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>arquillian-payara-micro-managed</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>${maven-dependency-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>fish.payara.extras</groupId>
+                                            <artifactId>payara-micro</artifactId>
+                                            <version>${payara.version}</version>
+                                            <type>jar</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                            <destFileName>payara-micro.jar</destFileName>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <configuration>
+                            <environmentVariables>
+                                <MICRO_JAR>${project.build.directory}/payara-micro.jar</MICRO_JAR>
+                            </environmentVariables>
+                            <systemPropertyVariables>
+                                <payara.microJar>${project.build.directory}/payara-micro.jar</payara.microJar>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>

@@ -48,6 +48,9 @@ jobs:
       
     - name: Run integration test with -Parq-payara-embedded
       run: mvn clean verify -Parq-payara-embedded
-    
+      
+    - name: Run integration test with -Parq-payara-micro
+      run: mvn clean verify -Parq-payara-micro
+      
     - name: Run integration test with -Parq-liberty-managed
       run: mvn clean verify -Parq-liberty-managed  
