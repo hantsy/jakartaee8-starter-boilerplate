@@ -100,7 +100,7 @@ This test is use for testing the functionality of `GreetingService`.
 * The CDI bean `GreetingService`  can be injected in test codes like general Jakarta EE managed beans.
 * `should_create_greeting()` is a simple test case to verify the functionality of `GreetingService`.
 
-When running the test, first of all, it will create a deployable archive described by the `@Deployment` annotated static method, in this sample test, it just need to package `GreetingMessage`, `GreetingService`, and a CDI  `beans.xml` descriptor(which is optional since Java EE 7). The test itself will be packaged with the archive and deployed into an application server, then run the tests in container, the test report will be captured and sent back to the test runner.
+When running the test, first of all, it will create a deployable archive as described in the `@Deployment` annotated static method. In this sample test, it just need to package `GreetingMessage`, `GreetingService`, and a CDI  `beans.xml` descriptor(which is optional since Java EE 7) into a jar archive. Then it will be deployed into an application server,  and run the tests in container, the test report will be captured by Arquillian controller and sent back to the test runner.
 
 Let's look at another sample test in the [Jakarta EE 8 starter repository](https://github.com/hantsy/jakartaee8-starter).
 
@@ -166,13 +166,13 @@ As you see , this test is slightly different from the former `GreetingServiceTes
 * A `testable = false` property is added to `@Deployment`, thus the test case will run as *client mode*.  That means the test method `should_create_greeting()` will run on a different JVM process, and resources in the archive, such as `GreetingService` can not be injected in this test.
 * You can get the the context path from a ` @ArquillianResource` annotated URI after it is deployed.
 
-To run the test on a certain application server and gather the test result, you have to configure a container adapter.
+To run the test on a certain application server and gather the test result, you have to configure an *Aquillian Container Adapter*.
 
 In the Maven *pom.xml*, a couple of Maven profiles are configured for applying different container adapters.
 
 ## Glassfish Server
 
-Arquillian provides 3 adapters to Glassfish server.
+Arquillian provides 3 adapters to Glassfish server, check the project [arquillian/arquillian-container-glassfish](https://github.com/arquillian/arquillian-container-glassfish).
 
 * [GlassFish Managed 3.1 Container Adapter – 1.0.2 ](http://arquillian.org/modules/arquillian-glassfish-managed-3.1-container-adapter/)         
 * [GlassFish Remote 3.1 Container Adapter – 1.0.2](http://arquillian.org/modules/arquillian-glassfish-remote-3.1-container-adapter/)              
@@ -1630,7 +1630,7 @@ Start up the OpenLiberty server, it will generate the resources for the new serv
 
 If you run the tests, you will got a failure about authorization.
 
-Follow these steps to load the server certification to your client's JDK.
+Follow these steps to import the server certification and make it trust by your client's JDK.
 
 * Export the certification from the `jks` file in the *${server.config.dir}/resources/security* folder of OpenLiberty server.
   ```bash
@@ -1643,7 +1643,7 @@ Follow these steps to load the server certification to your client's JDK.
 
 More details about the usage of `keytool` command, see [keytool documentation](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html).
 
-Now run the tests.
+Now let's run the tests.
 
 ```bash
 mvn clean verify -Parq-liberty-remote
