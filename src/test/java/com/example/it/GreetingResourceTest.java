@@ -21,8 +21,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
@@ -48,27 +48,29 @@ public class GreetingResourceTest {
     private Client client;
 
     @Before
-    public void setup()  {
+    public void setup() {
         this.client = ClientBuilder.newClient();
         try {
+            LOGGER.log(Level.INFO, " Registering 'com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider' in OpenLiberty/CXF JAX-RS Client ");
             Class<?> clazz = Class.forName("com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider");
             this.client.register(clazz);
         } catch (ClassNotFoundException e) {
-            LOGGER.warning("Only use for OpenLiberty/CXF which does not register a json provider automatically.");
+            LOGGER.warning("Failed to register 'com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider'. OpenLiberty/CXF does not register a json provider automatically. Please ignore this warning for none OpenLiberty Servers.");
         }
 
     }
 
     @After
     public void teardown() {
-        if(this.client != null) {
+        if (this.client != null) {
             this.client.close();
         }
     }
 
     @Test
     public void should_create_greeting() throws MalformedURLException {
-        final WebTarget greetingTarget = client.target(URI.create(new URL(base, "api/greeting/JakartaEE").toExternalForm()));
+        LOGGER.log(Level.INFO, " Running test:: GreetingResourceTest#should_create_greeting ... ");
+        final WebTarget greetingTarget = client.target(new URL(base, "api/greeting/JakartaEE").toExternalForm());
         try (final Response greetingGetResponse = greetingTarget.request()
                 .accept(MediaType.APPLICATION_JSON)
                 .get()) {

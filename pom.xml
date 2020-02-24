@@ -50,7 +50,7 @@
 
         <!-- Payara server -->
         <payara.version>5.194</payara.version>
-        <arquillian-payara-server.version>2.1</arquillian-payara-server.version>
+        <arquillian-payara.version>2.2</arquillian-payara.version>
 
         <!-- Wildfly server -->
         <wildfly.version>19.0.0.Beta2</wildfly.version>
@@ -685,7 +685,7 @@
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-embedded</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
+                    <version>${arquillian-payara.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -709,7 +709,7 @@
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-managed</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
+                    <version>${arquillian-payara.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -763,7 +763,7 @@
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-remote</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
+                    <version>${arquillian-payara.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -794,15 +794,15 @@
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>payara-client-ee8</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
+                    <version>${arquillian-payara.version}</version>
                     <scope>test</scope>
                 </dependency>
 
-                <!-- Payara Server Container adaptor -->
+                <!-- Payara Micro Managed Container Adaptor -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-micro-managed</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
+                    <version>${arquillian-payara.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -844,7 +844,7 @@
                                 <MICRO_JAR>${project.build.directory}/payara-micro.jar</MICRO_JAR>
                             </environmentVariables>
                             <systemPropertyVariables>
-                                <payara.microJar>${project.build.directory}/payara-micro.jar</payara.microJar>
+                                <!--<payara.microJar>${project.build.directory}/payara-micro.jar</payara.microJar>-->
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -857,7 +857,7 @@
                 WildFly instance -->
             <!-- This profile will start a new WildFly instance, and execute the test,
                 shutting it down when done -->
-            <!-- Run with: mvn clean test -Parq-wildfly-managed -->
+            <!-- Run with: mvn clean verify -Parq-wildfly-managed -->
             <id>arq-wildfly-managed</id>
             <properties>
                 <skipTests>false</skipTests>
@@ -874,7 +874,7 @@
 
                 <!-- TESTS -->
                 <!-- JAXRS test need the dependency:resteasy-client -->
-                <!-- Import the RestEasy Client and json-p provider, we use test scope
+                <!-- Import the RestEasy Client and jackson2/json-binding/json-p provider, we use test scope
                     as we need that for test purposes -->
                 <dependency>
                     <groupId>org.jboss.resteasy</groupId>
@@ -983,7 +983,7 @@
             </build>
         </profile>
         <profile>
-            <!-- An optional Arquillian testing profile that executes tests in a remote
+            <!-- An optional Arquillian testing profile that executes tests in your
                 WildFly instance -->
             <!-- Run with: mvn clean test -Parq-wildfly-embedded -->
             <id>arq-wildfly-embedded</id>

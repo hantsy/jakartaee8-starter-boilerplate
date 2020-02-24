@@ -12,10 +12,15 @@ import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 public class GreetingServiceTest {
+    private final static Logger LOGGER = Logger.getLogger(GreetingServiceTest.class.getName());
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -29,6 +34,7 @@ public class GreetingServiceTest {
 
     @Test
     public void should_create_greeting() {
+        LOGGER.log(Level.INFO, " Running test:: GreetingServiceTest#should_create_greeting ... ");
         GreetingMessage message = service.buildGreetingMessage("Jakarta EE");
         assertTrue("message should start with \"Say Hello to Jakarta EE at \"",
                 message.getMessage().startsWith("Say Hello to Jakarta EE at "));
