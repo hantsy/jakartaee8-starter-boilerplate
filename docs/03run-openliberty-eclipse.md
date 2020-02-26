@@ -1,8 +1,8 @@
-# Deploying applications to OpenLiberty Server using Eclipse IDE 
+# Deploying applications to Open Liberty Server using Eclipse IDE 
 
 
 
-## Install OpenLiberty Developer Tools
+## Install Open Liberty Developer Tools
 
 To manage Open Liberty server in Eclipse IDE, you should install Open Liberty Developer tools pluign.
 
@@ -13,11 +13,11 @@ Follow the following steps to  install Open Liberty Developer Tools  plugin into
 3. In the result list, find  *IBM Liberty Developer Tools* ,  then click *Install* button to start the installation.
 4. After it is installed, restart Eclipse IDE to apply the plugin.
 
-Next let's create an  OpenLiberty Server instance.
+Next let's create an  Open Liberty Server instance.
 
 
 
-## Add an OpenLiberty Server instance
+## Add an Open Liberty Server instance
 
 Right click on the blank area in the *Servers* view, select *New*->*Server* in the context menu.
 
@@ -40,11 +40,11 @@ After it is done, there is a Liberty Server instance in the  *Servers* view.
 
 
 
-## Start and Stop OpenLiberty Server
+## Start and Stop Open Liberty Server
 
-To start OpenLiberty Server, right click the *LibertyServer* node in the *Servers* view, and click *Start*  in the context menu.
+To start Open Liberty Server, right click the *LibertyServer* node in the *Servers* view, and click *Start*  in the context menu.
 
-To stop OpenLiberty Server, right click the *LibertyServer* node in the *Servers* view, and click *Stop*  in the context menu.
+To stop Open Liberty Server, right click the *LibertyServer* node in the *Servers* view, and click *Stop*  in the context menu.
 
 ## Deploy and undeploy application
 

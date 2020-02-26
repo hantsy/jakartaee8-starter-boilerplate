@@ -1,22 +1,22 @@
-# Deploying applications to OpenLiberty Server - The Hard Way
+# Deploying applications to Open Liberty Server - The Hard Way
 
-Download OpenLiberty [from openliberty.io download page](https://openliberty.io/downloads/), and extract files into your local system.
+Download Open Liberty [from openliberty.io download page](https://openliberty.io/downloads/), and extract files into your local system.
 
 
 
 ## Create a Server profile
 
-Unlike Glassfish or Wildfly server, OpenLiberty does not provide a default domain. 
+Unlike Glassfish or WildFly server, Open Liberty does not provide a default domain. 
 
-Locate to *&lt;OpenLiberty dif>/bin*, execute the following command to create a new server profile.
+Locate to *&lt;Open Liberty dif>/bin*, execute the following command to create a new server profile.
 
 ```bash
 server create
 Server defaultServer created.
 ```
-Open  *&lt;OpenLiberty dif>/usr/servers*, there is a new *defaultServer* folder created. In this folder, there are some files and folder are generated for your application deployment.
+Open  *&lt;Open Liberty dif>/usr/servers*, there is a new *defaultServer* folder created. In this folder, there are some files and folder are generated for your application deployment.
 
-Open the *server.xml* file, it already included *javaee-8.0* feature. There are several templates allow you create a server profile quickly with essential features, more templates check  *&lt;OpenLiberty dif>/templates/servers*.
+Open the *server.xml* file, it already included *javaee-8.0* feature. There are several templates allow you create a server profile quickly with essential features, more templates check  *&lt;Open Liberty dif>/templates/servers*.
 
 Try to run the following command to create a **microProfile3** profile with the name *mp3* and the template *microProfile3*.
 
@@ -25,9 +25,9 @@ server create mp3 --template="microProfile3"
 Server mp3 created.
 ```
 
-## Start and Stop OpenLiberty Server
+## Start and Stop Open Liberty Server
 
-In the *&lt;OpenLiberty dir>/bin* folder, execute the following command to start OpenLiberty Server.
+In the *&lt;Open Liberty dir>/bin* folder, execute the following command to start Open Liberty Server.
 
 ```bash
 # server start
@@ -59,7 +59,7 @@ Launching defaultServer (Open Liberty 20.0.0.1/wlp-1.0.36.cl200120200108-0300) o
 
 
 
-To stop a running OpenLiberty Server,  execute the following command in another terminal window.
+To stop a running Open Liberty Server,  execute the following command in another terminal window.
 
 ```bash
 # server stop
@@ -87,18 +87,18 @@ Firstly build the project and package it into a war package.
 ```
 After it is done there is a *jakartaee8-starter.war* is located in the *target* folder.
 
-Copy this file to *&lt;OpenLiberty dir>/usr/servers/defaultServer/dropins*.
+Copy this file to *&lt;Open Liberty dir>/usr/servers/defaultServer/dropins*.
 
-In the OpenLiberty console, you will see the following deployment info.
+In the Open Liberty console, you will see the following deployment info.
 
 ```bash
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://localhost:9080/jakartaee8-starter/
 [AUDIT   ] CWWKZ0001I: Application jakartaee8-starter started in 2.902 seconds.
 ```
 
-To undeploy an applicaiton, just delete *jakartaee8-starter.war* in the  *&lt;OpenLiberty dir>/usr/servers/defaultServer/dropins/*.
+To undeploy an applicaiton, just delete *jakartaee8-starter.war* in the  *&lt;Open Liberty dir>/usr/servers/defaultServer/dropins/*.
 
-In the OpenLiberty console, it displays the undeployment progress.
+In the Open Liberty console, it displays the undeployment progress.
 
 ```bash
 [AUDIT   ] CWWKT0017I: Web application removed (default_host): http://localhost:9080/jakartaee8-starter/

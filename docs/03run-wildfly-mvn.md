@@ -1,8 +1,8 @@
-# Deploying applications to Wildfly Server using Wildfly Maven plugin
+# Deploying applications to WildFly Server using WildFly Maven plugin
 
-Redhat Wildfly has official maven plugin support for application deployment and application server management.
+Redhat WildFly has official maven plugin support for application deployment and application server management.
 
-Declare a Wildfly maven plugin in the pom.xml file.
+Declare a WildFly maven plugin in the pom.xml file.
 
 ```xml
 <!-- The WildFly plugin deploys your war to a local WildFly container -->
@@ -14,9 +14,9 @@ Declare a Wildfly maven plugin in the pom.xml file.
 </plugin> 
 ```
 
-The `wildfly:start` goal  will start an server instance, if there is no server instance configured, it will download the newest Wildfly redistribution or define a `wilfly.version` property to specify a version , and extract the files, and start it in an embedded mode. 
+The `wildfly:start` goal  will start an server instance, if there is no server instance configured, it will download the newest WildFly redistribution or define a `wilfly.version` property to specify a version , and extract the files, and start it in an embedded mode. 
 
-If you want to reuse your local Wildfly server you have downloaded before, configure a  `jbossHome` property in the `configuration` of Wildfly maven plugin or an external `wildfly.home`  property.
+If you want to reuse your local WildFly server you have downloaded before, configure a  `jbossHome` property in the `configuration` of WildFly maven plugin or an external `wildfly.home`  property.
 
 ```xml
 <plugin>
@@ -38,15 +38,15 @@ If you want to reuse your local Wildfly server you have downloaded before, confi
 
 ```
 
-If the Wildfly server instance is running, and run the following command to start deployment.
+If the WildFly server instance is running, and run the following command to start deployment.
 
 ```bash
 mvn package wildfly:deploy
 ```
 
-More simply, execute `mvn deploy:run` to start a Wildfly server instance and start the deployment immediately.
+More simply, execute `mvn deploy:run` to start a WildFly server instance and start the deployment immediately.
 
-Wildfly maven plugin also support of deploying to remote  Wildfly server instance. Configure the host properties.
+WildFly maven plugin also support of deploying to remote  WildFly server instance. Configure the host properties.
 
 ```xml
 <plugin>
@@ -97,6 +97,6 @@ Then configure the server id in the maven plugin configuration.
 
 Make sure it it running, run `mvn wildfly:deploy` to start deployment.
 
-Use `wildfly:undeploy` goal to undeploy an application from a running Wildfly server.
+Use `wildfly:undeploy` goal to undeploy an application from a running WildFly server.
 
-You can also  add some configuration to Wildfly by maven plugin, such as registering a JDDC driver module, configuring a DataSource, etc, more information please read the [Wildfy maven plugin documentation](https://docs.jboss.org/wildfly/plugins/maven/latest/index.html). 
+You can also  add some configuration to WildFly by maven plugin, such as registering a JDDC driver module, configuring a DataSource, etc, more information please read the [Wildfy maven plugin documentation](https://docs.jboss.org/wildfly/plugins/maven/latest/index.html). 

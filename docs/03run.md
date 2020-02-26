@@ -11,7 +11,7 @@ In this chapter, we will discuss the following topic:
 * Deploying the applications to the popular application servers, including:
   * [Glassfish](./03run-glassfish.md)
   * [Payara](./03run-payara.md)
-  * [Wildfly](./03run-wildfly.md)
-  * [OpenLiberty](./03run-openliberty.md)
+  * [WildFly](./03run-wildfly.md)
+  * [Open Liberty](./03run-openliberty.md)
 
 

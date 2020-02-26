@@ -1,14 +1,14 @@
-# Deploying applications to Wildfly Server - The Hard Way
+# Deploying applications to WildFly Server - The Hard Way
 
-Download a copy of [Wildfly](https://wildfly.org/downloads), and extract files into your local system.
+Download a copy of [WildFly](https://wildfly.org/downloads), and extract files into your local system.
 
-## Start and Stop Wildfly Server
+## Start and Stop WildFly Server
 
-In the *&lt;Wildfly dir>/bin* folder, there are a few command tools used to manage Wildfly server.
+In the *&lt;WildFly dir>/bin* folder, there are a few command tools used to manage WildFly server.
 
-Open your terminal, enter  *&lt;Wildfly dir>/bin*.
+Open your terminal, enter  *&lt;WildFly dir>/bin*.
 
-Execute the following command to start Wildfly Servers in **standalone** mode.
+Execute the following command to start WildFly Servers in **standalone** mode.
 
 ```bash
 # Linux
@@ -17,7 +17,7 @@ Execute the following command to start Wildfly Servers in **standalone** mode.
 standalone
 ```
 
-Execute the following command to start Wildfly Servers in **domain** mode.
+Execute the following command to start WildFly Servers in **domain** mode.
 
 ```bash
 # Linux
@@ -26,7 +26,7 @@ Execute the following command to start Wildfly Servers in **domain** mode.
 domain
 ```
 
-To stop a running Wildfly Server, jus terminate the process by *Ctrl+C*.
+To stop a running WildFly Server, jus terminate the process by *Ctrl+C*.
 
 ## Deploy applications
 
@@ -51,9 +51,9 @@ Firstly package the application into a **war** package.
 ```
 After it done there is a *jakartaee8-starter.war* is located in the *target* folder.
 
-Copy this file to *&lt;Wildfly dir>/standalone/deployments*.
+Copy this file to *&lt;WildFly dir>/standalone/deployments*.
 
-In the Wildfly console, you will see the following deployment info.
+In the WildFly console, you will see the following deployment info.
 
 ```bash
 17:54:48,491 INFO  [org.jboss.as.repository] (DeploymentScanner-threads - 1) WFLYDR0001: Content added at location D:\appsvr\wildfly\standalone\data\content\ac\d8ebc6d4327b6e9b1ec92b10186d2fe7fdda89\content
@@ -69,9 +69,9 @@ In the Wildfly console, you will see the following deployment info.
 17:54:55,883 INFO  [org.jboss.as.server] (DeploymentScanner-threads - 1) WFLYSRV0010: Deployed "jakartaee8-starter.war" (runtime-name : "jakartaee8-starter.war")
 ```
 
-To undeploy an applicaiton, just delete *jakartaee8-starter.war.deployed* in the  *&lt;Wildfly dir>/standalone/deployments*.
+To undeploy an applicaiton, just delete *jakartaee8-starter.war.deployed* in the  *&lt;WildFly dir>/standalone/deployments*.
 
-In the Wildfly console, there is undeployment info displayed.
+In the WildFly console, there is undeployment info displayed.
 
 ```bash
 17:57:41,787 INFO  [org.jboss.as.server] (DeploymentScanner-threads - 1) WFLYSRV0009: Undeployed "jakartaee8-starter.war" (runtime-name: "jakartaee8-starter.war")
@@ -81,7 +81,7 @@ In the Wildfly console, there is undeployment info displayed.
 
 Admin user is required to access [management console](http://localhost:9990) or remote deployment from Maven plugin, etc.
 
-Enter *&lt;Wildfly dir>/bin* , execute `add-user` to add a user.
+Enter *&lt;WildFly dir>/bin* , execute `add-user` to add a user.
 
 ```bash
 # add-user
@@ -105,7 +105,7 @@ Updated user 'admin' with groups null to file 'D:\appsvr\wildfly\standalone\conf
 Updated user 'admin' with groups null to file 'D:\appsvr\wildfly\domain\configuration\mgmt-groups.properties'
 Press any key to continue . . .
 ```
-There is an existing *admin* user , just enable it. If you want to update the password and roles, run `add-user` again, the select *a) Update the existing user password and roles* in the second step, input your new password, add it to the required groups. There are seven groups available in Wildfly.
+There is an existing *admin* user , just enable it. If you want to update the password and roles, run `add-user` again, the select *a) Update the existing user password and roles* in the second step, input your new password, add it to the required groups. There are seven groups available in WildFly.
 
 * Monitor
 * Operator

@@ -22,7 +22,7 @@ There were a few Java EE certificated products occurred in this period.
 * IBM Websphere
 * BEA Weblogic( BEA was acquired by Oracle)
 * Oracle  Oc4j(it was abandoned By Oracle after acquired BEA)
-* JBoss Application Server (JBoss company was acquired by Redhat, and JBoss community was live for years, and at last JBoss AS was renamed to Wildfly. Now Redhat is a division of IBM)
+* JBoss Application Server (JBoss company was acquired by Redhat, and JBoss community was live for years, and at last JBoss AS was renamed to WildFly. Now Redhat is a division of IBM)
 * Kingdee(金蝶) Apusic
 * SAP NetWeaver
 * JOnAS(an open source application server, it is not active now)

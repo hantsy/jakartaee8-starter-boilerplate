@@ -10,10 +10,10 @@ In the Jakarta EE [Compatible Products](https://jakarta.ee/compatibility/) , the
 
    Download Payara server from [Payara website](https://www.payara.fish/software/downloads/).
 
-* Wildfly  is the rebranded open-source JBoss application server  from Redhat.
+* WildFly  is the rebranded open-source JBoss application server  from Redhat.
 
-  Get the newest Wildfly [here](https://wildfly.org/downloads).
+  Get the newest WildFly [here](https://wildfly.org/downloads).
 
-* Open Liberty is  an open-source application server sponsored by IBM.  OpenLiberty follows a monthly-cycle release and the development is very active in the past years. 
+* Open Liberty is  an open-source application server sponsored by IBM.  Open Liberty follows a monthly-cycle release and the development is very active in the past years. 
 
-  Download OpenLiberty [from openliberty.io download page](https://openliberty.io/downloads/).
+  Download Open Liberty [from openliberty.io download page](https://openliberty.io/downloads/).

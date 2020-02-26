@@ -131,7 +131,7 @@ public class GreetingResourceTest {
             Class<?> clazz = Class.forName("com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider");
             this.client.register(clazz);
         } catch (ClassNotFoundException e) {
-            LOGGER.warning("Only use for OpenLiberty/CXF which does not register a json provider automatically.");
+            LOGGER.warning("Only use for Open Liberty/CXF which does not register a json provider automatically.");
         }
 
     }
@@ -313,7 +313,7 @@ You will see the following info in the console.
 Starting container using command: [java, -jar, D:\hantsylabs\jakartaee8-starter\target\glassfish5\glassfish\modules\admin-cli.jar, start-domain, -t]
 Attempting to start domain1.... Please look at the server log for more details.....
 Feb 22, 2020 6:17:24 PM com.example.it.GreetingResourceTest setup
-WARNING: Only use for OpenLiberty/CXF which does not register a json provider automatically.
+WARNING: Only use for Open Liberty/CXF which does not register a json provider automatically.
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.895 s - in com.example.it.GreetingResourceTest
 [INFO] Running com.example.it.GreetingServiceTest
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 50.739 s - in com.example.it.GreetingServiceTest
@@ -454,7 +454,7 @@ Feb 22, 2020 7:25:32 PM org.jboss.arquillian.container.impl.MapObject populate
 WARNING: Configuration contain properties not supported by the backing object org.jboss.arquillian.container.glassfish.remote_3_1.GlassFishRestConfiguration
 Supported property names: [adminHttps, remoteServerHttpPort, libraries, type, remoteServerAddress, target, retries, remoteServerAdminPort, remoteServerAdminHttps, adminUser, authorisation, waitTimeMs, adminPort, properties, adminPassword, adminHost]
 Feb 22, 2020 7:25:46 PM com.example.it.GreetingResourceTest setup
-WARNING: Only use for OpenLiberty/CXF which does not register a json provider automatically.
+WARNING: Only use for Open Liberty/CXF which does not register a json provider automatically.
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.217 s - in com.example.it.GreetingResourceTest
 [INFO] Running com.example.it.GreetingServiceTest
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.217 s - in com.example.it.GreetingServiceTest
@@ -871,13 +871,13 @@ INFO:           Servlet found. Name: "default".
 
 
 
-## Wildfly Server
+## WildFly Server
 
-Like Glassfish and Payara, [Wildfly Arquillian](https://github.com/wildfly/wildfly-arquillian) also provide three basic container adapters. Additionally, it contains two adapters for managed domain and remote domain for that running Wildfly servers in domain mode.
+Like Glassfish and Payara, [WildFly Arquillian](https://github.com/wildfly/wildfly-arquillian) also provide three basic container adapters. Additionally, it contains two adapters for managed domain and remote domain for that running WildFly servers in domain mode.
 
 
 
-### Add Wildfly Managed Container Adapter 
+### Add WildFly Managed Container Adapter 
 
 Open the *pom.xml* file, check the **arq-wildfly-managed** profile.
 
@@ -957,9 +957,9 @@ Open the *pom.xml* file, check the **arq-wildfly-managed** profile.
 
 In the above codes,
 
-* The `wildfly-arquillian-container-managed` is required for Arquillian Wildfly Managed Container adapter.
+* The `wildfly-arquillian-container-managed` is required for Arquillian WildFly Managed Container adapter.
 * The Resteay related dependencies are required for JAX-RS tests.
-* Use `maven-dependency-plugin` to download a copy of Wildfly server to the *target* folder, and set `JBOSS_HOME` environment variable to use this downloaded Wildfly in the `maven-failsafe-plugin`.
+* Use `maven-dependency-plugin` to download a copy of WildFly server to the *target* folder, and set `JBOSS_HOME` environment variable to use this downloaded WildFly in the `maven-failsafe-plugin`.
 
 Run the tests via the following command.
 
@@ -1016,16 +1016,16 @@ You will see the following info in the console.
 
 From the logging, Aquillian controller have done the following work when running the tests.
 
-* Starting the Wildfly Server.
+* Starting the WildFly Server.
 * Packaging and deploying the archive
 * Running the tests
 * Undeploying the test archive
 * Reporting the result,  and repeating the above steps if there are multi tests to run.
-* Finally Stopping the Wildfly Server
+* Finally Stopping the WildFly Server
 
 
 
-### Add Wildfly Remote Container Adapter 
+### Add WildFly Remote Container Adapter 
 
 Open the *pom.xml* file, check the **arq-wildfly-remote** profile.
 
@@ -1120,7 +1120,7 @@ You will the following info in the console.
 [INFO] ------------------------------------------------------------------------
 ```
 
-More logs of the Wildfly server, check the content of the *server.log* in the *&lt; Wildfly dir>/standalone/log* folder.
+More logs of the WildFly server, check the content of the *server.log* in the *&lt; WildFly dir>/standalone/log* folder.
 
 ```bash
 ...
@@ -1139,7 +1139,7 @@ More logs of the Wildfly server, check the content of the *server.log* in the *&
 
 
 
-### Add Wildfly Embedded Container Adapter 
+### Add WildFly Embedded Container Adapter 
 
 Open the *pom.xml* file, check the **arq-wildfly-embedded** profile.
 
@@ -1227,13 +1227,13 @@ mvn clean verify -Parq-wildfly-embedded
 
 
 
-## OpenLiberty Server
+## Open Liberty Server
 
- The [Liberty Arquillian](https://github.com/OpenLiberty/liberty-arquillian) project provides [Managed Container Adapter and Remote Container Adapter](https://github.com/OpenLiberty/liberty-arquillian).
+ The [Liberty Arquillian](https://github.com/Open Liberty/liberty-arquillian) project provides [Managed Container Adapter and Remote Container Adapter](https://github.com/Open Liberty/liberty-arquillian).
 
 
 
-### Add OpenLiberty Managed Container Adapter 
+### Add Open Liberty Managed Container Adapter 
 
 Open the *pom.xml* file, check the **arq-liberty-managed** profile.
 
@@ -1350,9 +1350,9 @@ In the above codes,
 
 * The Apache CXF related libraries are required for JAX-RS tests.
 
-* The  `maven-dependency-plugin` prepare a copy of OpenLiberty dist and `arquillian-liberty-support`(which provides `usr:arquillian-support-1.0` feature).
+* The  `maven-dependency-plugin` prepare a copy of Open Liberty dist and `arquillian-liberty-support`(which provides `usr:arquillian-support-1.0` feature).
 
-* OpenLiberty requires a *server.xml* profile to run the server with necessary features. In the */src/test/arq-liberty-managed* folder, there is *server.xml* , use Maven resources plugin to copy it the *OpenLiberty server's  usr/servers/defaultServer/*  folder.
+* Open Liberty requires a *server.xml* profile to run the server with necessary features. In the */src/test/arq-liberty-managed* folder, there is *server.xml* , use Maven resources plugin to copy it the *Open Liberty server's  usr/servers/defaultServer/*  folder.
 
 Firstly, let's have a look at the `GreetingResourceTest`. Apache CXF does not register JAX-RS provider resources automatically, add `JacksonJsonProvider` manually, else you will get failure when the tests.
 
@@ -1364,7 +1364,7 @@ public void setup()  {
             Class<?> clazz = Class.forName("com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider");
             this.client.register(clazz);
         } catch (ClassNotFoundException e) {
-            LOGGER.warning("Only use for OpenLiberty/CXF which does not register a json provider automatically.");
+            LOGGER.warning("Only use for Open Liberty/CXF which does not register a json provider automatically.");
         }
 }    
 ```
@@ -1410,7 +1410,7 @@ Now let's move to  */src/test/arq-liberty-managed/server.xml*.
 </server>
 ```
 
-The **localConnector-1.0**  is required by Arquillian Liberty Managed Container Adapter to control the managed OpenLiberty server.
+The **localConnector-1.0**  is required by Arquillian Liberty Managed Container Adapter to control the managed Open Liberty server.
 
 Run the tests.
 
@@ -1488,9 +1488,9 @@ Stopping server defaultServer.
 [INFO] ------------------------------------------------------------------------
 ```
 
-From the logs, it works similar with the former Wildfly Managed Container Adapter.
+From the logs, it works similar with the former WildFly Managed Container Adapter.
 
-* Starting up OpenLiberty Kernel
+* Starting up Open Liberty Kernel
 
 * Enabling required features in configured in server.xml
 
@@ -1502,10 +1502,10 @@ From the logs, it works similar with the former Wildfly Managed Container Adapte
 
 * Reporting the test results, repeating the above steps if there are more tests to run
 
-* Finally stopping OpenLiberty.
+* Finally stopping Open Liberty.
 
   
-### Add OpenLiberty Remote Container Adapter
+### Add Open Liberty Remote Container Adapter
 
 Open the *pom.xml* file, check the **arq-liberty-remote** profile.
 
@@ -1584,9 +1584,9 @@ The following is the content of the *arquillian.xml*.
 </container>
 ```
 
-To run the tests, you need a running OpenLiberty server, and allow our Arquillian controller to connect it.
+To run the tests, you need a running Open Liberty server, and allow our Arquillian controller to connect it.
 
-Create a server profile by `server` command in the OpenLiberty dist, or copy *server.xml* from *src/test/arq-liberty-remote*  to *OpenLiberty_dir/usr/servers/defaultServer*.
+Create a server profile by `server` command in the Open Liberty dist, or copy *server.xml* from *src/test/arq-liberty-remote*  to *Open Liberty_dir/usr/servers/defaultServer*.
 
 The content of our sample server.xml.
 
@@ -1626,13 +1626,13 @@ The content of our sample server.xml.
 * The `remoteFileAccess` allows `${server.config.dir}/dropins` is writable, and  to receive deployments.
 * Set a `keyStore` and ensure the client to connect to this server securely.
 
-Start up the OpenLiberty server, it will generate the resources for the new server profile, including the keystore files in *${server.config.dir}/resources/security*.
+Start up the Open Liberty server, it will generate the resources for the new server profile, including the keystore files in *${server.config.dir}/resources/security*.
 
 If you run the tests, you will got a failure about authorization.
 
 Follow these steps to import the server certification and make it trust by your client's JDK.
 
-* Export the certification from the `jks` file in the *${server.config.dir}/resources/security* folder of OpenLiberty server.
+* Export the certification from the `jks` file in the *${server.config.dir}/resources/security* folder of Open Liberty server.
   ```bash
   keytool -export -alias default -file testwlp.crt -keystore key.jks 
   ```

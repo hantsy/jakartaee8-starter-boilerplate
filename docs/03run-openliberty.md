@@ -1,8 +1,8 @@
-# Deploying applications to OpenLiberty Server
+# Deploying applications to Open Liberty Server
 
-Eclipse IDE also has great support for OpenLiberty Server through OpenLiberty tools plugin.
+Eclipse IDE also has great support for Open Liberty Server through Open Liberty tools plugin.
 
-You have several options  to deploy an application to OpenLiberty server :
+You have several options  to deploy an application to Open Liberty server :
 
 * [Using Eclipse IDE](./03run-openliberty-eclipse.md)
 * [Using Liberty Maven Plugin](./03run-openliberty-mvn.md)
