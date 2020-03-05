@@ -13,6 +13,7 @@
   * [Deploying applications to Payara Server](./03run-payara.md)
   * [Deploying applications to WildFly Server](./03run-wildfly.md)
     * [Using Eclipse IDE](./03run-wildfly-eclipse.md)
+    * [Using NetBeans IDE](./03run-wildfly-nb.md)(WIP)
     * [Using WildFly Maven Plugin](./03run-wildfly-mvn.md)
     * [The Hard Way](./03run-wildfly-m.md)
   * [Deploying applications to Open Liberty Server](./03run-openliberty.md)
@@ -25,7 +26,7 @@
 
 ## Resources 
 
-* [Open Liberty Maven Plugin](https://github.com/Open Liberty/ci.maven)
+* [Open Liberty Maven Plugin](https://github.com/openliberty/ci.maven)
 * [WildFly Maven Plugin (wildfly-maven-plugin)](https://docs.jboss.org/wildfly/plugins/maven/latest/index.html)
 * [Deploying to Payara Server Using the Maven Cargo Plugin](https://blog.payara.fish/deploying-to-payara-server-using-the-maven-cargo-plugin)  by Payara Blog
 * [Cargo Maven2 Plugin for Glassfish v5](https://codehaus-cargo.github.io/cargo/GlassFish+5.x.html)
