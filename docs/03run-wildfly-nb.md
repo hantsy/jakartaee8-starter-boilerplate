@@ -6,8 +6,10 @@ NetBeans has built-in support for Glassfish.
 
 ## Install WildFly Application Server plugin
 
-1. Download [WildFly Application Server plugin](http://plugins.netbeans.org/plugin/76472/wildfly-application-server) from NetBeans Plugins portal.
-2. Open *Plugins* dialog from NetBeans main menu *Tools*->*Plugins*.
+There is no built-in support for WildFly application server in the newest NetBeans IDE. To get WildFly integration support, follow these steps to install the WildFly plugin from NetBeans Plugin Portal.
+
+1. Download [WildFly Application Server plugin](http://plugins.netbeans.org/plugin/76472/wildfly-application-server) from NetBeans Plugin portal.
+2. Open *Plugins* dialog from NetBeans IDE main menu *Tools*->*Plugins*.
 3. Switch to *Downloaded* tab, and click *Add Plugins...* button to select the downloaded plugin(a .nbm file).
 4. When it is added, click *Install* button to start installation.
 5. Follow the wizard to complete the installation. When it is done,  restart NetBeans IDE to apply the change.
@@ -21,15 +23,15 @@ Firstly, you should add a WildFly Server instance in NetBeans.
 3. In the *Add Server Instance* dialog, there are three steps:
    * *Choose Server* :select *WildFly Application Server* in the server list, click *Next* button.
    
-     ![choose server](./nb-new-wildfly.png)
+     <img src="./nb-new-wildfly.png" alt="choose server" style="zoom:80%;" />
    
    * *Server Location*: select the WildFly server location, click *Next* button.
    
-     ![server location](./nb-new-wildfly2.png)
+     <img src="./nb-new-wildfly2.png" alt="server location" style="zoom:80%;" />
    
    * *Instance Properties*: use the default values, if you have set an administration user, fill them in *User* and *Password* fields, click *Finish* button.
    
-     ![instance properties](./nb-new-wildfly3.png)
+     <img src="./nb-new-wildfly3.png" alt="instance properties" style="zoom:80%;" />
 
 After it is done, there is a new node *WildFly Application Server* added under the *Server*s nodes.
 
@@ -49,7 +51,7 @@ To stop the running WildFly Server,  click *Stop* in the context menu of the exi
 
 Generally, like what we have done with Glassfish and Payara servers,  we can simply deploy and run a Jakarta Web application by simply clicking *Run* in the project context menu. But when I try to run the application on Wildfly server, there is no such a Wildfly option in the dropdown list in the popup **Select deployment server**. It should be a bug.
 
-![Select deployment server](./nb-project-run-wildfly.png)
+<img src="./nb-project-run-wildfly.png" alt="Select deployment server" style="zoom:80%;" />
 
 
 
@@ -57,7 +59,7 @@ To select WildFly server, let's switch to  *Project* view, right click the proje
 
 In the project properties window, select *Run* in the left navigation tree,  and in the right panel, select *Wildfly Application Server*  in the **Server** dropdown list.
 
-![project properties](./nb-project-properties-wildfly-run.png)
+<img src="./nb-project-properties-wildfly-run.png" alt="project properties" style="zoom:80%;" />
 
 Click *OK* button. It will try to build the project and deploy the application package into the NetBeans managed WildFly server.   
 
@@ -81,6 +83,7 @@ Application Deployed
 Switch to *WildFly Application Server* console tab, you will see the following messages instead.
 
 ```bash
+...
 20:50:59,798 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
 20:50:59,798 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 18.0.1.Final (WildFly Core 10.0.3.Final) started in 13378ms - Started 355 of 618 services (385 services are lazy, passive or on-demand)
 20:51:06,232 INFO  [org.jboss.as.server.deployment.scanner] (DeploymentScanner-threads - 2) WFLYDS0004: Found jakartaee8-starter.war in deployment directory. To trigger deployment create a file called jakartaee8-starter.war.dodeploy
@@ -101,7 +104,7 @@ Switch to *WildFly Application Server* console tab, you will see the following m
 
 Let's open the *Server* view, there several nodes are displayed under WildFly Application Server. Expand the *Application*/*Web Applications* node, you will see there is a new node *jakartaee8-starter* there.
 
-![deployed apps](./nb-server-view-wildfly-run.png)
+<img src="./nb-server-view-wildfly-run.png" alt="deployed apps" style="zoom:80%;" />
 
 Open  your terminal and use `curl` to verify the APIs.
 
@@ -110,5 +113,5 @@ curl http://localhost:8080/jakartaee8-starter/api/greeting/hantsy
 {"message":"Say Hello to hantsy at 2019-11-04T16:16:13.509"}
 ```
 
-To  undeploy the application, in the *Service* view, expand *Servers/WildFly Application Server/Applications/Web Applications*, right click the *jakartaee8-starter* node, click *Undeploy*  to undeploy it from WildFlyserver. 
+To  undeploy the application, in the *Service* view, expand *Servers/WildFly Application Server/Applications/Web Applications*, right click the *jakartaee8-starter* node, click *Undeploy*  to undeploy it from the WildFly server. 
 
