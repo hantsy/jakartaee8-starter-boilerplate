@@ -13,7 +13,7 @@
   * [Deploying applications to Payara Server](./03run-payara.md)
   * [Deploying applications to WildFly Server](./03run-wildfly.md)
     * [Using Eclipse IDE](./03run-wildfly-eclipse.md)
-    * [Using NetBeans IDE](./03run-wildfly-nb.md)(WIP)
+    * [Using NetBeans IDE](./03run-wildfly-nb.md)
     * [Using WildFly Maven Plugin](./03run-wildfly-mvn.md)
     * [The Hard Way](./03run-wildfly-m.md)
   * [Deploying applications to Open Liberty Server](./03run-openliberty.md)

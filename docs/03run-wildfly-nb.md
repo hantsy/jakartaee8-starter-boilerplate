@@ -11,7 +11,7 @@ There is no built-in support for WildFly application server in the newest NetBea
 1. Download [WildFly Application Server plugin](http://plugins.netbeans.org/plugin/76472/wildfly-application-server) from NetBeans Plugin portal.
 2. Open *Plugins* dialog from NetBeans IDE main menu *Tools*->*Plugins*.
 3. Switch to *Downloaded* tab, and click *Add Plugins...* button to select the downloaded plugin(a .nbm file).
-4. When it is added, click *Install* button to start installation.
+4. When it is added, click *Install* button to start the installation progress.
 5. Follow the wizard to complete the installation. When it is done,  restart NetBeans IDE to apply the change.
 
 ## Add a WildFly Server instance
@@ -49,13 +49,15 @@ To stop the running WildFly Server,  click *Stop* in the context menu of the exi
 
 ## Deploy and undeploy applications
 
-Generally, like what we have done with Glassfish and Payara servers,  we can simply deploy and run a Jakarta Web application by simply clicking *Run* in the project context menu. But when I try to run the application on Wildfly server, there is no such a Wildfly option in the dropdown list in the popup **Select deployment server**. It should be a bug.
+Generally, like what we have done with Glassfish and Payara servers,  we can simply deploy and run a Jakarta EE application on an application server by simply clicking *Run* in the context menu of the project node in the *Projects* view. 
+
+However when I try to run this application on Wildfly server, there is no such a Wildfly option in the dropdown list in the popup **Select deployment server**. It should be a bug.
 
 <img src="./nb-project-run-wildfly.png" alt="Select deployment server" style="zoom:80%;" />
 
 
 
-To select WildFly server, let's switch to  *Project* view, right click the project node, and select *Properties* in the context menu.
+To select WildFly server as target server, let's switch to  *Projects* view, right click the project node, and select *Properties* in the context menu.
 
 In the project properties window, select *Run* in the left navigation tree,  and in the right panel, select *Wildfly Application Server*  in the **Server** dropdown list.
 
