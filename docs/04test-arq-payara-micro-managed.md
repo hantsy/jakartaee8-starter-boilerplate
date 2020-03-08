@@ -1,8 +1,8 @@
-# Add Payara Micro Managed Container Adapter
+# Payara Micro Managed Container Adapter
 
 Payara server provides a **micro** version of Payara server, which allow you start a  Payara server with a single jar file.
 
-Payara also includes an Micro Managed Adapter to run tests against a Payara Micro dist.
+Payara also includes a Micro Managed Adapter to run tests against a Payara Micro dist.
 
 Open  the *pom.xml* file, check the **arq-payara-micro** profile.
 

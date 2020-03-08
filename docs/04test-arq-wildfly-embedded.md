@@ -1,4 +1,4 @@
-# Add WildFly Embedded Container Adapter 
+# WildFly Embedded Container Adapter 
 
 Open the *pom.xml* file, check the **arq-wildfly-embedded** profile.
 

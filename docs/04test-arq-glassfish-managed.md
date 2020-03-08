@@ -1,4 +1,4 @@
-# Add Glassfish Managed Container Adapter
+#  Glassfish Managed Container Adapter
 
 Open *pom.xml*, check the **arq-glassfish-managed** profile.
 
@@ -101,13 +101,13 @@ Open *pom.xml*, check the **arq-glassfish-managed** profile.
 </profile>
 ```
 
-In the above codes,  it adds  `arquillian-glassfish-managed-3.1` as a dependency, which is required to serve *Glassfish Managed Container Adapter*.
+In the above codes,  it adds  `arquillian-glassfish-managed-3.1` as a dependency of *test* scope, which is required to serve *Glassfish Managed Container Adapter*.
 
-The Jersey related dependencies are required for Jaxrs testing, eg. the `GreetingResourceTest`.  
+The Jersey Client related dependencies are required for JAX-RS testing, eg. the `GreetingResourceTest`.  
 
-Here we use `maven-dependency-plugin` to prepare a refresh copy of  Glassfish dist for the test, and unzip it to the path `${project.build.directory}`.  In the configuration of `maven-failsafe-plugin`,  set a `GLASSFISH_HOME` environment variable or configure a `glassfishHome` property in the Arquillian configuration file - *src/test/resources/arquillian.xml*, specify its location to the `${project.build.directory}/glassfish5`.
+Here we use `maven-dependency-plugin` to prepare a refresh copy of  Glassfish dist for the test, and unzip it to the path `${project.build.directory}`.  In the configuration of `maven-failsafe-plugin`,  set a `GLASSFISH_HOME` environment variable or configure a `glassfishHome` system property in the Arquillian configuration file - *src/test/resources/arquillian.xml*, specify its location to the `${project.build.directory}/glassfish5`.
 
-The *Glassfish Managed Container Adapter* controls the lifecycle of the Glassfish server, eg. 
+The *Glassfish Managed Container Adapter* controls the lifecycle of the managed Glassfish server, eg. 
 
 * Start the Glassfish server
 * Deploy the test archive into the Glassfish server
@@ -152,5 +152,3 @@ Stopping container using command: [java, -jar, D:\hantsylabs\jakartaee8-starter\
 [INFO] Finished at: 2020-02-22T18:18:18+08:00
 [INFO] -----------------------------------------------------------------
 ```
-
-### 

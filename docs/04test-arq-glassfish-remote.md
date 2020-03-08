@@ -1,4 +1,4 @@
-# Add Glassfish Remote Container Adapter
+# Glassfish Remote Container Adapter
 
 Assume there is a running Glassfish server.  In this case, the Glassfish Remote Container Adapter connects to the Glassfish server by deployment client APIs.
 
@@ -99,7 +99,7 @@ Have a look at the `glassfish-remote`  qualifier in *src/resources/arquillian.xm
 </container>
 ```
 
-Here we assume it connects to *localhost:4848*. 
+Here we assume it connects to *localhost:4848*, and the admin password is changed to *adminadmin*. 
 
 Run the tests.
 
@@ -138,5 +138,3 @@ WARNING: Only use for Open Liberty/CXF which does not register a json provider a
 [INFO] Finished at: 2020-02-22T19:25:53+08:00
 [INFO] -----------------------------------------------------------------
 ```
-
-### 

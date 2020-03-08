@@ -1,4 +1,4 @@
-# Add Open Liberty Managed Container Adapter 
+# Open Liberty Managed Container Adapter 
 
 Open the *pom.xml* file, check the **arq-liberty-managed** profile.
 
@@ -147,6 +147,8 @@ Let's have a look at the */src/test/arq-liberty-managed/arquillian.xml*.
 ```
 
 The **wlpHome** property is required.
+
+> Unlike Payara and WildFly, you have to configure the **wplHome** property  in *arquillian.xml* file, if set in `maven-failsafe-plugin`, it does not work.
 
 Now let's move to  */src/test/arq-liberty-managed/server.xml*.
 

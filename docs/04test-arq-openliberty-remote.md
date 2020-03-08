@@ -1,4 +1,4 @@
-# Add Open Liberty Remote Container Adapter
+# Open Liberty Remote Container Adapter
 
 Open the *pom.xml* file, check the **arq-liberty-remote** profile.
 
@@ -112,7 +112,7 @@ The content of our sample server.xml.
 </server>
 ```
 
-
+In the above *server.xml* file.
 
 * The `restConnector-2.0` is required to support remote connection.
 * The `quickStartSecurity` is used to setup an administrative account quickly.
@@ -123,7 +123,7 @@ Start up the Open Liberty server, it will generate the resources for the new ser
 
 If you run the tests, you will got a failure about authorization.
 
-Follow these steps to import the server certification and make it trust by your client's JDK.
+Follow these steps to import the server certification and make it trusted by your client's JDK.
 
 * Export the certification from the `jks` file in the *${server.config.dir}/resources/security* folder of Open Liberty server.
 

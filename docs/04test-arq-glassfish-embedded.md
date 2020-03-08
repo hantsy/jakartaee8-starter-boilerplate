@@ -1,4 +1,4 @@
-# Add Glassfish Embedded Container Adapter
+# Glassfish Embedded Container Adapter
 
 Open the *pom.xml* file, check the **arq-glassfish-embedded** profile.
 
@@ -73,7 +73,7 @@ Open the *pom.xml* file, check the **arq-glassfish-embedded** profile.
 </profile>
 ```
 
-An embedded Glassfish is added into the dependencies, the controller(Glassfish Embedded Container Adapter) is fully responsible for the lifecycle of the embedded Glassfish , and will run with the embedded Glassfish in the same JVM process. 
+Besides  adding `arquillian-glassfish-embedded-3.1` as dependency, add an extra `glassfish-embedded-all` as dependencies.  The controller(Glassfish Embedded Container Adapter) is fully responsible for the lifecycle of the embedded Glassfish , and will run with the embedded Glassfish in the same JVM process. 
 
 Run the tests using the following command.
 

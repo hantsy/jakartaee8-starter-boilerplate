@@ -1,4 +1,4 @@
-# Add Payara Managed Container Adapter
+# Payara Managed Container Adapter
 
 Open the *pom.xml* , check the **arq-payara-managed** profile.
 

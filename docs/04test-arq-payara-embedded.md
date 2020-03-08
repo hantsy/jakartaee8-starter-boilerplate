@@ -33,3 +33,4 @@ Run the tests using the following command.
 mvn clean verify -Parq-payara-remote
 ```
 
+> Payara arquillian includes all  Jersey Client dependencies , we do not need to add it explicitly.

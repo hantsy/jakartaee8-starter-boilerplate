@@ -1,4 +1,4 @@
-# Add WildFly Remote Container Adapter 
+# WildFly Remote Container Adapter 
 
 Open the *pom.xml* file, check the **arq-wildfly-remote** profile.
 

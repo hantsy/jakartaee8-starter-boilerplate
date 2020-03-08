@@ -1,4 +1,4 @@
-# Add WildFly Managed Container Adapter 
+# WildFly Managed Container Adapter 
 
 Open the *pom.xml* file, check the **arq-wildfly-managed** profile.
 

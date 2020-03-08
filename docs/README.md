@@ -35,7 +35,7 @@
     * [Payara Managed Container Adapter](./04test-arq-payara-managed.md)
     * [Payara Remote Container Adapter](./04test-arq-payara-remote.md)
     * [Payara Embedded Container Adapter](./04test-arq-payara-embedded.md)
-    * [Payara  Payara Micro Managed  Adapter](./04test-arq-payara-micro-managed.md)
+    * [Payara Micro Managed Container Adapter](./04test-arq-payara-micro-managed.md)
   * [Running tests on WildFly  Server](./04test-arq-wildfly.md)
     * [WildFly Managed Container Adapter](./04test-arq-wildfly-managed.md)
     * [WildFly Remote Container Adapter](./04test-arq-wildfly-remote.md)

@@ -1,4 +1,4 @@
-# Add Payara Remote Container Adapter
+# Payara Remote Container Adapter
 
 Open the *pom.xml* file, locate to **arq-payara-remote** profile.
 
