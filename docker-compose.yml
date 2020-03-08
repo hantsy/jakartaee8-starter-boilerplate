@@ -1,0 +1,43 @@
+version: '3.3' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+
+# see: https://hub.docker.com/r/payara/server-full/
+  payara:
+    image: payara/server-full
+    ports:
+      - "8080:8080"
+      - "8181:8181" # HTTPS listener
+      - "4848:4848" # HTTPS admin listener
+      - "9009:9009" # Debug port
+    restart: always
+#    environment:
+#    JVM_ARGS: ""
+#     - "AS_ADMIN_MASTERPASSWORD=admin" #default password is `changeit`
+    volumes:
+      - ./deployments:/opt/payara/deployments
+
+# see: https://hub.docker.com/r/jboss/wildfly/
+  wildfly:
+    image: jboss/wildfly
+    ports:
+      - "8080:8080"
+      - "9990:9990" # admin listener
+    restart: always
+    command: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+#    environment:
+    volumes:
+      - ./deployments:/opt/jboss/wildfly/standalone/deployments/   
+      
+ # see: https://hub.docker.com/_/open-liberty
+  openliberty:
+    image: open-liberty:full
+    ports:
+      - "9080:9080"
+      - "9443:9443" # HTTPS listener
+    restart: always
+#    command: configure.sh # use for open-liberty:kernel image.
+#    environment:
+    volumes:
+      - ./deployments:/config/dropins      
