@@ -1,8 +1,11 @@
 # Kickstart a Jakarta EE 8 Application
 
 * [An introduction to Jakarta EE](./00overview.md)
+
 * [Setup local development environment](./01setup.md)
+
 * [Understanding application architecture](./02understand-app.md)
+
 * [Deploying applications to Application Servers](./03run.md)
   * [Getting Jakarta EE 8 compatible application servers](./03run-get-appservers.md)
   * [Deploying applications to Glassfish Server](./03run-glassfish.md)
@@ -20,7 +23,27 @@
     * [Using Eclipse IDE](./03run-openliberty-eclipse.md)
     * [Using Liberty Maven Plugin](./03run-openliberty-mvn.md)
     * [The Hard Way](./03run-openliberty-m.md)
+  
 * [Testing Jarakta EE applications](./04test.md)
+
+  * [Getting Started with JBoss Arquillian](./04test-arq-intro.md)
+  * [Run tests on Glassfish Server](./04test-arq-glassfish.md)
+    * [Glassfish Managed Container Adapter](./04test-arq-glassfish-managed.md)
+    * [Glassfish Remote Container Adapter](./04test-arq-glassfish-remote.md)
+    * [Glassfish Embedded Container Adapter](./04test-arq-glassfish-embedded.md)
+  * [Run tests on Payara  Server](./04test-arq-payara.md)
+    * [Glassfish Managed Payara Adapter](./04test-arq-payara-managed.md)
+    * [Glassfish Remote Payara Adapter](./04test-arq-payara-remote.md)
+    * [Glassfish Embedded Payara Adapter](./04test-arq-payara-embedded.md)
+    * [Glassfish Managed Payara Micro  Adapter](./04test-arq-payara-micro-managed.md)
+  * [Run tests on WildFly  Server](./04test-arq-wildfly.md)
+    * [Glassfish Managed WildFly Adapter](./04test-arq-wildfly-managed.md)
+    * [Glassfish Remote WildFly Adapter](./04test-arq-wildfly-remote.md)
+    * [Glassfish Embedded WildFly Adapter](./04test-arq-wildfly-embedded.md) 
+  * [Run tests on Open Liberty  Server](./04test-arq-openliberty.md)
+    * [Glassfish Managed Open Liberty Adapter](./04test-arq-openliberty-managed.md)
+    * [Glassfish Remote Open Liberty Adapter](./04test-arq-openliberty-remote.md)
+    
 * [Put to production](./05prod.md)
 
 
