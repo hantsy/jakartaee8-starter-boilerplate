@@ -6,6 +6,8 @@ As described in the Mission page of [JBoss Arquillian](https://arquillian.org) w
 
 Especially,  Arquillian is responsible of all tedious work when testing applications in a container including container management, deployment and framework  initialization so you can focus on writing your tests. 
 
+If you are new to Arquillian ,  the official [guides](http://arquillian.org/guides/) is a good start point to go through JBoss Arquillian.
+
 ## Adding Arquillian Dependencies
 
 Add the `arquillian-bom` as an dependency into `dependencyManagement` section.
@@ -84,13 +86,13 @@ public class GreetingServiceTest {
 
 As you see, an Arquillian test consists of the following components.
 
-* `@RunWith(Arquillian.class)` indicates it uses an Arquillian specific test runner to run this test.
-* Inside the test class, a public static method annotated with `@Deployment` annotation is available to  create a deployment unit for this test.
-* A `@Test` annotated method (*should_create_greeting()*) is to verify the functionality of `GreetingService`. Arquillian enriched tests and it allow you to  inject CDI beans in tests as well as in a regular CDI bean. In the above example, `GreetingService`  bean can be injected in test class like general Jakarta EE managed beans.
+* A test class is annotated with `@RunWith(Arquillian.class)` which indicates to use an Arquillian specific test runner to run this test.
+* Inside the test class, a *public static* method annotated with `@Deployment` annotation is available to  create a deployment unit for this test.
+* A `@Test` annotated method (*should_create_greeting()*) is to verify the functionality of your JakaraEE components(`GreetingService` ) . Arquillian enriched tests and it allows you to  inject CDI beans in tests like in general Jakarta EE managed beans. In the above example, `GreetingService`  bean can be injected in test class like a regular CDI bean.
 
-When running the test, it will perform a series of tasks in sequence to ensure the tests will be run on application servers successfully.
+When running the test, it will perform a series of tasks in sequence to ensure the tests will be run on successfully application servers .
 
-1.  First of all, it will create a deployable archive as described in the `@Deployment` annotated method. In this sample test, it just need to package `GreetingMessage`, `GreetingService`, and a CDI  `beans.xml` descriptor(which is optional since Java EE 7) into a jar archive. 
+1.  First of all, it will create a deployable archive as described in the `@Deployment` annotated method. In this sample test, it just need to package `GreetingMessage`, `GreetingService`, and a CDI  `beans.xml` descriptor(which is optional since Java EE 7) into a `JavaArchive`. 
 2. Then it will try to deploy the archive into a target container. If it runs against a managed adapter or an embedded adapter and the server is not running, it will start it firstly.
 3. Then run the tests in the container,  and capture the test report and send back to the test runner.
 4. Finally undeploy the test archive, and optionally stop the server if the tests runs against a managed adapter.
