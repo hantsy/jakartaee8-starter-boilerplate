@@ -1,8 +1,12 @@
 # Getting started with JBoss Arquillian
 
+As described in the Mission page of [JBoss Arquillian](https://arquillian.org) website:
 
+> Arquillian is an innovative and highly extensible testing platform for  the JVM that enables developers to easily create automated integration,  functional and acceptance tests for Java middleware.
 
-## Add Arquillian Dependencies
+Especially,  Arquillian is responsible of all tedious work when testing applications in a container including container management, deployment and framework  initialization so you can focus on writing your tests. 
+
+## Adding Arquillian Dependencies
 
 Add the `arquillian-bom` as an dependency into `dependencyManagement` section.
 
@@ -28,13 +32,13 @@ Add the `arquillian-bom` as an dependency into `dependencyManagement` section.
 </dependencyManagement>
 ```
 
-The `arquillian-bom` is a Maven *Bill of Materials*  which manages a collection of arquillian core dependencies.
+The `arquillian-bom` is a Maven  BOM(*Bill of Materials*)  which manages a collection of arquillian core dependencies.
 
-We also add another dependency `junit` here. Arquillian also supports for TestNG,  we use JUnit as a test runner here.
+We also add another dependency `junit` here. Arquillian supports TestNG as well.  But we use JUnit as an example in our [jakartaee8-starter](https://github.com/hantsy/jakartaee8-starter).
 
 > Note: JUnit 5 had been released for a while, but Arquillian does not support JUnit 5 at the moment, see issue [arquillian/arquillian-core#137](https://github.com/arquillian/arquillian-core/issues/137).
 
-In the `dependencies` section, add the following two dependencies.
+In the `dependencies` section, declare the following two dependencies.
 
 ```xml
 <dependencies>
@@ -51,9 +55,9 @@ In the `dependencies` section, add the following two dependencies.
 </dependencies>    
 ```
 
-## Create your first Arquillian Test
+##  Creating your first Arquillian Test
 
-A simple Arquillian test looks like the following.
+Let's have a look at `GreetingServiceTest`, which is a simple Arquillian test to verify the functionality of a CDI bean ( `GreetingService`). 
 
 ```java
 @RunWith(Arquillian.class)
@@ -78,16 +82,20 @@ public class GreetingServiceTest {
 }
 ```
 
-This test is use for testing the functionality of `GreetingService`.
+As you see, an Arquillian test consists of the following components.
 
-* `@RunWith(Arquillian.class)` indicates it use an Arquillian specific test runner to run this test.
-* `@Deployment` creates a deployment unit for this test.
-* The CDI bean `GreetingService`  can be injected in test codes like general Jakarta EE managed beans.
-* `should_create_greeting()` is a simple test case to verify the functionality of `GreetingService`.
+* `@RunWith(Arquillian.class)` indicates it uses an Arquillian specific test runner to run this test.
+* Inside the test class, a public static method annotated with `@Deployment` annotation is available to  create a deployment unit for this test.
+* A `@Test` annotated method (*should_create_greeting()*) is to verify the functionality of `GreetingService`. Arquillian enriched tests and it allow you to  inject CDI beans in tests as well as in a regular CDI bean. In the above example, `GreetingService`  bean can be injected in test class like general Jakarta EE managed beans.
 
-When running the test, first of all, it will create a deployable archive as described in the `@Deployment` annotated static method. In this sample test, it just need to package `GreetingMessage`, `GreetingService`, and a CDI  `beans.xml` descriptor(which is optional since Java EE 7) into a jar archive. Then it will be deployed into an application server,  and run the tests in container, the test report will be captured by Arquillian controller and sent back to the test runner.
+When running the test, it will perform a series of tasks in sequence to ensure the tests will be run on application servers successfully.
 
-Let's look at another sample test in the [Jakarta EE 8 starter repository](https://github.com/hantsy/jakartaee8-starter).
+1.  First of all, it will create a deployable archive as described in the `@Deployment` annotated method. In this sample test, it just need to package `GreetingMessage`, `GreetingService`, and a CDI  `beans.xml` descriptor(which is optional since Java EE 7) into a jar archive. 
+2. Then it will try to deploy the archive into a target container. If it runs against a managed adapter or an embedded adapter and the server is not running, it will start it firstly.
+3. Then run the tests in the container,  and capture the test report and send back to the test runner.
+4. Finally undeploy the test archive, and optionally stop the server if the tests runs against a managed adapter.
+
+Let's move to another sample test in the [Jakarta EE 8 starter repository](https://github.com/hantsy/jakartaee8-starter).
 
 ```java
 @RunWith(Arquillian.class)
@@ -147,10 +155,10 @@ This `GreetingResourceTest` is use for testing the endpoints exposed by the `Gre
 
 As you see , this test is slightly different from the former `GreetingServiceTest`.
 
-* We create a `WebArchive` instead of `JavaArchive`, because this is for testing the functionality of Jaxrs resources.
-* A `testable = false` property is added to `@Deployment`, thus the test case will run as *client mode*.  That means the test method `should_create_greeting()` will run on a different JVM process, and resources in the archive, such as `GreetingService` can not be injected in this test.
-* You can get the the context path from a ` @ArquillianResource` annotated URI after it is deployed.
+* We create a `WebArchive` instead of `JavaArchive`, because this is for testing the functionality of JAX-RS resources.
+* A `testable = false` property is added to `@Deployment` annotation, thus the test case will run as *client mode*.  That means the test method `should_create_greeting()` will run on a different JVM process, and resources in the archive, such as `GreetingService` can not be injected in this test.
+* You can get the the test application context path from a ` @ArquillianResource` annotated URI after it is deployed.
 
-To run the test on a certain application server and gather the test result, you have to configure an *Aquillian Container Adapter*.
+To run Arquillian tests on a certain application server you have to configure an *Aquillian Container Adapter*.
 
-In the Maven *pom.xml*, a couple of Maven profiles are configured for applying different container adapters.
+In the Maven [*pom.xml*](https://github.com/hantsy/jakartaee8-starter/blob/master/pom.xml), a couple of Maven profiles are configured for applying different container adapters.
