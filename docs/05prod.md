@@ -342,7 +342,7 @@ $curl http://localhost:9080/jakartaee8-starter/api/greeting/Hantsy
 
 > Open Liberty Server exposes 9080 port for HTTP service.
 
-### Publishing Docker images to Docker registry
+### Push Docker images to a Docker registry
 
 You can publish the Docker images to your private Docker registry, check [Docker Registry](https://docs.docker.com/registry/) to serve a private Docker registry.
 
@@ -462,9 +462,15 @@ Open  https://hub.docker.com/u/hantsy again, you will find the download counter 
 
 ## Put applications to production
 
-When you published your applications as Docker images on DockerHub,  you can deploy it into any cloud platform, such as OpenShift, Microsoft Azure.
+After you published your applications as Docker images on DockerHub,  you can deploy it into any cloud platform that supports container. Today almost all popular cloud platform supports Kubernetes and Docker, such as OpenShift, Microsoft Azure, etc.
 
-### Local Kubernetes
+### Kubernetes
+
+There are a few means to get Kubernetes running in your local system, such as Docker Desktop for  Windows/MacOS, minkube, and Minishift(an OpenShift upstream project).
+
+For Windows user, the simplest approach could be installing a copy of Docker Desktop for Windows.
+
+#### Docker Desktop for Windows/MacOS
 
 If you are using Docker Desktop for Windows or Docker Desktop for MacOS, there is no need to install an extra Kubernetes, it ships with a copy of [Kubernetes](https://docs.docker.com/docker-for-windows/#kubernetes).
 
@@ -477,6 +483,8 @@ In the Kubernetes option in the left menu panel, make sure the *Enable Kubernete
 Waiting  for a while, it should start the local Kubernetes for you.
 
 > Unfortunately, this approach does not work in my system. I have tried all suggestions in the docker/for-win issues, none work for me.  There are couples of issues about enabling K8S in Docker Desktop for Windows, check [Github Issues of docker/for-win](https://github.com/docker/for-win/issues).
+
+#### Minikube
 
 Alternatively, following [the official Kubernetes guide](https://kubernetes.io/docs/tasks/tools/install-minikube/) to install a *minikube*  manually to serve a local Kubernetes cluster. 
 
@@ -526,6 +534,9 @@ Stop minikube.
 
 ```bash
 $ minikube stop
+* Stopping "minikube" in hyperv ...
+* Powering off "minikube" via SSH ...
+* "m01" stopped.
 ```
 
 Pause and resume minikube.
@@ -535,6 +546,111 @@ $ minikube pause
 
 // resume a paused minikube k8s cluster.
 $ minikube unpause 
+```
+
+Delete the *minikube* cluster.
+
+```bash
+$minikube delete
+```
+
+#### Deploying on a local Kubernetes cluster
+
+Create a Deployment using the docker images we have built.
+
+```bash
+$ kubectl create deployment jakartaee8-starter --image=hantsy/jakartaee8-starter-wildfly
+deployment.apps/jakartaee8-starter created
+```
+
+Check  the deployments.
+
+```bash
+$ kubectl get deployments
+NAME                 READY   UP-TO-DATE   AVAILABLE   AGE
+jakartaee8-starter   1/1     1            1           40m
+```
+
+To access the *jakartaee8-starter* Deployment, exposes it as a Service.
+
+```bash
+$ kubectl expose deployment jakartaee8-starter --type=NodePort --port=8080
+service/jakartaee8-starter exposed
+```
+Check the exposed services.
+
+```bash
+$ kubectl get services
+NAME                 TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
+jakartaee8-starter   NodePort    10.101.72.8   <none>        8080:32458/TCP   40m
+kubernetes           ClusterIP   10.96.0.1     <none>        443/TCP          9h
+```
+
+Check the Pod status, it will take some time.
+
+```ba
+$ kubectl get pods
+NAME                                 READY   STATUS              RESTARTS   AGE
+jakartaee8-starter-675889c77-pd7kw   0/1     ContainerCreating   0          3m21s
+```
+
+When the status becomes *Running*, it is ready for accessing.
+
+```bash
+$ kubectl get pods
+NAME                                 READY   STATUS    RESTARTS   AGE
+jakartaee8-starter-675889c77-pd7kw   1/1     Running   0          23m
+```
+
+Accessing the sample endpoint inside the pod.
+
+```bash
+$ kubectl exec -it jakartaee8-starter-675889c77-pd7kw curl localhost:8080/jakartaee8-starter/api/greeting/Hantsy
+{"message":"Say Hello to Hantsy at 2020-03-10T16:52:21.332576"}
+```
+
+Get the details of the exposed Service.
+
+```bash
+$ kubectl describe services/jakartaee8-starter
+Name:                     jakartaee8-starter
+Namespace:                default
+Labels:                   app=jakartaee8-starter
+Annotations:              <none>
+Selector:                 app=jakartaee8-starter
+Type:                     NodePort
+IP:                       10.101.72.8
+Port:                     <unset>  8080/TCP
+TargetPort:               8080/TCP
+NodePort:                 <unset>  32458/TCP
+Endpoints:                172.17.0.6:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+// or get nodePort by go template
+$ kubectl get services/jakartaee8-starter -o go-template='{{(index .spec.ports 0).nodePort}}'
+32458
+```
+
+Get the local K8s cluster ip.
+
+```bash
+$ minikube ip
+172.19.204.81
+```
+
+Accessing the sample endpoint.
+
+```bash
+$ curl http://172.19.204.81:32458/jakartaee8-starter/api/greeting/Hantsy
+{"message":"Say Hello to Hantsy at 2020-03-10T16:42:23.999636}
+```
+
+Delete resources.
+
+```bash
+$ kubectl delete service jakartaee8-starter
+$ kubectl delete deployment jakartaee8-starter
 ```
 
 
@@ -559,11 +675,11 @@ Switch to *Developer* view.
 
 Click **+Add**  tab,  and select *Container Image*.
 
-![select image](./os-container-image.png) 
+![select image](./os-container-image-wildfly.png) 
 
 Pull down the page, check application name and name is set, and make sure *Create a route to the application* checkbox is checked.
 
-![Container image](./os-container-image2.png)
+![Container image](./os-container-image2-wildfly.png)
 
 Click *Create* button to finish the form.
 
@@ -597,4 +713,6 @@ Click the **Up** icon to scale to deployments to 2 pods.
 Click *Pods* tab in the page, you will find there are 2 pods are running.
 
 ![os-scale-pods](./os-scale-pods.png)
+
+To decrease the number of the pods. Switch the  **Overview**  tab, click **Down** icon. If you click **Pods** tab again, you will see the status of one pod becomes **Terminating** and finally removed from this page.
 
