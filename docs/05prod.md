@@ -1,6 +1,6 @@
 # Put to production
 
-## Running applications on Application Servers in Docker
+## Running Application Servers in Docker
 
 In the [Deploying applications to Application Servers](./03run.md), we explored how to utilize the deployments scan to deploy a Jakarta EE application on application servers, such as [Glassfish](./03run-glassfish-m.md), [Payara](./03run-payara-m.md), [WildFly](./03run-wildfly-m.md), [Open Liberty](./03run-openliberty-m.md). 
 
@@ -342,7 +342,7 @@ $curl http://localhost:9080/jakartaee8-starter/api/greeting/Hantsy
 
 > Open Liberty Server exposes 9080 port for HTTP service.
 
-### Push Docker images to a Docker registry
+### Push Docker images to  DockerHub
 
 You can publish the Docker images to your private Docker registry, check [Docker Registry](https://docs.docker.com/registry/) to serve a private Docker registry.
 
@@ -460,7 +460,7 @@ Open  https://hub.docker.com/u/hantsy again, you will find the download counter 
 
 ![Download Counter](./dockerhub-2.png)
 
-## Put applications to production
+## Putting applications to production
 
 After you published your applications as Docker images on DockerHub,  you can deploy it into any cloud platform that supports container. Today almost all popular cloud platform supports Kubernetes and Docker, such as OpenShift, Microsoft Azure, etc.
 
@@ -535,7 +535,7 @@ namespace:  20 bytes
 token:      eyJhbGciOiJSUzI1NiIsImtpZCI6ImFCUkZNVjRkbTl5TmN6eGlYYXBGSDljMlNTLVIwQ1ZUOU96VzU0RFBwaWsifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC10b2tlbi03NjU2eiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjI0MTA1NmFhLTdhMzItNGVkOC04NTEwLTVjMDIzYmZhNDU0MyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDprdWJlcm5ldGVzLWRhc2hib2FyZCJ9.OlgYkWDm3ZYd6o6w4vTtFoBcCIfU8cRuJ3Lhh8WDJ7HKd2pYkDpATSBZjrOUndnhyfYc_E1ePvOPeMcU5iy5sMA_Is2uxepDnsMOxVnd7ctV-RHdrk0ZZLCz4Mt0uvuGqGIe9ZfNzPC97fF7RsL_Lz826F-9DNRjWVniPpT3TfzgEB29OXSYVqLjbvDCimtgLd-N0NeIgWdH5MbVwUiJZsBuKsa4A65bkQ6KfzsoaSFFHz8qeEV6AG5e7CGrDUjSHXVWbp6wVj2unC__nxZM8oOF4klgTakTR_TUl5dogTtCoT02sSgMR8iOgs7DPfO4YWFPMNb6nZWefBtT5JzpzA
 ```
 
-In the login page, select *Token*,  and copy the above token value to *Signin*.
+In the login page, select *Token*,  and copy the above token value to the field *Enter token* and click  *Sign in* button.
 
 ![k8s-ds-login](./k8s-ds-login.png)
 
@@ -724,13 +724,69 @@ jakartaee8-starter-675889c77-p7kl7   1/1     Running   0          48s
 
 ```
 
-
-
 Delete resources.
 
 ```bash
 $ kubectl delete service jakartaee8-starter
 $ kubectl delete deployment jakartaee8-starter
+```
+
+Simply you can create a deployment from a yaml file.
+
+```bash
+$ kubectl apply -f .\deployment.yaml
+deployment.apps/jakartaee8-starter created
+service/jakartaee8-starter created
+
+$ kubectl get pods
+NAME                                 READY   STATUS    RESTARTS   AGE
+jakartaee8-starter-675889c77-jxdgw   1/1     Running   0          16s
+
+$ kubectl exec -it jakartaee8-starter-675889c77-jxdgw curl http://localhost:8080/jakartaee8-starter/api/greeting/Hantsy
+
+$ kubectl delete -f .\deployment.yaml
+deployment.apps "jakartaee8-starter" deleted
+service "jakartaee8-starter" deleted
+```
+
+Add `--dry-run -o yaml` to `kubectl create deployment` and `kubectl expose depolyment` to generate the yaml template. The following is a cleaned  sample yaml .
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jakartaee8-starter
+  name: jakartaee8-starter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jakartaee8-starter
+  template:
+    metadata:
+      labels:
+        app: jakartaee8-starter
+    spec:
+      containers:
+      - image: hantsy/jakartaee8-starter-wildfly
+        name: jakartaee8-starter-wildfly
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: jakartaee8-starter
+  name: jakartaee8-starter
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: jakartaee8-starter
+  type: NodePort
 ```
 
 
