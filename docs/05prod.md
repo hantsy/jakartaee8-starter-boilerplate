@@ -464,7 +464,7 @@ Open  https://hub.docker.com/u/hantsy again, you will find the download counter 
 
 After you published your applications as Docker images on DockerHub,  you can deploy it into any cloud platform that supports container. Today almost all popular cloud platform supports Kubernetes and Docker, such as OpenShift, Microsoft Azure, etc.
 
-### Kubernetes
+### Running a local Kubernetes cluster
 
 There are a few means to get Kubernetes running in your local system, such as Docker Desktop for  Windows/MacOS, minkube, and Minishift(an OpenShift upstream project).
 
@@ -478,15 +478,76 @@ To enable Kubernetes support in Docker Desktop for Windows, right click the Dock
 
 ![k8s settings](./k8s.png)
 
-In the Kubernetes option in the left menu panel, make sure the *Enable Kubernetes* is checked, and click *Apply &  Restart* button.
+Select *Kubernetes* option in the left menu panel, in the right content panel, make sure the *Enable Kubernetes* is checked, and click *Apply &  Restart* button.
 
-Waiting  for a while, it should start the local Kubernetes for you.
+Waiting  for a while, it should start a local Kubernetes cluster for you. For Chinese users, please follow the guide of  [AliyunContainerService/k8s-for-dociker-desktop](https://github.com/AliyunContainerService/k8s-for-docker-desktop) to enable Kubernetes in Docker Desktop.
 
-> Unfortunately, this approach does not work in my system. I have tried all suggestions in the docker/for-win issues, none work for me.  There are couples of issues about enabling K8S in Docker Desktop for Windows, check [Github Issues of docker/for-win](https://github.com/docker/for-win/issues).
+> There are couples of issues about enabling K8S in Docker Desktop for Windows, check [Github Issues of docker/for-win](https://github.com/docker/for-win/issues).
+
+Docker Desktop does not install Kubernetes Dashboard by default.
+
+```bash
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-rc5/aio/deploy/recommended.yaml
+```
+
+Check the pod status of Kubernetes Dashboard.
+
+```bash
+$ kubectl get pod -n kubernetes-dashboard
+NAME                                         READY   STATUS              RESTARTS   AGE
+dashboard-metrics-scraper-7b8b58dc8b-ctxzf   0/1     ContainerCreating   0          71s
+kubernetes-dashboard-866f987876-qfbvp        0/1     ContainerCreating   0          71s
+```
+
+When the *STATUS* became *RUNNING*, run the following command to setup a proxy to access the dashboard.
+
+```bash
+$ kubectl proxy
+Starting to serve on 127.0.0.1:8001
+```
+
+The dashboard can be accessed via url: [`http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/`](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/).
+
+By default, Kubernetes Dashboard requires a token or kubeconfig to access the dashboard page.
+
+```bash
+$ kubectl -n kubernetes-dashboard get secret
+NAME                               TYPE                                  DATA   AGE
+default-token-x4j76                kubernetes.io/service-account-token   3      24m
+kubernetes-dashboard-certs         Opaque                                0      24m
+kubernetes-dashboard-csrf          Opaque                                1      24m
+kubernetes-dashboard-key-holder    Opaque                                2      24m
+kubernetes-dashboard-token-7656z   kubernetes.io/service-account-token   3      24m
+
+$ kubectl -n kubernetes-dashboard describe secrets kubernetes-dashboard-token-7656z
+Name:         kubernetes-dashboard-token-7656z
+Namespace:    kubernetes-dashboard
+Labels:       <none>
+Annotations:  kubernetes.io/service-account.name: kubernetes-dashboard
+              kubernetes.io/service-account.uid: 241056aa-7a32-4ed8-8510-5c023bfa4543
+
+Type:  kubernetes.io/service-account-token
+
+Data
+====
+ca.crt:     1025 bytes
+namespace:  20 bytes
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6ImFCUkZNVjRkbTl5TmN6eGlYYXBGSDljMlNTLVIwQ1ZUOU96VzU0RFBwaWsifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC10b2tlbi03NjU2eiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjI0MTA1NmFhLTdhMzItNGVkOC04NTEwLTVjMDIzYmZhNDU0MyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDprdWJlcm5ldGVzLWRhc2hib2FyZCJ9.OlgYkWDm3ZYd6o6w4vTtFoBcCIfU8cRuJ3Lhh8WDJ7HKd2pYkDpATSBZjrOUndnhyfYc_E1ePvOPeMcU5iy5sMA_Is2uxepDnsMOxVnd7ctV-RHdrk0ZZLCz4Mt0uvuGqGIe9ZfNzPC97fF7RsL_Lz826F-9DNRjWVniPpT3TfzgEB29OXSYVqLjbvDCimtgLd-N0NeIgWdH5MbVwUiJZsBuKsa4A65bkQ6KfzsoaSFFHz8qeEV6AG5e7CGrDUjSHXVWbp6wVj2unC__nxZM8oOF4klgTakTR_TUl5dogTtCoT02sSgMR8iOgs7DPfO4YWFPMNb6nZWefBtT5JzpzA
+```
+
+In the login page, select *Token*,  and copy the above token value to *Signin*.
+
+![k8s-ds-login](./k8s-ds-login.png)
+
+When you are logged in, it will show the Dashboard page for you.
+
+![k8s-ds-docker](./k8s-ds-docker.png)
+
+
 
 #### Minikube
 
-Alternatively, following [the official Kubernetes guide](https://kubernetes.io/docs/tasks/tools/install-minikube/) to install a *minikube*  manually to serve a local Kubernetes cluster. 
+Alternatively, you can follow [the official Kubernetes guide](https://kubernetes.io/docs/tasks/tools/install-minikube/) to install a *minikube*  manually to serve a local Kubernetes cluster. 
 
 Onnce it is installed, run the following command to verify *minikube* is installed.
 
@@ -554,9 +615,11 @@ Delete the *minikube* cluster.
 $minikube delete
 ```
 
-#### Deploying on a local Kubernetes cluster
+#### Deploying on the local Kubernetes cluster
 
-Create a Deployment using the docker images we have built.
+When a local Kubernetes cluster is ready, it is time to deploy our application into this Kubernetes cluster. 
+
+Firstly, create a *deployment* from the docker images we have built.
 
 ```bash
 $ kubectl create deployment jakartaee8-starter --image=hantsy/jakartaee8-starter-wildfly
@@ -586,7 +649,7 @@ jakartaee8-starter   NodePort    10.101.72.8   <none>        8080:32458/TCP   40
 kubernetes           ClusterIP   10.96.0.1     <none>        443/TCP          9h
 ```
 
-Check the Pod status, it will take some time.
+Check the *pod* status, it will take some time to prepare the container creating.
 
 ```ba
 $ kubectl get pods
@@ -594,7 +657,7 @@ NAME                                 READY   STATUS              RESTARTS   AGE
 jakartaee8-starter-675889c77-pd7kw   0/1     ContainerCreating   0          3m21s
 ```
 
-When the status becomes *Running*, it is ready for accessing.
+When the status becomes *Running*, it is ready for accessing from client.
 
 ```bash
 $ kubectl get pods
@@ -609,7 +672,9 @@ $ kubectl exec -it jakartaee8-starter-675889c77-pd7kw curl localhost:8080/jakart
 {"message":"Say Hello to Hantsy at 2020-03-10T16:52:21.332576"}
 ```
 
-Get the details of the exposed Service.
+To access it from external requests, you check get the port of the exposed service.
+
+Get the details of the exposed Service. Kubernetes assigned a port to expose the service, here it is 32458.
 
 ```bash
 $ kubectl describe services/jakartaee8-starter
@@ -646,6 +711,21 @@ $ curl http://172.19.204.81:32458/jakartaee8-starter/api/greeting/Hantsy
 {"message":"Say Hello to Hantsy at 2020-03-10T16:42:23.999636}
 ```
 
+Scale deployments.
+
+```bash
+$ kubectl scale --replicas=2 deployment jakartaee8-starter
+deployment.apps/jakartaee8-starter scaled
+
+$ kubectl get pods
+NAME                                 READY   STATUS    RESTARTS   AGE
+jakartaee8-starter-675889c77-8mngf   1/1     Running   0          37m
+jakartaee8-starter-675889c77-p7kl7   1/1     Running   0          48s
+
+```
+
+
+
 Delete resources.
 
 ```bash
@@ -655,7 +735,7 @@ $ kubectl delete deployment jakartaee8-starter
 
 
 
-### OpenShift
+### Deploying on OpenShift Online
 
 [OpenShift](https://www.openshift.com) is a leading Kubernetes container platform brought by Redhat. 
 
