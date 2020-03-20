@@ -285,7 +285,7 @@ latest: digest: sha256:fa745c6843080fbd7b67934763f6f14d2aaa887c6232840c1d68914eb
 
 Open a browser, and navigate to https://hub.docker.com/u/hantsy, you can see the images you have just uploaded.
 
-![Docker hub](D:/hantsylabs/jakartaee8-starter/docs/dockerhub.png)
+![Docker hub](./dockerhub.png)
 
 > Note, in the above examples, when building the Docker images, I used **hantsy** as the prefix. Replace it with your username.
 
@@ -337,5 +337,5 @@ b093e94e2a28: Pull complete
 
 Open your browser and go to  https://hub.docker.com/u/hantsy again, you will find the download counter increased.
 
-![Download Counter](D:/hantsylabs/jakartaee8-starter/docs/dockerhub-2.png)
+![Download Counter](./dockerhub-2.png)
 

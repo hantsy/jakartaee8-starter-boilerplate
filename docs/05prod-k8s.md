@@ -8,13 +8,13 @@ There are a few means to get Kubernetes running in your local system, such as Do
 
 For Windows user, the simplest approach could be installing a copy of Docker Desktop for Windows.
 
-### Docker Desktop for Windows/MacOS
+### Docker Desktop
 
 If you are using Docker Desktop for Windows or Docker Desktop for MacOS, there is no need to install an extra Kubernetes, it ships with a copy of [Kubernetes](https://docs.docker.com/docker-for-windows/#kubernetes).
 
 To enable Kubernetes support in Docker Desktop for Windows, right click the Docker icon in the system tray, and open *Settings* from the context menu. 
 
-![k8s settings](D:/hantsylabs/jakartaee8-starter/docs/k8s.png)
+![k8s settings](./k8s.png)
 
 Select *Kubernetes* option in the left menu panel, in the right content panel, make sure the *Enable Kubernetes* is checked, and click *Apply &  Restart* button.
 
@@ -77,11 +77,11 @@ token:      eyJhbGciOiJSUzI1NiIsImtpZCI6ImFCUkZNVjRkbTl5TmN6eGlYYXBGSDljMlNTLVIw
 
 In the login page, select *Token*,  and copy the above token value to the field *Enter token* and click  *Sign in* button.
 
-![k8s-ds-login](D:/hantsylabs/jakartaee8-starter/docs/k8s-ds-login.png)
+![k8s-ds-login](./k8s-ds-login.png)
 
 After you are logged in, it shows the Kubernetes Dashboard page for you.
 
-![k8s-ds-docker](D:/hantsylabs/jakartaee8-starter/docs/k8s-ds-docker.png)
+![k8s-ds-docker](./k8s-ds-docker.png)
 
 
 
@@ -129,7 +129,7 @@ $ minikube dashboard
 
 It will open the default browser automatically and show you the Kubernetes Dashboard page.
 
-![Kubernetes Dashboard](D:/hantsylabs/jakartaee8-starter/docs/k8s-dashboard.png)
+![Kubernetes Dashboard](./k8s-dashboard.png)
 
 Stop minikube.
 
@@ -344,31 +344,31 @@ When it is ready, sign in to  [https://www.openshift.com/](https://www.openshift
 
 In the console, click  *create project*  button to create a new project.
 
-![new project](D:/hantsylabs/jakartaee8-starter/docs/os-new-project.png)
+![new project](./os-new-project.png)
 
 Input project name and click *Create* button.
 
 Switch to *Developer* view.
 
-![switch to developer view](D:/hantsylabs/jakartaee8-starter/docs/os-switch-developer-view.png)
+![switch to developer view](./os-switch-developer-view.png)
 
 Click **+Add**  tab,  and select *Container Image*.
 
-![select image](D:/hantsylabs/jakartaee8-starter/docs/os-container-image-wildfly.png) 
+![select image](./os-container-image-wildfly.png) 
 
 Pull down the page, as you see, the application name and name is set by default, and make sure *Create a route to the application* checkbox is checked.
 
-![Container image](D:/hantsylabs/jakartaee8-starter/docs/os-container-image2-wildfly.png)
+![Container image](D./os-container-image2-wildfly.png)
 
 Click *Create* button to finish the form.
 
 It will show a  page to display the application status.
 
-![os-status](D:/hantsylabs/jakartaee8-starter/docs/os-status.png)
+![os-status](./os-status.png)
 
 Click the  icon of the core of the circle, it will popup a view to display the defailts of the application.
 
-![os-status-details](D:/hantsylabs/jakartaee8-starter/docs/os-status-details.png)
+![os-status-details](./os-status-details.png)
 
 In the bottom of this view, copy the external link of this application. 
 
@@ -387,11 +387,11 @@ Click *jakartaee8-starter-wildfly* in the deployments list.
 
 Click the **Up** icon to scale to deployments to 2 pods. 
 
-![scale](D:/hantsylabs/jakartaee8-starter/docs/os-scale.png)
+![scale](./os-scale.png)
 
 Click *Pods* tab in the page, you will find there are 2 pods are running.
 
-![os-scale-pods](D:/hantsylabs/jakartaee8-starter/docs/os-scale-pods.png)
+![os-scale-pods](./os-scale-pods.png)
 
 To decrease the number of the pods. Switch the  **Overview**  tab, click **Down** icon. If you click **Pods** tab again, you will see the status of one pod becomes **Terminating** and finally removed from this page.
 
