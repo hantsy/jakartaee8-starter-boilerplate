@@ -1,11 +1,8 @@
 # Kickstart a Jakarta EE 8 Application
 
 * [An introduction to Jakarta EE](./00overview.md)
-
 * [Setup local development environment](./01setup.md)
-
 * [Understanding application architecture](./02understand-app.md)
-
 * [Deploying applications to Application Servers](./03run.md)
   * [Getting Jakarta EE 8 compatible application servers](./03run-get-appservers.md)
   * [Deploying applications to Glassfish Server](./03run-glassfish.md)
@@ -23,7 +20,6 @@
     * [Using Eclipse IDE](./03run-openliberty-eclipse.md)
     * [Using Liberty Maven Plugin](./03run-openliberty-mvn.md)
     * [The Hard Way](./03run-openliberty-m.md)
-  
 * [Testing Jarakta EE applications](./04test.md)
 
   * [Getting Started with JBoss Arquillian](./04test-arq-intro.md)
@@ -43,8 +39,10 @@
   * [Running tests on Open Liberty  Server](./04test-arq-openliberty.md)
     * [Open Liberty  Managed Container Adapter](./04test-arq-openliberty-managed.md)
     * [Open Liberty  Remote Container Adapter](./04test-arq-openliberty-remote.md)
-    
 * [Put to production](./05prod.md)
+   * [Running  Application Servers in Docker](./05prod-appservers-in-docker.md)
+   * [Dockerizing your Applications](./05prod-dockerizing-app.md)
+   * [Deploying on Cloud](./05prod-k8s.md)
 
 
 ## Resources 
