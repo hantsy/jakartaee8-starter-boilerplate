@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jakartaee8-starter
+  name: jakartaee8-starter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jakartaee8-starter
+  template:
+    metadata:
+      labels:
+        app: jakartaee8-starter
+    spec:
+      containers:
+      - image: hantsy/jakartaee8-starter-wildfly
+        name: jakartaee8-starter-wildfly
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: jakartaee8-starter
+  name: jakartaee8-starter
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: jakartaee8-starter
+  type: NodePort
+
