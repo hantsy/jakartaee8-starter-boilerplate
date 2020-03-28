@@ -4,6 +4,15 @@
 
  [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter) is a boilerplate project to help you to bootstrap a new  Java EE 8/Jakarta EE 8 application in seconds.
 
+If you want to explore the real world Jakarta EE 8 applications based on JSF, JAX-RS and MVC, check the following projects which are derived from this project.
+
+* [Jakarta Faces Sample](https://github.com/hantsy/jakartaee-faces-sample)
+
+* [Jakarta MVC  Sample](https://github.com/hantsy/jakartaee-mvc-sample)
+
+* [Jakarta Jaxrs  Sample](https://github.com/hantsy/jakartaee-jaxrs-sample)
+
+
 ## Build
 
 Make sure you have installed the latest JDK 8 and Apache Maven 3.6.
