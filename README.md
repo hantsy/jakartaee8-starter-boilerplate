@@ -7,9 +7,7 @@
 If you want to explore the real world Jakarta EE 8 applications based on JSF, JAX-RS and MVC, check the following projects which are derived from this project.
 
 * [Jakarta Faces Sample](https://github.com/hantsy/jakartaee-faces-sample)
-
 * [Jakarta MVC  Sample](https://github.com/hantsy/jakartaee-mvc-sample)
-
 * [Jakarta Jaxrs  Sample](https://github.com/hantsy/jakartaee-jaxrs-sample)
 
 
@@ -46,3 +44,5 @@ There is  [a comprehensive setup guide](./docs/README.md) availabler for the Jak
 * [Deploying to Payara Server Using the Maven Cargo Plugin](https://blog.payara.fish/deploying-to-payara-server-using-the-maven-cargo-plugin)  by Payara Blog
 * [Cargo Maven2 Plugin for Glassfish v5](https://codehaus-cargo.github.io/cargo/GlassFish+5.x.html)
 * [Video course on efficient enterprise testing](https://blog.sebastian-daschner.com/entries/efficient-testing-video-course)
+* [Testing Java EE 7 Applications in Docker with Arquillian-Cube](https://blogs.oracle.com/developers/testing-java-ee-7-applications-in-docker-with-arquillian-cube)
+* [Testing HTML and JSF-Based UIs with Arquillian](https://blogs.oracle.com/javamagazine/testing-html-and-jsf-based-uis-with-arquillian)
