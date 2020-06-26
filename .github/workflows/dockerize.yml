@@ -20,5 +20,12 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: Build Docker images
         run: |
-         ./build-docker.sh
-        shell: bash
+          # see: https://www.prestonlamb.com/blog/creating-a-docker-image-with-github-actions
+           docker build -t hantsy/jakartaee8-starter-payara -f ./Dockerfile.payara .
+           docker build -t hantsy/jakartaee8-starter-wildfly -f ./Dockerfile.wildfly .
+           docker build -t hantsy/jakartaee8-starter-openliberty -f ./Dockerfile.openliberty .
+      - name: Pushing Docker images
+        run: |
+           docker push hantsy/jakartaee8-starter-payara
+           docker push hantsy/jakartaee8-starter-wildfly
+           docker push hantsy/jakartaee8-starter-openliberty
