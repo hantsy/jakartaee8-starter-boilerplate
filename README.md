@@ -1,5 +1,17 @@
 #  Jakarta EE 8 Starter Boilerplate 
 
+![compile and build](https://github.com/hantsy/jakartaee8-starter/workflows/build/badge.svg)
+![Dockerize applications](https://github.com/hantsy/jakartaee8-starter/workflows/dockerize/badge.svg)
+![Integration Test with Arquillian Glassfish Embedded Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-glassfish-embedded/badge.svg)
+![Integration Test with Arquillian Glassfish Embedded Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-glassfish-managed/badge.svg)
+![Integration Test with Arquillian OpenLiberty Managed Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-liberty-managed/badge.svg)
+![Integration Test with Arquillian Payara Embedded Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-payara-embedded/badge.svg)
+![Integration Test with Arquillian Payara Managed Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-payara-managed/badge.svg)
+![Integration Test with Arquillian Payara Micro Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-payara-micro/badge.svg)
+![Integration Test with Arquillian WildFly Embedded Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-wildfly-embedded/badge.svg)
+![Integration Test with Arquillian WildFly Managed Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-wildfly-managed/badge.svg)
+
+
 ## What is it?
 
  [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter) is a boilerplate project to help you to bootstrap a new  Java EE 8/Jakarta EE 8 application in seconds.
