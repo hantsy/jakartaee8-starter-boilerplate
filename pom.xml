@@ -49,7 +49,7 @@
         <jersey.version>2.31</jersey.version>
 
         <!-- Payara server -->
-        <payara.version>5.2020.2</payara.version>
+        <payara.version>5.2020.3</payara.version>
         <arquillian-payara.version>2.3.1</arquillian-payara.version>
 
         <!-- Wildfly server -->
