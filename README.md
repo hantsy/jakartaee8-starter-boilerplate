@@ -58,3 +58,4 @@ There is  [a comprehensive setup guide](./docs/README.md) availabler for the Jak
 * [Video course on efficient enterprise testing](https://blog.sebastian-daschner.com/entries/efficient-testing-video-course)
 * [Testing Java EE 7 Applications in Docker with Arquillian-Cube](https://blogs.oracle.com/developers/testing-java-ee-7-applications-in-docker-with-arquillian-cube)
 * [Testing HTML and JSF-Based UIs with Arquillian](https://blogs.oracle.com/javamagazine/testing-html-and-jsf-based-uis-with-arquillian)
+* [Jakarta EE & Wildfly Running on Kubernetes](https://dzone.com/articles/jakarta-ee-amp-wildfly-running-on-kubernetes#)

@@ -53,7 +53,7 @@
         <arquillian-payara.version>2.3.1</arquillian-payara.version>
 
         <!-- Wildfly server -->
-        <wildfly.version>20.0.0.Final</wildfly.version>
+        <wildfly.version>20.0.1.Final</wildfly.version>
         <wildfly-maven-plugin.version>2.1.0.Beta1</wildfly-maven-plugin.version>
         <wildfly-arquillian.version>3.0.0.Final</wildfly-arquillian.version>
         <!-- websockets-jsr and resteasy for client, aligned with Wildfly version. -->
@@ -61,7 +61,7 @@
         <resteasy.version>4.5.8.Final</resteasy.version>
 
         <!-- OpenLiberty server -->
-        <liberty.runtime.version>20.0.0.6</liberty.runtime.version>
+        <liberty.runtime.version>20.0.0.10</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.2.4</liberty-maven-plugin.version>
