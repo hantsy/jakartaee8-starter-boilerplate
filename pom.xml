@@ -61,7 +61,7 @@
         <resteasy.version>4.5.8.Final</resteasy.version>
 
         <!-- OpenLiberty server -->
-        <liberty.runtime.version>20.0.0.10</liberty.runtime.version>
+        <liberty.runtime.version>20.0.0.12</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.3.2</liberty-maven-plugin.version>
