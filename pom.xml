@@ -66,7 +66,7 @@
         <derby.version>10.15.2.0</derby.version>
         <liberty-maven-plugin.version>3.3.3</liberty-maven-plugin.version>
         <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
-        <cxf.version>3.4.1</cxf.version>
+        <cxf.version>3.4.2</cxf.version>
 
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
