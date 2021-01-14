@@ -58,7 +58,7 @@
         <wildfly-arquillian.version>3.0.1.Final</wildfly-arquillian.version>
         <!-- websockets-jsr and resteasy for client, aligned with Wildfly version. -->
         <undertow-websockets-jsr.version>2.1.3.Final</undertow-websockets-jsr.version>
-        <resteasy.version>4.5.8.Final</resteasy.version>
+        <resteasy.version>4.6.0.Final</resteasy.version>
 
         <!-- OpenLiberty server -->
         <liberty.runtime.version>20.0.0.12</liberty.runtime.version>
