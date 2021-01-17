@@ -59,3 +59,6 @@ There is  [a comprehensive setup guide](./docs/README.md) availabler for the Jak
 * [Testing Java EE 7 Applications in Docker with Arquillian-Cube](https://blogs.oracle.com/developers/testing-java-ee-7-applications-in-docker-with-arquillian-cube)
 * [Testing HTML and JSF-Based UIs with Arquillian](https://blogs.oracle.com/javamagazine/testing-html-and-jsf-based-uis-with-arquillian)
 * [Jakarta EE & Wildfly Running on Kubernetes](https://dzone.com/articles/jakarta-ee-amp-wildfly-running-on-kubernetes#)
+* [Building Self-Contained and Configurable Java EE Applications](http://dplatz.de/blog/2018/self-contained-jee-app.html)
+* [Switching between data sources when using @DataSourceDefinition](http://jdevelopment.nl/switching-data-sources-datasourcedefinition/)
+* [The state of @DataSourceDefinition in Java EE](https://henk53.wordpress.com/2012/06/30/the-state-of-datasourcedefinition-in-java-ee/)
