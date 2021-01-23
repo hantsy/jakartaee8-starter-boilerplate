@@ -744,6 +744,9 @@
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>${maven-failsafe-plugin.version}</version>
                         <configuration>
+                            <environmentVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/payara5</GLASSFISH_HOME>
+                            </environmentVariables>
                             <systemPropertyVariables>
                                 <payara.home>${project.build.directory}/payara5</payara.home>
                             </systemPropertyVariables>
