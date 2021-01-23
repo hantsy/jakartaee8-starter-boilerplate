@@ -694,6 +694,7 @@
             <id>arq-payara-managed</id>
             <properties>
                 <skipTests>false</skipTests>
+                <payara.home>${project.build.directory}/payara5</payara.home>     
             </properties>
             <dependencies>
 
