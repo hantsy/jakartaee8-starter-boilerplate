@@ -50,7 +50,7 @@
 
         <!-- Payara server -->
         <payara.version>5.2020.7</payara.version>
-        <arquillian-payara.version>2.3.1</arquillian-payara.version>
+        <arquillian-payara.version>2.3.3</arquillian-payara.version>
 
         <!-- Wildfly server -->
         <wildfly.version>22.0.0.Final</wildfly.version>
