@@ -56,9 +56,17 @@
 	</container>
 
 	<!-- Configuration to be used when the WildFly managed profile is active -->
-	<!--<container qualifier="wildfly-managed">
+	<container qualifier="wildfly-managed">
 		<configuration>
-			<property name="jbossHome">${jbossHome:target/wildfly-18.0.1.Final}</property>
+			<!--<property name="jbossHome">${jbossHome:target/wildfly-18.0.1.Final}</property>-->
+			<property name="serverConfig">standalone-full.xml</property>
 		</configuration>
-	</container>-->
+	</container>
+
+	<container qualifier="wildfly-embedded">
+		<configuration>
+			<!--<property name="jbossHome">${jbossHome:target/wildfly-18.0.1.Final}</property>-->
+			<property name="serverConfig">standalone-full.xml</property>
+		</configuration>
+	</container>
 </arquillian>
