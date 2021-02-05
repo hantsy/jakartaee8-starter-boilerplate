@@ -29,8 +29,20 @@
     <httpEndpoint id="defaultHttpEndpoint"
                   httpPort="9080"
                   httpsPort="9443" />
-                  
+
     <!-- Automatically expand WAR files and EAR files -->
     <applicationManager autoExpand="true"/>
+
+    <!-- Derby Library Configuration -->
+    <library id="derbyJDBCLib">
+        <fileset dir="${shared.resource.dir}" includes="derby*.jar"/>
+    </library>
+
+    <!-- Datasource Configuration -->
+    <!-- remove jndiName="" to serve java:comp/DefaultDataSource for Java EE 7 or above -->
+    <dataSource id="DefaultDataSource">
+        <jdbcDriver libraryRef="derbyJDBCLib" />
+        <properties.derby.embedded databaseName="ExampleDb" createDatabase="create"/>
+    </dataSource>
 
 </server>

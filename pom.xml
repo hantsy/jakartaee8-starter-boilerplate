@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
@@ -221,7 +222,7 @@
                             </excludes>
                             <reportsDirectory>
                                 ${project.build.directory}/test-reports/unit
-</reportsDirectory>
+                            </reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -248,7 +249,7 @@
                             </includes>
                             <reportsDirectory>
                                 ${project.build.directory}/test-reports/it
-</reportsDirectory>
+                            </reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -420,7 +421,7 @@
                                 </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources
-</outputDirectory>
+                            </outputDirectory>
                         </configuration>
                     </plugin>
                     <!-- Enable liberty-maven-plugin -->
@@ -592,6 +593,9 @@
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/glassfish5</GLASSFISH_HOME>
                             </environmentVariables>
+                            <systemPropertyVariables>
+                                <arquillian.launch>glassfish-managed</arquillian.launch>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -1075,7 +1079,7 @@
                         </includes>
                         <targetPath>
                             ${project.build.directory}/wlp/usr/servers/defaultServer
-</targetPath>
+                        </targetPath>
                     </testResource>
                 </testResources>
                 <plugins>
@@ -1084,6 +1088,26 @@
                         <artifactId>maven-dependency-plugin</artifactId>
                         <version>${maven-dependency-plugin.version}</version>
                         <executions>
+                            <execution>
+                                <id>copy</id>
+                                <phase>process-test-resources</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.apache.derby</groupId>
+                                            <artifactId>derby</artifactId>
+                                            <version>${derby.version}</version>
+                                            <type>jar</type>
+                                            <overWrite>false</overWrite>
+                                        </artifactItem>
+                                    </artifactItems>
+                                    <outputDirectory>${project.build.directory}/wlp/usr/shared/resources
+                                    </outputDirectory>
+                                </configuration>
+                            </execution>
                             <execution>
                                 <id>unpack</id>
                                 <phase>pre-integration-test</phase>
@@ -1124,7 +1148,7 @@
                             <systemPropertyVariables>
                                 <arquillian.launch>liberty-managed</arquillian.launch>
                                 <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties
-</java.util.logging.config.file>
+                                </java.util.logging.config.file>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -1190,7 +1214,7 @@
                             <systemPropertyVariables>
                                 <arquillian.launch>liberty-remote</arquillian.launch>
                                 <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties
-</java.util.logging.config.file>
+                                </java.util.logging.config.file>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
