@@ -8,6 +8,10 @@
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 
+      <!-- for  Glassfish/Payara/EclipseLink -->
+      <property name="eclipselink.logging.level.sql" value="FINE"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+
       <!-- for WildFly/Hibernate -->
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
