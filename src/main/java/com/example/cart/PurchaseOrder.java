@@ -13,7 +13,7 @@ public class PurchaseOrder implements Serializable {
     private Long id;
     private String customerId;
     
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST})
     List<OrderItem> items = new ArrayList<>();
     
     public Long getId() {
@@ -60,5 +60,10 @@ public class PurchaseOrder implements Serializable {
                 ", customerId='" + customerId + '\'' +
                 ", items=" + items +
                 '}';
+    }
+    
+    public void addItem(OrderItem item) {
+        item.setOrder(this);
+        this.items.add(item);
     }
 }
