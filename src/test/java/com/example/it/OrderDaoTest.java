@@ -7,8 +7,8 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -19,9 +19,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import javax.transaction.UserTransaction;
-import java.lang.ref.WeakReference;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +36,7 @@ public class OrderDaoTest {
                 .addClass(OrderDao.class)
                 .addClass(PurchaseOrder.class)
                 .addClass(OrderItem.class)
+                .addClass(DbUtil.class)
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -55,6 +53,14 @@ public class OrderDaoTest {
     @Inject
     UserTransaction utx;
     
+    private DbUtil dbUtil;
+    
+    @Before()
+    public void setup() throws SQLException {
+        dbUtil = new DbUtil(dataSource);
+        dbUtil.clearTables();
+    }
+    
     @Test
     public void testNewOrder() throws Exception {
         utx.begin();
@@ -67,21 +73,12 @@ public class OrderDaoTest {
         orderDao.store(po);
         utx.commit();
         
-        assertCount("PurchaseOrder", 1);
-        assertCount("OrderItem", 2);
+        dbUtil.assertCount("PurchaseOrder", 1);
+        dbUtil.assertCount("OrderItem", 2);
         PurchaseOrder saved = entityManager.find(PurchaseOrder.class, po.getId());
         assertNotNull(saved);
         assertEquals("test", saved.getCustomerId());
     }
     
-    public void assertCount(String tableName, int count) throws SQLException {
-        Connection conn = dataSource.getConnection();
-        ResultSet rs = conn.prepareStatement("select count(*) from " + tableName + "")
-                .executeQuery();
-        int rowCount = 0;
-        if (rs.next()) {
-            rowCount = rs.getInt(1);
-        }
-        assertEquals(count, rowCount);
-    }
+    
 }
