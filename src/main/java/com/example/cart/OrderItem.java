@@ -75,7 +75,6 @@ public class OrderItem implements Serializable {
     public String toString() {
         return "OrderItem{" +
                 "id=" + id +
-                ", order=" + order +
                 ", productName='" + productName + '\'' +
                 ", num=" + num +
                 '}';
