@@ -82,24 +82,24 @@ public class BasketEjbTest {
     public void testNewOrder() throws Exception {
         LOGGER.log(Level.INFO, " Running test:: Basket :: new order... ");
         basket.newOrder();
-        assertCount("PurchaseOrder",0);
-        assertCount("OrderItem",0);
+        assertCount("PurchaseOrder", 0);
+        assertCount("OrderItem", 0);
         
         LOGGER.log(Level.INFO, " Running test:: Basket :: add products to basket... ");
         basket.add("Apple", 4);
         basket.add("Orange", 5);
-        assertCount("PurchaseOrder",0);
-        assertCount("OrderItem",0);
+        assertCount("PurchaseOrder", 0);
+        assertCount("OrderItem", 0);
         
         LOGGER.log(Level.INFO, " Running test:: Basket :: checkout... ");
         basket.checkout();
-        assertCount("PurchaseOrder",1);
-        assertCount("OrderItem",2);
+        assertCount("PurchaseOrder", 1);
+        assertCount("OrderItem", 2);
     }
     
     public void assertCount(String tableName, int count) throws SQLException {
         Connection conn = dataSource.getConnection();
-        ResultSet rs = conn.prepareStatement("select count(*) from "+tableName+"")
+        ResultSet rs = conn.prepareStatement("select count(*) from " + tableName + "")
                 .executeQuery();
         int rowCount = 0;
         if (rs.next()) {

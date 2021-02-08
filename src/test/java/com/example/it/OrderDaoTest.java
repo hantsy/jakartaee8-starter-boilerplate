@@ -8,6 +8,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -18,6 +19,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import javax.transaction.UserTransaction;
+import java.lang.ref.WeakReference;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,13 +34,13 @@ public class OrderDaoTest {
     private final static Logger LOGGER = Logger.getLogger(OrderDaoTest.class.getName());
     
     @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
+    public static WebArchive createDeployment() {
+        return ShrinkWrap.create(WebArchive.class, "test-OrderDaoTest.war")
                 .addClass(OrderDao.class)
                 .addClass(PurchaseOrder.class)
                 .addClass(OrderItem.class)
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
     
     @EJB
