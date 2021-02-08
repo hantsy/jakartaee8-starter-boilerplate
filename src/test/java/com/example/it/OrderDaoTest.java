@@ -19,7 +19,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import javax.transaction.UserTransaction;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,9 +55,11 @@ public class OrderDaoTest {
     private DbUtil dbUtil;
     
     @Before()
-    public void setup() throws SQLException {
+    public void setup() throws Exception {
+        utx.begin();
         dbUtil = new DbUtil(dataSource);
         dbUtil.clearTables();
+        utx.commit();
     }
     
     @Test
