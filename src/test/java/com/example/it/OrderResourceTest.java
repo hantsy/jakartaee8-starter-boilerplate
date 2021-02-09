@@ -39,6 +39,7 @@ public class OrderResourceTest {
                 .addClass(OrderItem.class)
                 .addClass(SampleDataGenerator.class)
                 .addClasses(OrderResource.class, JaxrsActivator.class)
+                .addClasses(OrderDto.class, OrderItemDto.class, OrderDtoAssembler.class, OrderItemDtoAssembler.class)
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 // Enable CDI
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");

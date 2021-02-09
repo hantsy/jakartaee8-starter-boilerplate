@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import static java.util.stream.Collectors.toList;
 import static javax.ws.rs.core.Response.ok;
 
 @Path("orders")
@@ -23,6 +24,6 @@ public class OrderResource {
     @Path("")
     @Produces(MediaType.APPLICATION_JSON)
     public Response allOrders() {
-        return ok(this.orderDao.findAll()).build();
+        return ok(this.orderDao.findAll().stream().map(OrderDtoAssembler::toDto).collect(toList())).build();
     }
 }
