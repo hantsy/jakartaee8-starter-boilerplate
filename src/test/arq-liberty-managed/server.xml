@@ -9,47 +9,47 @@
     </featureManager>
 
     <!-- This template enables security. To get the full use of all the capabilities, a keystore and user registry are required. -->
-    
+
     <!-- For the keystore, default keys are generated and stored in a keystore. To provide the keystore password, generate an 
          encoded password using bin/securityUtility encode and add it below in the password attribute of the keyStore element. 
          Then uncomment the keyStore element. -->
-    <!--
-    <keyStore password=""/> 
-    -->
-    
+
+    <!--<keyStore password="{xor}PDc+MTg6Nis="/>--> <!--chanageit->
+
+
     <!--For a user registry configuration, configure your user registry. For example, configure a basic user registry using the
         basicRegistry element. Specify your own user name below in the name attribute of the user element. For the password, 
         generate an encoded password using bin/securityUtility encode and add it in the password attribute of the user element. 
         Then uncomment the user element. -->
-    <basicRegistry id="basic" realm="BasicRealm"> 
-        <!-- <user name="yourUserName" password="" />  --> 
+    <basicRegistry id="basic" realm="BasicRealm">
+        <!--<user name="yourUserName" password="" />-->
     </basicRegistry>
-    
+
     <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
     <httpEndpoint id="defaultHttpEndpoint"
                   httpPort="9080"
-                  httpsPort="9443" />
+                  httpsPort="9443"/>
 
-    <applicationMonitor updateTrigger="mbean" />
+    <applicationMonitor updateTrigger="mbean"/>
     <messagingEngine>
-        <queue id="HelloQueue" />
+        <queue id="HelloQueue"/>
     </messagingEngine>
 
-    <jmsQueueConnectionFactory jndiName="java:comp/DefaultJMSConnectionFactory">
-        <properties.wasJms remoteServerAddress="localhost:7276:BootStrapBasicMessaging" />
-    </jmsQueueConnectionFactory>
+    <!--<jmsQueueConnectionFactory id="DefaultJMSConnectionFactory">
+        <properties.wasJms remoteServerAddress="localhost:7276:BootStrapBasicMessaging"/>
+    </jmsQueueConnectionFactory>-->
 
-    <jmsQueue id="HELLO_QUEUE" jndiName="java:app/jms/HelloQueue">
-        <properties.wasJms queueName="HelloQueue" />
+    <jmsQueue id="jms/HelloQueue" jndiName="java:app/jms/HelloQueue">
+        <properties.wasJms queueName="HelloQueue"/>
     </jmsQueue>
 
     <jmsActivationSpec id="test/HelloConsumer">
         <properties.wasJms
-                destinationRef="HELLO_QUEUE"
+                destinationRef="jms/HelloQueue"
                 destinationType="javax.jms.Queue"
-                remoteServerAddress="localhost:7276:BootstrapBasicMessaging"/>
+        />  <!--remoteServerAddress="localhost:7276:BootstrapBasicMessaging"-->
     </jmsActivationSpec>
-                  
+
     <!-- Automatically expand WAR files and EAR files -->
     <applicationManager autoExpand="true"/>
 

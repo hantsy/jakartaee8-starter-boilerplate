@@ -6,9 +6,12 @@ import javax.inject.Inject;
 import javax.jms.Destination;
 import javax.jms.JMSContext;
 import java.time.Instant;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @ApplicationScoped
 public class HelloSender {
+    private static final Logger LOGGER = Logger.getLogger(HelloSender.class.getName());
     
     @Inject
     JMSContext context;
@@ -17,6 +20,8 @@ public class HelloSender {
     private Destination helloQueue;
     
     public void sayHellFromJms() {
-        context.createProducer().send(helloQueue, "Hello JMS at " + Instant.now());
+        String msg = "Hello JMS at " + Instant.now();
+        LOGGER.log(Level.INFO, "sending message from HelloSender: {0}", msg);
+        context.createProducer().send(helloQueue, msg);
     }
 }

@@ -25,7 +25,7 @@ public class HelloConsumer implements MessageListener {
     @Override
     public void onMessage(Message message) {
         try {
-            LOGGER.log(Level.FINEST, "received message: {0}", message.getBody(String.class));
+            LOGGER.log(Level.INFO, "received message: {0}", message.getBody(String.class));
         } catch (JMSException e) {
             e.printStackTrace();
         }
