@@ -1,7 +1,7 @@
 package com.example.it;
 
-import com.example.HelloSender;
-import com.example.JmsResources;
+import com.example.jms.HelloSender;
+import com.example.jms.JmsResources;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;

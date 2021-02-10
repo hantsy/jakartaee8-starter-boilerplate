@@ -1,4 +1,4 @@
-package com.example;
+package com.example.jms;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;

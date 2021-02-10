@@ -1,4 +1,4 @@
-package com.example;
+package com.example.jms;
 
 
 import javax.ejb.ActivationConfigProperty;
