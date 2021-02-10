@@ -14,10 +14,10 @@
          encoded password using bin/securityUtility encode and add it below in the password attribute of the keyStore element. 
          Then uncomment the keyStore element. -->
 
-    <!--<keyStore password="{xor}PDc+MTg6Nis="/>--> <!--chanageit->
+    <!--<keyStore password="{xor}PDc+MTg6Nis="/>--> <!--chanageit-->
 
 
-    <!--For a user registry configuration, configure your user registry. For example, configure a basic user registry using the
+    <!-- For a user registry configuration, configure your user registry. For example, configure a basic user registry using the
         basicRegistry element. Specify your own user name below in the name attribute of the user element. For the password, 
         generate an encoded password using bin/securityUtility encode and add it in the password attribute of the user element. 
         Then uncomment the user element. -->
