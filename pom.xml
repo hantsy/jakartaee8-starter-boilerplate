@@ -437,8 +437,6 @@
             </build>
         </profile>
         <profile>
-            <!-- JAXRS tests `GreetingResourceTest` failed with aruqillian glassfish embedded container -->
-            <!-- See: https://github.com/arquillian/arquillian-container-glassfish/issues/62 -->
             <id>arq-glassfish-embedded</id>
             <properties>
                 <skipTests>false</skipTests>
@@ -477,6 +475,20 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <arquillian.launch>glassfish-embedded</arquillian.launch>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>arq-glassfish-managed</id>
@@ -887,6 +899,8 @@
                                 <JBOSS_HOME>${project.build.directory}/wildfly-${wildfly.version}</JBOSS_HOME>
                             </environmentVariables>
                             <systemPropertyVariables>
+                                <arquillian.launch>wildfly-managed</arquillian.launch>
+                                <serverConfig>standalone-full.xml</serverConfig>
                                 <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                             </systemPropertyVariables>
                         </configuration>
@@ -1001,6 +1015,7 @@
                                 <JBOSS_HOME>${project.build.directory}/wildfly-${wildfly.version}</JBOSS_HOME>
                             </environmentVariables>
                             <systemPropertyVariables>
+                                <arquillian.launch>wildfly-embedded</arquillian.launch>
                                 <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                             </systemPropertyVariables>
                         </configuration>
