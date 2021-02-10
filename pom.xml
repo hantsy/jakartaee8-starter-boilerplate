@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
@@ -61,8 +62,11 @@
         <!-- OpenLiberty server -->
         <liberty.runtime.version>21.0.0.1</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
-        <derby.version>10.15.2.0</derby.version>
-        <liberty-maven-plugin.version>3.3.3</liberty-maven-plugin.version>
+        <!-- Root exception is java.sql.SQLNonTransientException:
+        DSRA4000E: No implementations of org.apache.derby.jdbc.EmbeddedXADataSource40 are found
+        for dataSource[DefaultDataSource] with library derbyJDBCLib.-->
+        <derby.version>10.14.2.0</derby.version>
+        <liberty-maven-plugin.version>3.3.4</liberty-maven-plugin.version>
         <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
         <cxf.version>3.4.2</cxf.version>
 
@@ -221,7 +225,7 @@
                             </excludes>
                             <reportsDirectory>
                                 ${project.build.directory}/test-reports/unit
-</reportsDirectory>
+                            </reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -248,7 +252,7 @@
                             </includes>
                             <reportsDirectory>
                                 ${project.build.directory}/test-reports/it
-</reportsDirectory>
+                            </reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -420,7 +424,7 @@
                                 </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources
-</outputDirectory>
+                            </outputDirectory>
                         </configuration>
                     </plugin>
                     <!-- Enable liberty-maven-plugin -->
@@ -441,22 +445,10 @@
             </properties>
             <dependencies>
                 <!-- Jersey Client -->
-                <!--<dependency>
-                    <groupId>org.glassfish.jersey.media</groupId>
-                    <artifactId>jersey-media-sse</artifactId>
-                    <version>${jersey.version}</version>
-                    <scope>test</scope>
-                </dependency>
                 <dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
                     <artifactId>jersey-media-json-binding</artifactId>
                     <version>${jersey.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.json</artifactId>
-                    <version>1.0.4</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -470,7 +462,7 @@
                     <artifactId>jersey-client</artifactId>
                     <version>${jersey.version}</version>
                     <scope>test</scope>
-                </dependency>-->
+                </dependency>
 
                 <dependency>
                     <groupId>org.glassfish.main.extras</groupId>
@@ -485,23 +477,6 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${maven-failsafe-plugin.version}</version>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/it/GreetingResourceTest*</exclude>
-                            </excludes>
-                            <systemPropertyVariables>
-                                <arquillian.launch>glassfish-embedded</arquillian.launch>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
         <profile>
             <id>arq-glassfish-managed</id>
@@ -595,6 +570,9 @@
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/glassfish5</GLASSFISH_HOME>
                             </environmentVariables>
+                            <systemPropertyVariables>
+                                <arquillian.launch>glassfish-managed</arquillian.launch>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -1081,7 +1059,7 @@
                         </includes>
                         <targetPath>
                             ${project.build.directory}/wlp/usr/servers/defaultServer
-</targetPath>
+                        </targetPath>
                     </testResource>
                 </testResources>
                 <plugins>
@@ -1090,6 +1068,26 @@
                         <artifactId>maven-dependency-plugin</artifactId>
                         <version>${maven-dependency-plugin.version}</version>
                         <executions>
+                            <execution>
+                                <id>copy</id>
+                                <phase>process-test-resources</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.apache.derby</groupId>
+                                            <artifactId>derby</artifactId>
+                                            <version>${derby.version}</version>
+                                            <type>jar</type>
+                                            <overWrite>false</overWrite>
+                                        </artifactItem>
+                                    </artifactItems>
+                                    <outputDirectory>${project.build.directory}/wlp/usr/shared/resources
+                                    </outputDirectory>
+                                </configuration>
+                            </execution>
                             <execution>
                                 <id>unpack</id>
                                 <phase>pre-integration-test</phase>
@@ -1130,7 +1128,7 @@
                             <systemPropertyVariables>
                                 <arquillian.launch>liberty-managed</arquillian.launch>
                                 <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties
-</java.util.logging.config.file>
+                                </java.util.logging.config.file>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -1196,7 +1194,7 @@
                             <systemPropertyVariables>
                                 <arquillian.launch>liberty-remote</arquillian.launch>
                                 <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties
-</java.util.logging.config.file>
+                                </java.util.logging.config.file>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
