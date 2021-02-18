@@ -1214,6 +1214,12 @@
             </build>
         </profile>
     </profiles>
+    <repositories>
+        <repository>
+            <id>oss-sonatype</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
     <reporting>
         <plugins>
             <plugin>
