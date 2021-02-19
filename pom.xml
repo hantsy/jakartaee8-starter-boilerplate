@@ -60,7 +60,7 @@
         <resteasy.version>4.6.0.Final</resteasy.version>
 
         <!-- OpenLiberty server -->
-        <liberty.runtime.version>21.0.0.1</liberty.runtime.version>
+        <liberty.runtime.version>21.0.0.2</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <!-- Root exception is java.sql.SQLNonTransientException:
         DSRA4000E: No implementations of org.apache.derby.jdbc.EmbeddedXADataSource40 are found
