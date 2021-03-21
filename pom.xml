@@ -52,7 +52,7 @@
         <arquillian-payara.version>2.3.3</arquillian-payara.version>
 
         <!-- Wildfly server -->
-        <wildfly.version>22.0.1.Final</wildfly.version>
+        <wildfly.version>23.0.0.Final</wildfly.version>
         <wildfly-maven-plugin.version>2.1.0.Beta1</wildfly-maven-plugin.version>
         <wildfly-arquillian.version>3.0.1.Final</wildfly-arquillian.version>
         <!-- websockets-jsr and resteasy for client, aligned with Wildfly version. -->
@@ -60,7 +60,7 @@
         <resteasy.version>4.6.0.Final</resteasy.version>
 
         <!-- OpenLiberty server -->
-        <liberty.runtime.version>21.0.0.2</liberty.runtime.version>
+        <liberty.runtime.version>21.0.0.3</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <!-- Root exception is java.sql.SQLNonTransientException:
         DSRA4000E: No implementations of org.apache.derby.jdbc.EmbeddedXADataSource40 are found
@@ -68,7 +68,7 @@
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.3.4</liberty-maven-plugin.version>
         <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
-        <cxf.version>3.4.2</cxf.version>
+        <cxf.version>3.4.3</cxf.version>
 
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
