@@ -32,11 +32,11 @@ Execute the following command to build a clean package locally.
 ```bash
 mvn clean package
 ```
-More details of testing and further deployments on application severs, check the [docs](./docs/README.md).
+More details of testing and further deployments on application severs, check the [docs](https://hantsy.github.io/jakartaee8-starter-boilerplate/).
 
 ## Docs
 
-There is  [a comprehensive setup guide](./docs/README.md) availabler for the Jakarta EE newbies, including:
+There is  [a comprehensive setup guide](https://hantsy.github.io/jakartaee8-starter-boilerplate/) available for the Jakarta EE newbies, including:
 
 1. Setup local development environment with the popular IDEs, such as:
    * Apache NetBeans IDE
@@ -44,7 +44,7 @@ There is  [a comprehensive setup guide](./docs/README.md) availabler for the Jak
    * IntelliJ IDEA.
 2. Deploy and Run application on the popular application servers, such as:
    * Glassfish
-   * Wildfly
+   * WildFly
    * Open Liberty
 3. Testing Jakarta components using Junit and JBoss Arquillian.
 4. Publish application into production environment.
