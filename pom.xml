@@ -25,7 +25,7 @@
         <maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version>
 
         <!-- Cargo maven plugin -->
-        <cargo-maven2-plugin.version>1.9.0</cargo-maven2-plugin.version>
+        <cargo-maven3-plugin.version>1.9.0</cargo-maven3-plugin.version>
 
         <!-- Jakarta EE API -->
         <jakartaee-api.version>8.0.0</jakartaee-api.version>
@@ -301,8 +301,8 @@
                     </plugin>
                     <plugin>
                         <groupId>org.codehaus.cargo</groupId>
-                        <artifactId>cargo-maven2-plugin</artifactId>
-                        <version>${cargo-maven2-plugin.version}</version>
+                        <artifactId>cargo-maven3-plugin</artifactId>
+                        <version>${cargo-maven3-plugin.version}</version>
                         <configuration>
                             <container>
                                 <containerId>glassfish5x</containerId>
@@ -338,7 +338,7 @@
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.cargo</groupId>
-                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <artifactId>cargo-maven3-plugin</artifactId>
                         <configuration>
                             <container>
                                 <containerId>glassfish5x</containerId>
