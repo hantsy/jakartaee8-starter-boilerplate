@@ -683,12 +683,12 @@
             <dependencies>
 
                 <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
-                <!--<dependency>
+                <!-- Required since arquillian-payara 2.4 -->     
+                <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>payara-client-ee8</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
-                    <scope>test</scope>
-                </dependency>-->
+                    <version>${arquillian-payara.version}</version>
+                </dependency>
 
                 <!-- Payara Server Container adaptor -->
                 <dependency>
