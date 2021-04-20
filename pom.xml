@@ -45,7 +45,7 @@
         <!-- Glassfish server -->
         <glassfish.version>5.1.0</glassfish.version>
         <arquillian-glassfish.version>1.0.2</arquillian-glassfish.version>
-        <jersey.version>2.33</jersey.version>
+        <jersey.version>2.34</jersey.version>
 
         <!-- Payara server -->
         <payara.version>5.2021.2</payara.version>
