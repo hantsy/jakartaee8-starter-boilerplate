@@ -11,7 +11,6 @@
 ![Integration Test with Arquillian WildFly Embedded Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-wildfly-embedded/badge.svg)
 ![Integration Test with Arquillian WildFly Managed Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-wildfly-managed/badge.svg)
 
-> Failure on Payara/GlassFish, see https://github.community/t/arquillian-test-against-payara-glasfish-failed-due-to-4848-port-is-already-in-use/174879
 
 ## What is it?
 
