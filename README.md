@@ -11,7 +11,6 @@
 
 ![Integration Test with Arquillian Payara Embedded Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-payara-embedded/badge.svg)
 ![Integration Test with Arquillian Payara Managed Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-payara-managed/badge.svg)
-
 ![Integration Test with Arquillian Payara Micro Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-payara-micro/badge.svg)
 
 ![Integration Test with Arquillian WildFly Embedded Container](https://github.com/hantsy/jakartaee8-starter/workflows/it-with-arq-wildfly-embedded/badge.svg)
