@@ -768,6 +768,11 @@
                 <skipTests>false</skipTests>
             </properties>
             <dependencies>
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                    <version>${arquillian-payara.version}</version>
+                </dependency>     
                 <!-- Payara Micro Managed Container Adaptor -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
