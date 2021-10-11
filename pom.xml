@@ -53,7 +53,7 @@
 
         <!-- Wildfly server -->
         <wildfly.version>25.0.0.Final</wildfly.version>
-        <wildfly-maven-plugin.version>2.1.0.Beta1</wildfly-maven-plugin.version>
+        <wildfly-maven-plugin.version>2.1.0.Final</wildfly-maven-plugin.version>
         <!-- Only WildFly embedded adapter 4.0.0.Alpha1 works with WildFly 24+ -->
         <wildfly-arquillian.version>4.0.0.Alpha3</wildfly-arquillian.version>
         <!-- websockets-jsr and resteasy for client, aligned with Wildfly version. -->
