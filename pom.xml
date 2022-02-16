@@ -35,7 +35,7 @@
 
         <!-- Test Utilities -->
         <junit.version>4.13.2</junit.version>
-        <mockito.version>4.2.0</mockito.version>
+        <mockito.version>4.3.0</mockito.version>
         <json-path.version>2.6.0</json-path.version>
         <awaitility.version>4.1.1</awaitility.version>
         <hamcrest.version>2.2</hamcrest.version>
@@ -316,7 +316,7 @@
                                 <properties>
                                     <cargo.glassfish.domain.name>${glassfish.domainName}</cargo.glassfish.domain.name>
                                     <cargo.remote.timeout>600000</cargo.remote.timeout>
-                                    <cargo.remote.password></cargo.remote.password>
+                                    <cargo.remote.password/>
                                 </properties>
                             </configuration>
                         </configuration>
