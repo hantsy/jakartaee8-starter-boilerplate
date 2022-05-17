@@ -907,7 +907,6 @@
                             <systemPropertyVariables>
                                 <arquillian.launch>wildfly-managed</arquillian.launch>
                                 <serverConfig>standalone-full.xml</serverConfig>
-                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -950,7 +949,6 @@
                         <configuration>
                             <systemPropertyVariables>
                                 <arquillian.launch>wildfly-remote</arquillian.launch>
-                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -1022,7 +1020,6 @@
                             </environmentVariables>
                             <systemPropertyVariables>
                                 <arquillian.launch>wildfly-embedded</arquillian.launch>
-                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
