@@ -52,7 +52,7 @@
         <arquillian-payara.version>2.4.6</arquillian-payara.version>
 
         <!-- Wildfly server -->
-        <wildfly.version>26.1.2.Final</wildfly.version>
+        <wildfly.version>26.1.3.Final</wildfly.version>
         <wildfly-maven-plugin.version>3.0.2.Final</wildfly-maven-plugin.version>
         <!-- Only WildFly embedded adapter 4.0.0.Alpha1 works with WildFly 24+ -->
         <wildfly-arquillian.version>4.0.0.Alpha4</wildfly-arquillian.version>
