@@ -391,7 +391,7 @@
 
                             <!-- or set a wildfly.id property to add a server in settings.xml -->
                             <!--<id>wildfly-svr</id> -->
-
+                            <serverConfig>standalone-full.xml</serverConfig>
                         </configuration>
                     </plugin>
                 </plugins>
