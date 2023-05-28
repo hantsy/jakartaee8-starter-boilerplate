@@ -5,7 +5,7 @@ services:
 
 # see: https://hub.docker.com/r/payara/server-full/
   payara:
-    image: payara/server-full
+    image: payara/server-full:5.2022.5-jdk11
     ports:
       - "8080:8080"
       - "8181:8181" # HTTPS listener
@@ -20,7 +20,7 @@ services:
 
 # see: https://hub.docker.com/r/jboss/wildfly/
   wildfly:
-    image: jboss/wildfly
+    image: quay.io/wildfly/wildfly:26.1.2.Final-jdk11
     ports:
       - "8080:8080"
       - "9990:9990" # admin listener
@@ -32,7 +32,7 @@ services:
       
  # see: https://hub.docker.com/_/open-liberty
   openliberty:
-    image: open-liberty:full
+    image: openliberty/open-liberty:22.0.0.13-kernel-slim-java11-openj9-ubi
     ports:
       - "9080:9080"
       - "9443:9443" # HTTPS listener
