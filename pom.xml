@@ -40,7 +40,7 @@
         <awaitility.version>4.2.0</awaitility.version>
         <hamcrest.version>2.2</hamcrest.version>
         <jsonassert.version>1.5.1</jsonassert.version>
-        <assertj.version>3.23.1</assertj.version>
+        <assertj.version>3.25.0</assertj.version>
 
         <!-- Glassfish server -->
         <glassfish.version>5.1.0</glassfish.version>
