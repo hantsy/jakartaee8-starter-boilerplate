@@ -1,0 +1,159 @@
+repo_name: hantsy/jakartaee8-starter-boilerplate
+report_id: 2e75be6dd856fc96ef1c5300c7bb878f
+version: 0.1
+repo_type: Public
+timestamp: '2024-01-31T08:28:34+00:00'
+requested_by: renovate[bot]
+provider: github
+branch: master
+detected_tools_count: 12
+tools:
+- name: Java
+  description: A concurrent, class-based, object-oriented, language specifically designed
+    to have as few implementation dependencies as possible
+  website_url: https://www.java.com
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/995/K85ZWV2F.png
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate
+  detection_source: Repo Metadata
+- name: Docker Compose
+  description: Define and run multi-container applications with Docker
+  website_url: https://github.com/docker/compose
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Container Tools
+  image_url: https://img.stackshare.io/service/3136/docker-compose.png
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate/blob/master/docker-compose.yml
+  detection_source: docker-compose.yml
+  last_updated_by: hantsy
+  last_updated_on: 2020-03-08 14:43:19.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate
+  detection_source: Repo Metadata
+- name: GitHub Actions
+  description: Automate your workflow from idea to production
+  website_url: https://github.com/features/actions
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate/blob/master/.github/workflows/build.yml
+  detection_source: ".github/workflows/build.yml"
+  last_updated_by: renovate[bot]
+  last_updated_on: 2024-01-01 01:14:32.000000000 Z
+- name: JBoss
+  description: An open source Java EE-based application server
+  website_url: https://developers.redhat.com/products/eap
+  open_source: false
+  hosted_saas: false
+  category: Application Hosting
+  sub_category: Web Servers
+  image_url: https://img.stackshare.io/service/2188/unnamed.jpg
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-09-27 13:29:11.000000000 Z
+- name: JUnit
+  description: A programmer-oriented testing framework for Java
+  website_url: http://junit.org/
+  version: 4.13.2
+  license: EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/2020/874086.png
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-09-27 13:29:11.000000000 Z
+- name: Mockito
+  description: Tasty mocking framework for unit tests in Java
+  website_url: https://site.mockito.org/
+  version: 4.11.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/2021/4y634TJm_400x400.jpg
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: renovate[bot]
+  last_updated_on: 2024-01-01 01:14:22.000000000 Z
+- name: Wildfly
+  description: A Java EE8 Application Server
+  website_url: https://www.wildfly.org/
+  open_source: false
+  hosted_saas: false
+  category: Application Hosting
+  sub_category: Web Servers
+  image_url: https://img.stackshare.io/service/3411/R_inOTNM_400x400.png
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate/blob/master/docker-compose.yml
+  detection_source: docker-compose.yml
+  last_updated_by: Hantsy Bai
+  last_updated_on: 2023-05-28 15:11:30.000000000 Z
+- name: junit:junit
+  description: JUnit is a unit testing framework for Java
+  version: 4.13.2
+  license: EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: Renovate Bot
+  last_updated_on: 2021-02-13 18:51:41.000000000 Z
+- name: org.hamcrest:hamcrest
+  description: Core API and libraries of hamcrest matcher framework
+  version: '2.2'
+  license: DSDP
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: Hantsy Bai
+  last_updated_on: 2021-02-10 05:25:17.000000000 Z
+- name: org.jboss.arquillian.junit:arquillian-junit-container
+  description: JUnit Container Implementation for the Arquillian Project
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: Renovate Bot
+  last_updated_on: 2022-06-01 00:50:35.000000000 Z
+- name: org.mockito:mockito-core
+  description: Mockito mock objects library core API and implementation
+  version: 4.11.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/jakartaee8-starter-boilerplate/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: renovate[bot]
+  last_updated_on: 2024-01-01 01:14:22.000000000 Z
