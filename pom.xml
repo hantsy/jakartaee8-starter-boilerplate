@@ -67,7 +67,7 @@
         DSRA4000E: No implementations of org.apache.derby.jdbc.EmbeddedXADataSource40 are found
         for dataSource[DefaultDataSource] with library derbyJDBCLib.-->
         <derby.version>10.14.2.0</derby.version>
-        <liberty-maven-plugin.version>3.10.2</liberty-maven-plugin.version>
+        <liberty-maven-plugin.version>3.10.3</liberty-maven-plugin.version>
         <arquillian-liberty.version>1.0.8</arquillian-liberty.version>
         <cxf.version>3.5.5</cxf.version>
 
