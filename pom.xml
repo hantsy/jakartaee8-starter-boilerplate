@@ -37,7 +37,7 @@
         <junit.version>4.13.2</junit.version>
         <mockito.version>4.11.0</mockito.version>
         <json-path.version>2.9.0</json-path.version>
-        <awaitility.version>4.2.1</awaitility.version>
+        <awaitility.version>4.2.2</awaitility.version>
         <hamcrest.version>2.2</hamcrest.version>
         <jsonassert.version>1.5.3</jsonassert.version>
         <assertj.version>3.26.3</assertj.version>
